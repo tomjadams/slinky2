@@ -7,9 +7,9 @@
     
 <project name="Slinky" default="target" basedir=".">
   <property name="build.dir" value="build"/>
-  <property name="build-java.version" value="1.51"/>
+  <property name="build-java.version" value="1.52"/>
   <property name="etc.dir" value="etc"/>
-  <property name="projects.repository.uri" value="http://projects.workingmouse.com/public"/>
+  <property name="projects.repository.uri" value="http://projects.tmorris.net/public"/>
   <property name="scala.lib.path" value="lib"/>
   <property name="scaladoc.doctitle" value="Slinky ${build.number} API Specification"/>
   <property name="scaladoc.top" value="&lt;div&gt;&lt;div align=&quot;right&quot;&gt;&lt;img src=&quot;http://projects.workingmouse.com/public/resources/images/logo_full_transparent.png&quot; alt=&quot;Workingmouse&quot;/&gt;&lt;/div&gt;&lt;p&gt;&lt;em&gt;Copyright Workingmouse Pty. Ltd. 2007, 2008&lt;/em&gt;&lt;/p&gt;This software is released under an open source BSD licence.&lt;/div&gt;"/>
@@ -18,7 +18,7 @@
   <property name="scalaz.src.dir" value="../../scalaz/trunk/src/main"/>
   <property name="scalaz.test-src.dir" value="../../scalaz/trunk/src/test"/>
   <property name="servlet-api.version" value="2.5"/>
-  <property name="software.repository.uri" value="http://software.workingmouse.com/unpacked"/>
+  <property name="software.repository.uri" value="http://software.tmorris.net/artifacts"/>
   <property name="src" value="src"/>
   <property name="src.dir" value="${src}/main"/>
   <import file="buildj.xml" optional="true"/>
