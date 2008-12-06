@@ -1,0 +1,209 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+        <head><title>class SlinkyServlet in slinky.http.servlet</title>
+        <meta http-equiv="content-type" content="text/html; charset=UTF8"></meta><meta content="scaladoc (version 2.7.2.RC4)" name="generator"></meta><link href="../../../style.css" type="text/css" rel="stylesheet"></link><script type="text/javascript" src="../../../script.js"></script>
+        </head>
+        <body onload="init()">
+        <table summary="" class="navigation">
+        <tr>
+          <td class="navigation-links" valign="top">
+            <!-- <table><tr></tr></table> -->
+          </td>
+          <td align="right" valign="top" style="white-space:nowrap;" rowspan="2">
+            <div class="doctitle-larger">Slinky 2.0</div>
+          </td>
+        </tr>
+        <tr><td></td></tr>
+      </table><div><div align="right"><img alt="Workingmouse" src="http://projects.workingmouse.com/public/resources/images/logo_full_transparent.png"></img></div><p><em>Copyright Workingmouse Pty. Ltd. 2007, 2008</em></p>This software is released under an open source BSD licence.</div>
+        
+      <div class="entity">
+        <a href="../../../slinky/http/servlet$package.html" target="_self">slinky.http.servlet</a>
+        <br></br>
+        <span class="entity">class  SlinkyServlet</span>
+      </div><hr></hr>
+      <div class="source">
+        [source: <a href="" class="slinky/http/servlet/SlinkyServlet"><code>slinky/http/servlet/SlinkyServlet.scala</code></a>]
+      </div><hr></hr>
+      <a name="SlinkyServlet"></a><dl>
+      <dt>
+        
+        <code>abstract</code>
+        <code>class</code>
+        <em>SlinkyServlet</em>[<em>IN</em>, <em>OUT</em>, <em>A</em> &lt;: <a href="http://www.scala-lang.org/docu/files/api/scala/AnyRef.html" target="_self">AnyRef</a>](<em>cl</em> : <a href="" target="contentFrame" class="java/lang/Class">java.lang.Class</a>[<a href="../../../slinky/http/servlet/SlinkyServlet.html#A" target="_self">A</a>], <code>implicit </code><em>in</em> : <a href="../../../slinky/http/InputStreamer.html" target="_self">InputStreamer</a>[<a href="../../../slinky/http/servlet/SlinkyServlet.html#IN" target="_self">IN</a>], <code>implicit </code><em>e</em> : <a href="" target="contentFrame" class="scalaz/control/Each">scalaz.control.Each</a>[<a href="../../../slinky/http/servlet/SlinkyServlet.html#OUT" target="_self">OUT</a>])
+      </dt>
+      <dd><code> extends </code><a href="" target="contentFrame" class="javax/servlet/http/HttpServlet">javax.servlet.http.HttpServlet</a><code> with </code><a href="http://www.scala-lang.org/docu/files/api/scala/AnyRef.html" target="_self">AnyRef</a></dd>
+    </dl>
+      <dl><dd>A servlet that can run slinky applications. It is intended that subclasses apply one or more type arguments until a
+ concrete class.</dd></dl>
+      <dl><dt style="margin:10px 0 0 20px;">
+        <b>Author</b></dt><dd><a href="mailto:research@workingmouse.com">Tony Morris</a></dd><dt style="margin:10px 0 0 20px;">
+        <b>Version</b></dt><dd>$LastChangedRevision<br>          $LastChangedDate$<br>
+          $LastChangedBy$</dd></dl>
+    <dl>
+      <dt style="margin:10px 0 0 20px;"><b>Direct Known Subclasses:</b></dt>
+      <dd><a href="../../../slinky/http/servlet/StreamStreamServlet.html" target="_self">StreamStreamServlet</a></dd>
+      </dl><hr></hr>
+      
+<table summary="" cellpadding="3" class="member">
+      <tr><td class="title" colspan="2">Type Summary</td></tr>
+      <tr>
+      <td class="modifiers" valign="top"> 
+        <code> type</code>
+      </td>
+      <td class="signature">
+        <em><a href="../../../slinky/http/servlet/SlinkyServlet.html#App" target="_self">App</a></em>
+        
+        
+        <div>A servlet application from request to response.</div>
+      </td>
+    </tr>
+      </table>
+<table summary="" cellpadding="3" class="member">
+      <tr><td class="title" colspan="2">Value Summary</td></tr>
+      <tr>
+      <td class="modifiers" valign="top"> 
+        <code> val</code>
+      </td>
+      <td class="signature">
+        <em><a href="../../../slinky/http/servlet/SlinkyServlet.html#applicationInitParam" target="_self">applicationInitParam</a></em>
+         : <a href="" target="contentFrame" class="java/lang/String">java.lang.String</a>
+        
+        <div>The <code>init-param</code> to specify in <code>web.xml</code> that denotes the class that is assignable to the
+   class given in the constructor. It is the application that takes a request to a response.</div>
+      </td>
+    </tr>
+      </table>
+<table summary="" cellpadding="3" class="member">
+      <tr><td class="title" colspan="2">Method Summary</td></tr>
+      <tr>
+      <td class="modifiers" valign="top"> 
+        <code>override final def</code>
+      </td>
+      <td class="signature">
+        <em><a href="../../../slinky/http/servlet/SlinkyServlet.html#init%28javax.servlet.ServletConfig%29" target="_self">init</a></em>
+        (<em>config</em> : <a href="" target="contentFrame" class="javax/servlet/ServletConfig">javax.servlet.ServletConfig</a>) : <a href="http://www.scala-lang.org/docu/files/api/scala/Unit.html" target="_self">Unit</a>
+        
+        <div>Checks for the existence of the application init-param, that it is of a correct type and instantiates it.</div>
+      </td>
+    </tr>
+<tr>
+      <td class="modifiers" valign="top"> 
+        <code>override final def</code>
+      </td>
+      <td class="signature">
+        <em><a href="../../../slinky/http/servlet/SlinkyServlet.html#service%28javax.servlet.http.HttpServletRequest%2Cjavax.servlet.http.HttpServletResponse%29" target="_self">service</a></em>
+        (<em>request</em> : <a href="" target="contentFrame" class="javax/servlet/http/HttpServletRequest">javax.servlet.http.HttpServletRequest</a>, <em>response</em> : <a href="" target="contentFrame" class="javax/servlet/http/HttpServletResponse">javax.servlet.http.HttpServletResponse</a>) : <a href="http://www.scala-lang.org/docu/files/api/scala/Unit.html" target="_self">Unit</a>
+        
+        <div>Applies the given request to the underlying web application and sends the resulting response to the given response.</div>
+      </td>
+    </tr>
+      </table><table summary="" cellpadding="3" class="inherited">
+        <tr><td class="title" colspan="2">
+          Methods inherited from <a href="" target="contentFrame" class="javax/servlet/http/HttpServlet">javax.servlet.http.HttpServlet</a>
+        </td></tr>
+        <tr><td class="signature" colspan="2">
+          <a href="#doGet" target="contentFrame" class="javax/servlet/http/HttpServlet">javax.servlet.http.HttpServlet.doGet</a>, <a href="#getLastModified" target="contentFrame" class="javax/servlet/http/HttpServlet">javax.servlet.http.HttpServlet.getLastModified</a>, <a href="#doHead" target="contentFrame" class="javax/servlet/http/HttpServlet">javax.servlet.http.HttpServlet.doHead</a>, <a href="#doPost" target="contentFrame" class="javax/servlet/http/HttpServlet">javax.servlet.http.HttpServlet.doPost</a>, <a href="#doPut" target="contentFrame" class="javax/servlet/http/HttpServlet">javax.servlet.http.HttpServlet.doPut</a>, <a href="#doDelete" target="contentFrame" class="javax/servlet/http/HttpServlet">javax.servlet.http.HttpServlet.doDelete</a>, <a href="#doOptions" target="contentFrame" class="javax/servlet/http/HttpServlet">javax.servlet.http.HttpServlet.doOptions</a>, <a href="#doTrace" target="contentFrame" class="javax/servlet/http/HttpServlet">javax.servlet.http.HttpServlet.doTrace</a>, <a href="#service" target="contentFrame" class="javax/servlet/http/HttpServlet">javax.servlet.http.HttpServlet.service</a>
+        </td></tr>
+      </table><table summary="" cellpadding="3" class="inherited">
+        <tr><td class="title" colspan="2">
+          Methods inherited from <a href="" target="contentFrame" class="javax/servlet/GenericServlet">javax.servlet.GenericServlet</a>
+        </td></tr>
+        <tr><td class="signature" colspan="2">
+          <a href="#destroy" target="contentFrame" class="javax/servlet/GenericServlet">javax.servlet.GenericServlet.destroy</a>, <a href="#getInitParameter" target="contentFrame" class="javax/servlet/GenericServlet">javax.servlet.GenericServlet.getInitParameter</a>, <a href="#getInitParameterNames" target="contentFrame" class="javax/servlet/GenericServlet">javax.servlet.GenericServlet.getInitParameterNames</a>, <a href="#getServletConfig" target="contentFrame" class="javax/servlet/GenericServlet">javax.servlet.GenericServlet.getServletConfig</a>, <a href="#getServletContext" target="contentFrame" class="javax/servlet/GenericServlet">javax.servlet.GenericServlet.getServletContext</a>, <a href="#getServletInfo" target="contentFrame" class="javax/servlet/GenericServlet">javax.servlet.GenericServlet.getServletInfo</a>, <a href="#init" target="contentFrame" class="javax/servlet/GenericServlet">javax.servlet.GenericServlet.init</a>, <a href="#log" target="contentFrame" class="javax/servlet/GenericServlet">javax.servlet.GenericServlet.log</a>, <a href="#log" target="contentFrame" class="javax/servlet/GenericServlet">javax.servlet.GenericServlet.log</a>, <a href="#getServletName" target="contentFrame" class="javax/servlet/GenericServlet">javax.servlet.GenericServlet.getServletName</a>
+        </td></tr>
+      </table><table summary="" cellpadding="3" class="inherited">
+        <tr><td class="title" colspan="2">
+          Methods inherited from <a href="http://www.scala-lang.org/docu/files/api/scala/AnyRef.html" target="_self">AnyRef</a>
+        </td></tr>
+        <tr><td class="signature" colspan="2">
+          <a href="http://www.scala-lang.org/docu/files/api/scala/AnyRef.html#getClass%28%29" target="_self">getClass</a>, <a href="http://www.scala-lang.org/docu/files/api/scala/AnyRef.html#hashCode%28%29" target="_self">hashCode</a>, <a href="http://www.scala-lang.org/docu/files/api/scala/AnyRef.html#equals%28Any%29" target="_self">equals</a>, <a href="http://www.scala-lang.org/docu/files/api/scala/AnyRef.html#clone%28%29" target="_self">clone</a>, <a href="http://www.scala-lang.org/docu/files/api/scala/AnyRef.html#toString%28%29" target="_self">toString</a>, <a href="http://www.scala-lang.org/docu/files/api/scala/AnyRef.html#notify%28%29" target="_self">notify</a>, <a href="http://www.scala-lang.org/docu/files/api/scala/AnyRef.html#notifyAll%28%29" target="_self">notifyAll</a>, <a href="http://www.scala-lang.org/docu/files/api/scala/AnyRef.html#wait%28Long%29" target="_self">wait</a>, <a href="http://www.scala-lang.org/docu/files/api/scala/AnyRef.html#wait%28Long%2CInt%29" target="_self">wait</a>, <a href="http://www.scala-lang.org/docu/files/api/scala/AnyRef.html#wait%28%29" target="_self">wait</a>, <a href="http://www.scala-lang.org/docu/files/api/scala/AnyRef.html#finalize%28%29" target="_self">finalize</a>, <a href="http://www.scala-lang.org/docu/files/api/scala/AnyRef.html#%3D%3D%28AnyRef%29" target="_self">==</a>, <a href="http://www.scala-lang.org/docu/files/api/scala/AnyRef.html#%21%3D%28AnyRef%29" target="_self">!=</a>, <a href="http://www.scala-lang.org/docu/files/api/scala/AnyRef.html#eq%28AnyRef%29" target="_self">eq</a>, <a href="http://www.scala-lang.org/docu/files/api/scala/AnyRef.html#ne%28AnyRef%29" target="_self">ne</a>, <a href="http://www.scala-lang.org/docu/files/api/scala/AnyRef.html#synchronized%28T0%29" target="_self">synchronized</a>
+        </td></tr>
+      </table><table summary="" cellpadding="3" class="inherited">
+        <tr><td class="title" colspan="2">
+          Methods inherited from <a href="http://www.scala-lang.org/docu/files/api/scala/Any.html" target="_self">Any</a>
+        </td></tr>
+        <tr><td class="signature" colspan="2">
+          <a href="http://www.scala-lang.org/docu/files/api/scala/Any.html#%3D%3D%28Any%29" target="_self">==</a>, <a href="http://www.scala-lang.org/docu/files/api/scala/Any.html#%21%3D%28Any%29" target="_self">!=</a>, <a href="http://www.scala-lang.org/docu/files/api/scala/Any.html#isInstanceOf" target="_self">isInstanceOf</a>, <a href="http://www.scala-lang.org/docu/files/api/scala/Any.html#asInstanceOf" target="_self">asInstanceOf</a>
+        </td></tr>
+      </table>
+
+
+      
+<table summary="" cellpadding="3" class="member-detail">
+          <tr><td class="title">Type Details</td></tr>
+        </table><div><a name="App"></a><dl>
+      <dt>
+        
+        <code></code>
+        <code>type</code>
+        <em>App</em>
+      </dt>
+      <dd></dd>
+    </dl>
+      <dl><dd>A servlet application from request to response.</dd></dl>
+      <dl></dl>
+    <hr></hr></div>
+<table summary="" cellpadding="3" class="member-detail">
+          <tr><td class="title">Value Details</td></tr>
+        </table><div><a name="applicationInitParam"></a><dl>
+      <dt>
+        
+        <code></code>
+        <code>val</code>
+        <em>applicationInitParam</em> : <a href="" target="contentFrame" class="java/lang/String">java.lang.String</a>
+      </dt>
+      <dd></dd>
+    </dl>
+      <dl><dd>The <code>init-param</code> to specify in <code>web.xml</code> that denotes the class that is assignable to the
+   class given in the constructor. It is the application that takes a request to a response.</dd></dl>
+      <dl></dl>
+    <hr></hr></div>
+<table summary="" cellpadding="3" class="member-detail">
+          <tr><td class="title">Method Details</td></tr>
+        </table><div><a name="init%28javax.servlet.ServletConfig%29"></a><dl>
+      <dt>
+        
+        <code>override final</code>
+        <code>def</code>
+        <em>init</em>(<em>config</em> : <a href="" target="contentFrame" class="javax/servlet/ServletConfig">javax.servlet.ServletConfig</a>) : <a href="http://www.scala-lang.org/docu/files/api/scala/Unit.html" target="_self">Unit</a>
+      </dt>
+      <dd></dd>
+    </dl>
+      <dl><dd>Checks for the existence of the application init-param, that it is of a correct type and instantiates it.</dd></dl>
+      <dl></dl>
+    <hr></hr>
+<a name="service%28javax.servlet.http.HttpServletRequest%2Cjavax.servlet.http.HttpServletResponse%29"></a><dl>
+      <dt>
+        
+        <code>override final</code>
+        <code>def</code>
+        <em>service</em>(<em>request</em> : <a href="" target="contentFrame" class="javax/servlet/http/HttpServletRequest">javax.servlet.http.HttpServletRequest</a>, <em>response</em> : <a href="" target="contentFrame" class="javax/servlet/http/HttpServletResponse">javax.servlet.http.HttpServletResponse</a>) : <a href="http://www.scala-lang.org/docu/files/api/scala/Unit.html" target="_self">Unit</a>
+      </dt>
+      <dd></dd>
+    </dl>
+      <dl><dd>Applies the given request to the underlying web application and sends the resulting response to the given response.</dd></dl>
+      <dl></dl>
+    <dl>
+        <dt style="margin:10px 0 0 20px;">
+          <b>Overrides</b>
+        </dt>
+        <dd>
+        <a href="" target="contentFrame" class="javax/servlet/http/HttpServlet">javax.servlet.http.HttpServlet</a>.<a href="#service" target="contentFrame" class="javax/servlet/http/HttpServlet">javax.servlet.http.HttpServlet.service</a>
+        </dd>
+      </dl><hr></hr></div>
+
+
+    <hr></hr>
+        <table summary="" class="navigation">
+        <tr>
+          <td class="navigation-links" valign="top">
+            <!-- <table><tr></tr></table> -->
+          </td>
+          <td align="right" valign="top" style="white-space:nowrap;" rowspan="2">
+            <div class="doctitle-larger">Slinky 2.0</div>
+          </td>
+        </tr>
+        <tr><td></td></tr>
+      </table>
+      </body>
+      </html>
