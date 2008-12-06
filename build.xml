@@ -1,0 +1,148 @@
+<?xml version="1.0"?>
+ 
+<!--
+    $LastChangedRevision$
+    $LastChangedDate$
+-->
+    
+<project name="Slinky" default="target" basedir=".">
+  <property name="build.dir" value="build"/>
+  <property name="build-java.version" value="1.45"/>
+  <property name="etc.dir" value="etc"/>
+  <property name="functionaljava.src.dir" value="../../functionaljava/trunk/src/main"/>
+  <property name="functionaljava.test-src.dir" value="../../functionaljava/trunk/src/test"/>
+  <property name="functionaljava.version" value="jar"/>
+  <property name="projects.repository.uri" value="http://projects.workingmouse.com/public"/>
+  <property name="scala.lib.path" value="lib"/>
+  <property name="scaladoc.doctitle" value="Slinky ${build.number} API Specification"/>
+  <property name="scaladoc.top" value="&lt;div&gt;&lt;div align=&quot;right&quot;&gt;&lt;img src=&quot;http://projects.workingmouse.com/public/resources/images/logo_full_transparent.png&quot; alt=&quot;Workingmouse&quot;/&gt;&lt;/div&gt;&lt;p&gt;&lt;em&gt;Copyright Workingmouse Pty. Ltd. 2007, 2008&lt;/em&gt;&lt;/p&gt;This software is released under an open source BSD licence.&lt;/div&gt;"/>
+  <property name="scaladoc.windowtitle" value="Slinky ${build.number}"/>
+  <property name="scalaz.version" value="jar"/>
+  <property name="scalaz.src.dir" value="../../scalaz/trunk/src/main"/>
+  <property name="scalaz.test-src.dir" value="../../scalaz/trunk/src/test"/>
+  <property name="servlet-api.version" value="2.5"/>
+  <property name="software.repository.uri" value="http://software.workingmouse.com/unpacked"/>
+  <property name="src" value="src"/>
+  <property name="src.dir" value="${src}/main"/>
+  <import file="buildj.xml" optional="true"/>
+  
+  <target name="init" description="initialise the project">
+    <get src="${projects.repository.uri}/build/java/artifacts/${build-java.version}/buildj.xml" dest="buildj.xml"
+      usetimestamp="true"/>
+    <mkdir dir="${build.dir}/lib"/>
+    <property name="functionaljava.jar" value="${projects.repository.uri}/functionaljava/${functionaljava.version}/functionaljava.jar"/>
+    <property name="scalaz.jar" value="${projects.repository.uri}/scalaz/${scalaz.version}/scalaz.jar"/>
+    <get
+        src="${functionaljava.jar}"
+        dest="${build.dir}/lib/functionaljava.jar"
+        usetimestamp="true"/>
+    <get
+        src="${scalaz.jar}"
+        dest="${build.dir}/lib/scalaz.jar"
+        usetimestamp="true"/>
+    <get src="${software.repository.uri}/servlet/${servlet-api.version}/servlet-api.jar" dest="build/lib/servlet-api.jar" usetimestamp="true"/>
+    <ant antfile="buildj.xml" target="init"/>
+    <echo file="${etc.dir}/VERSION"
+          message="Slinky: ${build.number}&#010;Scalaz: ${scalaz.version}&#010;&#010;"/>
+  </target>
+  
+  <target name="target" depends="init" description="run a given target">
+    <fail unless="t" message="Set the t property"/>
+    <ant antfile="buildj.xml" target="${t}"/>
+  </target>
+  
+  <target name="test" depends="init" description="runs all tests">
+    <ant antfile="buildj.xml" target="run">
+    	<property name="main" value="slinky.Tests"/>
+  	</ant>
+  </target>
+
+  <target name="clean" depends="init" description="delete the build environment">
+    <ant antfile="buildj.xml" target="clean"/>
+    <delete file="buildj.xml"/>
+  </target>
+  
+  <target name="archive" depends="init">
+    <ant antfile="buildj.xml" target="archive"/>
+  </target>
+   
+  <target name="scaladoc" depends="init">
+    <ant antfile="buildj.xml" target="scaladoc"/>
+  </target>
+  
+  <target name="commit-archive" depends="init">
+    <ant antfile="buildj.xml" target="commit-archive"/>
+  </target>	
+
+  <target name="version" depends="init">
+    <ant antfile="buildj.xml" target="version"/>
+  </target>
+
+  <target name="f" depends="init">
+    <path id="f.functionaljava.path">
+      <fileset dir="${build.dir}/lib">
+        <exclude name="**/functionaljava.jar"/>
+        <include name="**/**.jar"/>
+      </fileset>
+    </path>
+    <compile-java src="${functionaljava.src.dir}" classes="${build.dir}/classes/functionaljava-src" classpath="f.functionaljava.path"/>
+    <path id="fs.functionaljava.path">
+      <fileset dir="${build.dir}/lib">
+        <exclude name="**/functionaljava.jar"/>
+        <include name="**/**.jar"/>
+      </fileset>
+      <pathelement path="${build.dir}/classes/functionaljava-src"/>
+    </path>
+    <fast-compile src="${functionaljava.src.dir}" classes="${build.dir}/classes/functionaljava-src" classpath="fs.functionaljava.path"/>
+    <path id="f.scalaz.path">
+      <fileset dir="${build.dir}/lib">
+        <exclude name="**/scalaz.jar"/>
+        <include name="**/**.jar"/>
+      </fileset>
+    </path>
+    <fast-compile src="${scalaz.src.dir}" classes="${build.dir}/classes/scalaz-src" classpath="f.scalaz.path"/>
+    <path id="f.path">
+      <fileset dir="${build.dir}/lib">
+        <exclude name="**/scalaz.jar"/>
+        <include name="**/**.jar"/>
+      </fileset>
+      <pathelement path="${build.dir}/classes/scalaz-src"/>
+    </path>
+    <fast-compile src="${src.dir}" classes="${build.dir}/classes/f-src" classpath="f.path"/>
+  </target>
+
+  <target name="ft" depends="f">
+    <path id="ft.functionaljava.path">
+      <fileset dir="${build.dir}/lib">
+        <exclude name="**/functionaljava.jar"/>
+        <include name="**/**.jar"/>
+      </fileset>
+      <pathelement path="${build.dir}/classes/functionaljava-src"/>
+    </path>
+    <fast-compile src="${functionaljava.test-src.dir}" classes="${build.dir}/classes/functionaljava-test-src" classpath="ft.functionaljava.path"/>
+    <path id="ft.scalaz.path">
+      <fileset dir="${build.dir}/lib">
+        <exclude name="**/scalaz.jar"/>
+        <exclude name="**/functionaljava.jar"/>
+        <include name="**/**.jar"/>
+      </fileset>
+      <pathelement path="${build.dir}/classes/functionaljava-src"/>
+      <pathelement path="${build.dir}/classes/functionaljava-test-src"/>
+      <pathelement path="${build.dir}/classes/scalaz-src"/>
+    </path>
+    <fast-compile src="${scalaz.test-src.dir}" classes="${build.dir}/classes/scalaz-test-src" classpath="ft.scalaz.path"/>
+    <path id="ft.path">
+      <fileset dir="${build.dir}/lib">
+        <exclude name="**/scalaz.jar"/>
+        <exclude name="**/functionaljava.jar"/>
+        <include name="**/**.jar"/>
+      </fileset>
+      <pathelement path="${build.dir}/classes/functionaljava-src"/>
+      <pathelement path="${build.dir}/classes/functionaljava-test-src"/>
+      <pathelement path="${build.dir}/classes/scalaz-src"/>
+      <pathelement path="${build.dir}/classes/scalaz-test-src"/>
+      <pathelement path="${build.dir}/classes/f-src"/>
+    </path>
+    <fast-compile src="${test-src.dir}" classes="${build.dir}/classes/ft-src" classpath="ft.path"/>
+  </target>
+</project>
