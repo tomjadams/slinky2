@@ -1,0 +1,1100 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+        <head><title>trait Request in slinky.http.request</title>
+        <meta http-equiv="content-type" content="text/html; charset=UTF8"></meta><meta content="scaladoc (version 2.7.2.final)" name="generator"></meta><link href="../../../style.css" type="text/css" rel="stylesheet"></link><script type="text/javascript" src="../../../script.js"></script>
+        </head>
+        <body onload="init()">
+        <table summary="" class="navigation">
+        <tr>
+          <td class="navigation-links" valign="top">
+            <!-- <table><tr></tr></table> -->
+          </td>
+          <td align="right" valign="top" style="white-space:nowrap;" rowspan="2">
+            <div class="doctitle-larger">Slinky 2.1</div>
+          </td>
+        </tr>
+        <tr><td></td></tr>
+      </table><div><div align="right"><img alt="Workingmouse" src="http://projects.workingmouse.com/public/resources/images/logo_full_transparent.png"></img></div><p><em>Copyright Workingmouse Pty. Ltd. 2007, 2008</em></p>This software is released under an open source BSD licence.</div>
+        
+      <div class="entity">
+        <a href="../../../slinky/http/request$package.html" target="_self">slinky.http.request</a>
+        <br></br>
+        <span class="entity">trait  Request</span>
+      </div><hr></hr>
+      <div class="source">
+        [source: <a href="" class="slinky/http/request/Request"><code>slinky/http/request/Request.scala</code></a>]
+      </div><hr></hr>
+      <a name="Request"></a><dl>
+      <dt>
+        
+        <code>sealed</code>
+        <code>trait</code>
+        <em>Request</em>[<em>IN</em>]
+      </dt>
+      <dd><code> extends </code><a href="http://www.scala-lang.org/docu/files/api/scala/AnyRef.html" target="_self">AnyRef</a></dd>
+    </dl>
+      <dl><dd>HTTP request.
+ <a href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec5.html#sec5">RFC 2616 Section 5 Request</a>.</dd></dl>
+      <dl><dt style="margin:10px 0 0 20px;">
+        <b>Author</b></dt><dd><a href="mailto:research@workingmouse.com">Tony Morris</a></dd><dt style="margin:10px 0 0 20px;">
+        <b>Version</b></dt><dd>$LastChangedRevision<br>          $LastChangedDate$<br>
+          $LastChangedBy$</dd></dl>
+    
+      
+
+<table summary="" cellpadding="3" class="member">
+      <tr><td class="title" colspan="2">Value Summary</td></tr>
+      <tr>
+      <td class="modifiers" valign="top"> 
+        <code>abstract val</code>
+      </td>
+      <td class="signature">
+        <em><a href="../../../slinky/http/request/Request.html#body" target="_self">body</a></em>
+         : <a href="../../../slinky/http/request/Request.html#IN" target="_self">IN</a>[<a href="http://www.scala-lang.org/docu/files/api/scala/Byte.html" target="_self">Byte</a>]
+        
+        <div><a href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec4.html#sec4.3">§</a></div>
+      </td>
+    </tr>
+<tr>
+      <td class="modifiers" valign="top"> 
+        <code>abstract val</code>
+      </td>
+      <td class="signature">
+        <em><a href="../../../slinky/http/request/Request.html#headers" target="_self">headers</a></em>
+         : <a href="" target="contentFrame" class="scala/List">scala.List</a>[(<a href="../../../slinky/http/request/RequestHeader.html" target="_self">RequestHeader</a>, <a href="" target="contentFrame" class="scalaz/list/NonEmptyList">scalaz.list.NonEmptyList</a>[<a href="http://www.scala-lang.org/docu/files/api/scala/Char.html" target="_self">Char</a>])]
+        
+        <div><a href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec5.html#sec5.3">§</a></div>
+      </td>
+    </tr>
+<tr>
+      <td class="modifiers" valign="top"> 
+        <code> lazy val</code>
+      </td>
+      <td class="signature">
+        <em><a href="../../../slinky/http/request/Request.html#headersMap" target="_self">headersMap</a></em>
+         : <a href="" target="contentFrame" class="scala/collection/immutable/Map">scala.collection.immutable.Map</a>[<a href="../../../slinky/http/request/RequestHeader.html" target="_self">RequestHeader</a>, <a href="" target="contentFrame" class="scalaz/list/NonEmptyList">scalaz.list.NonEmptyList</a>[<a href="" target="contentFrame" class="scalaz/list/NonEmptyList">scalaz.list.NonEmptyList</a>[<a href="http://www.scala-lang.org/docu/files/api/scala/Char.html" target="_self">Char</a>]]]
+        
+        
+      </td>
+    </tr>
+<tr>
+      <td class="modifiers" valign="top"> 
+        <code> lazy val</code>
+      </td>
+      <td class="signature">
+        <em><a href="../../../slinky/http/request/Request.html#headersMapHeads" target="_self">headersMapHeads</a></em>
+         : <a href="" target="contentFrame" class="scala/collection/immutable/Map">scala.collection.immutable.Map</a>[<a href="../../../slinky/http/request/RequestHeader.html" target="_self">RequestHeader</a>, <a href="" target="contentFrame" class="scalaz/list/NonEmptyList">scalaz.list.NonEmptyList</a>[<a href="http://www.scala-lang.org/docu/files/api/scala/Char.html" target="_self">Char</a>]]
+        
+        
+      </td>
+    </tr>
+<tr>
+      <td class="modifiers" valign="top"> 
+        <code>abstract val</code>
+      </td>
+      <td class="signature">
+        <em><a href="../../../slinky/http/request/Request.html#line" target="_self">line</a></em>
+         : <a href="../../../slinky/http/request/Line.html" target="_self">Line</a>
+        
+        <div><a href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec5.html#sec5.1">§</a></div>
+      </td>
+    </tr>
+      </table>
+<table summary="" cellpadding="3" class="member">
+      <tr><td class="title" colspan="2">Method Summary</td></tr>
+      <tr>
+      <td class="modifiers" valign="top"> 
+        <code> def</code>
+      </td>
+      <td class="signature">
+        <em><a href="../../../slinky/http/request/Request.html#%21%28String%29" target="_self">!</a></em>
+        (<em>p</em> : <a href="" target="contentFrame" class="java/lang/String">java.lang.String</a>) : <a href="" target="contentFrame" class="scala/Option">scala.Option</a>[<a href="" target="contentFrame" class="scala/List">scala.List</a>[<a href="http://www.scala-lang.org/docu/files/api/scala/Char.html" target="_self">Char</a>]]
+        
+        <div>Returns the first occurrence of the given request parameter in the request URI.</div>
+      </td>
+    </tr>
+<tr>
+      <td class="modifiers" valign="top"> 
+        <code> def</code>
+      </td>
+      <td class="signature">
+        <em><a href="../../../slinky/http/request/Request.html#%21%21%28String%29" target="_self">!!</a></em>
+        (<em>p</em> : <a href="" target="contentFrame" class="java/lang/String">java.lang.String</a>) : <a href="" target="contentFrame" class="scala/List">scala.List</a>[<a href="" target="contentFrame" class="scala/List">scala.List</a>[<a href="http://www.scala-lang.org/docu/files/api/scala/Char.html" target="_self">Char</a>]]
+        
+        <div>Returns all occurrences of the given request parameter in the request URI.</div>
+      </td>
+    </tr>
+<tr>
+      <td class="modifiers" valign="top"> 
+        <code> def</code>
+      </td>
+      <td class="signature">
+        <em><a href="../../../slinky/http/request/Request.html#%21%3F%28String%29" target="_self">!?</a></em>
+        (<em>p</em> : <a href="" target="contentFrame" class="java/lang/String">java.lang.String</a>) : <a href="http://www.scala-lang.org/docu/files/api/scala/Boolean.html" target="_self">Boolean</a>
+        
+        <div>Returns <code>true</code> if the given request parameter occurs in the request URI.</div>
+      </td>
+    </tr>
+<tr>
+      <td class="modifiers" valign="top"> 
+        <code> def</code>
+      </td>
+      <td class="signature">
+        <em><a href="../../../slinky/http/request/Request.html#%21%7C%28String%29" target="_self">!|</a></em>
+        (<em>p</em> : <a href="" target="contentFrame" class="java/lang/String">java.lang.String</a>)(<code>implicit </code><em>f</em> : <a href="" target="contentFrame" class="scalaz/control/FoldLeft">scalaz.control.FoldLeft</a>[<a href="../../../slinky/http/request/Request.html#IN" target="_self">IN</a>]) : <a href="" target="contentFrame" class="scala/Option">scala.Option</a>[<a href="" target="contentFrame" class="scala/List">scala.List</a>[<a href="http://www.scala-lang.org/docu/files/api/scala/Char.html" target="_self">Char</a>]]
+        
+        <div>Returns the first occurrence of the given request parameter in the request URI if it exists or in the request body
+   otherwise.</div>
+      </td>
+    </tr>
+<tr>
+      <td class="modifiers" valign="top"> 
+        <code> def</code>
+      </td>
+      <td class="signature">
+        <em><a href="../../../slinky/http/request/Request.html#-%28slinky.http.request.RequestHeader%29" target="_self">-</a></em>
+        (<em>h</em> : <a href="../../../slinky/http/request/RequestHeader.html" target="_self">RequestHeader</a>) : <a href="../../../slinky/http/request/Request.html" target="_self">Request</a>[<a href="../../../slinky/http/request/Request.html#IN" target="_self">IN</a>]
+        
+        <div>Deletes all headers of the given value from a request.</div>
+      </td>
+    </tr>
+<tr>
+      <td class="modifiers" valign="top"> 
+        <code> def</code>
+      </td>
+      <td class="signature">
+        <em><a href="../../../slinky/http/request/Request.html#%3E%3E%28IN%5BByte%5D%29" target="_self">&gt;&gt;</a></em>
+        (<em>b</em> : <a href="../../../slinky/http/request/Request.html#IN" target="_self">IN</a>[<a href="http://www.scala-lang.org/docu/files/api/scala/Byte.html" target="_self">Byte</a>]) : <a href="../../../slinky/http/request/Request.html" target="_self">Request</a>[<a href="../../../slinky/http/request/Request.html#IN" target="_self">IN</a>]
+        
+        <div>Sets the body of a request.</div>
+      </td>
+    </tr>
+<tr>
+      <td class="modifiers" valign="top"> 
+        <code> def</code>
+      </td>
+      <td class="signature">
+        <em><a href="../../../slinky/http/request/Request.html#apply%28slinky.http.request.RequestHeader%2Cscalaz.list.NonEmptyList%5BChar%5D%29" target="_self">apply</a></em>
+        (<em>h</em> : <a href="../../../slinky/http/request/RequestHeader.html" target="_self">RequestHeader</a>, <em>v</em> : <a href="" target="contentFrame" class="scalaz/list/NonEmptyList">scalaz.list.NonEmptyList</a>[<a href="http://www.scala-lang.org/docu/files/api/scala/Char.html" target="_self">Char</a>]) : <a href="../../../slinky/http/request/Request.html" target="_self">Request</a>[<a href="../../../slinky/http/request/Request.html#IN" target="_self">IN</a>]
+        
+        <div>Adds the given request header and value to a request.</div>
+      </td>
+    </tr>
+<tr>
+      <td class="modifiers" valign="top"> 
+        <code> def</code>
+      </td>
+      <td class="signature">
+        <em><a href="../../../slinky/http/request/Request.html#apply%28slinky.http.request.Uri%29" target="_self">apply</a></em>
+        (<em>u</em> : <a href="../../../slinky/http/request/Uri.html" target="_self">Uri</a>) : <a href="../../../slinky/http/request/Request.html" target="_self">Request</a>[<a href="../../../slinky/http/request/Request.html#IN" target="_self">IN</a>]
+        
+        <div>Sets the request URI of the status line of a request.</div>
+      </td>
+    </tr>
+<tr>
+      <td class="modifiers" valign="top"> 
+        <code> def</code>
+      </td>
+      <td class="signature">
+        <em><a href="../../../slinky/http/request/Request.html#apply%28slinky.http.Version%29" target="_self">apply</a></em>
+        (<em>v</em> : <a href="../../../slinky/http/Version.html" target="_self">Version</a>) : <a href="../../../slinky/http/request/Request.html" target="_self">Request</a>[<a href="../../../slinky/http/request/Request.html#IN" target="_self">IN</a>]
+        
+        <div>Sets the request version of the status line of a request.</div>
+      </td>
+    </tr>
+<tr>
+      <td class="modifiers" valign="top"> 
+        <code> def</code>
+      </td>
+      <td class="signature">
+        <em><a href="../../../slinky/http/request/Request.html#apply%28slinky.http.request.Line%29" target="_self">apply</a></em>
+        (<em>l</em> : <a href="../../../slinky/http/request/Line.html" target="_self">Line</a>) : <a href="../../../slinky/http/request/Request.html" target="_self">Request</a>[<a href="../../../slinky/http/request/Request.html#IN" target="_self">IN</a>]
+        
+        <div>Sets the status line of a request.</div>
+      </td>
+    </tr>
+<tr>
+      <td class="modifiers" valign="top"> 
+        <code> def</code>
+      </td>
+      <td class="signature">
+        <em><a href="../../../slinky/http/request/Request.html#apply%28slinky.http.request.RequestHeader%29" target="_self">apply</a></em>
+        (<em>h</em> : <a href="../../../slinky/http/request/RequestHeader.html" target="_self">RequestHeader</a>) : <a href="" target="contentFrame" class="scala/Option">scala.Option</a>[<a href="" target="contentFrame" class="scalaz/list/NonEmptyList">scalaz.list.NonEmptyList</a>[<a href="http://www.scala-lang.org/docu/files/api/scala/Char.html" target="_self">Char</a>]]
+        
+        <div>Returns the first value that corresponds to the given request header.</div>
+      </td>
+    </tr>
+<tr>
+      <td class="modifiers" valign="top"> 
+        <code> def</code>
+      </td>
+      <td class="signature">
+        <em><a href="../../../slinky/http/request/Request.html#apply%28slinky.http.request.Method%29" target="_self">apply</a></em>
+        (<em>m</em> : <a href="../../../slinky/http/request/Method.html" target="_self">Method</a>) : <a href="../../../slinky/http/request/Request.html" target="_self">Request</a>[<a href="../../../slinky/http/request/Request.html#IN" target="_self">IN</a>]
+        
+        <div>Sets the request method of the status line of a request.</div>
+      </td>
+    </tr>
+<tr>
+      <td class="modifiers" valign="top"> 
+        <code> def</code>
+      </td>
+      <td class="signature">
+        <em><a href="../../../slinky/http/request/Request.html#isDelete" target="_self">isDelete</a></em>
+         : <a href="http://www.scala-lang.org/docu/files/api/scala/Boolean.html" target="_self">Boolean</a>
+        
+        <div>Returns <code>true</code> if this request method is DELETE.</div>
+      </td>
+    </tr>
+<tr>
+      <td class="modifiers" valign="top"> 
+        <code> def</code>
+      </td>
+      <td class="signature">
+        <em><a href="../../../slinky/http/request/Request.html#isGet" target="_self">isGet</a></em>
+         : <a href="http://www.scala-lang.org/docu/files/api/scala/Boolean.html" target="_self">Boolean</a>
+        
+        <div>Returns <code>true</code> if this request method is GET.</div>
+      </td>
+    </tr>
+<tr>
+      <td class="modifiers" valign="top"> 
+        <code> def</code>
+      </td>
+      <td class="signature">
+        <em><a href="../../../slinky/http/request/Request.html#isHead" target="_self">isHead</a></em>
+         : <a href="http://www.scala-lang.org/docu/files/api/scala/Boolean.html" target="_self">Boolean</a>
+        
+        <div>Returns <code>true</code> if this request method is HEAD.</div>
+      </td>
+    </tr>
+<tr>
+      <td class="modifiers" valign="top"> 
+        <code> def</code>
+      </td>
+      <td class="signature">
+        <em><a href="../../../slinky/http/request/Request.html#isOptions" target="_self">isOptions</a></em>
+         : <a href="http://www.scala-lang.org/docu/files/api/scala/Boolean.html" target="_self">Boolean</a>
+        
+        <div>Returns <code>true</code> if this request method is OPTIONS.</div>
+      </td>
+    </tr>
+<tr>
+      <td class="modifiers" valign="top"> 
+        <code> def</code>
+      </td>
+      <td class="signature">
+        <em><a href="../../../slinky/http/request/Request.html#isPost" target="_self">isPost</a></em>
+         : <a href="http://www.scala-lang.org/docu/files/api/scala/Boolean.html" target="_self">Boolean</a>
+        
+        <div>Returns <code>true</code> if this request method is POST.</div>
+      </td>
+    </tr>
+<tr>
+      <td class="modifiers" valign="top"> 
+        <code> def</code>
+      </td>
+      <td class="signature">
+        <em><a href="../../../slinky/http/request/Request.html#isPut" target="_self">isPut</a></em>
+         : <a href="http://www.scala-lang.org/docu/files/api/scala/Boolean.html" target="_self">Boolean</a>
+        
+        <div>Returns <code>true</code> if this request method is PUT.</div>
+      </td>
+    </tr>
+<tr>
+      <td class="modifiers" valign="top"> 
+        <code> def</code>
+      </td>
+      <td class="signature">
+        <em><a href="../../../slinky/http/request/Request.html#isTrace" target="_self">isTrace</a></em>
+         : <a href="http://www.scala-lang.org/docu/files/api/scala/Boolean.html" target="_self">Boolean</a>
+        
+        <div>Returns <code>true</code> if this request method is TRACE.</div>
+      </td>
+    </tr>
+<tr>
+      <td class="modifiers" valign="top"> 
+        <code> def</code>
+      </td>
+      <td class="signature">
+        <em><a href="../../../slinky/http/request/Request.html#method" target="_self">method</a></em>
+         : <a href="../../../slinky/http/request/Method.html" target="_self">Method</a>
+        
+        <div>The request method of the status line.</div>
+      </td>
+    </tr>
+<tr>
+      <td class="modifiers" valign="top"> 
+        <code> def</code>
+      </td>
+      <td class="signature">
+        <em><a href="../../../slinky/http/request/Request.html#path%28%28scalaz.list.NonEmptyList%5BChar%5D%29%3D%3EBoolean%29" target="_self">path</a></em>
+        (<em>f</em> : (<a href="" target="contentFrame" class="scalaz/list/NonEmptyList">scalaz.list.NonEmptyList</a>[<a href="http://www.scala-lang.org/docu/files/api/scala/Char.html" target="_self">Char</a>]) =&gt; <a href="http://www.scala-lang.org/docu/files/api/scala/Boolean.html" target="_self">Boolean</a>) : <a href="http://www.scala-lang.org/docu/files/api/scala/Boolean.html" target="_self">Boolean</a>
+        
+        <div>Returns <code>true</code> if the request path of the request URI satisfies the given condition.</div>
+      </td>
+    </tr>
+<tr>
+      <td class="modifiers" valign="top"> 
+        <code> def</code>
+      </td>
+      <td class="signature">
+        <em><a href="../../../slinky/http/request/Request.html#path" target="_self">path</a></em>
+         : <a href="" target="contentFrame" class="scalaz/list/NonEmptyList">scalaz.list.NonEmptyList</a>[<a href="http://www.scala-lang.org/docu/files/api/scala/Char.html" target="_self">Char</a>]
+        
+        <div>The request path of the request URI of the status line.</div>
+      </td>
+    </tr>
+<tr>
+      <td class="modifiers" valign="top"> 
+        <code> def</code>
+      </td>
+      <td class="signature">
+        <em><a href="../../../slinky/http/request/Request.html#pathEquals%28String%29" target="_self">pathEquals</a></em>
+        (<em>s</em> : <a href="" target="contentFrame" class="java/lang/String">java.lang.String</a>) : <a href="http://www.scala-lang.org/docu/files/api/scala/Boolean.html" target="_self">Boolean</a>
+        
+        <div>Returns <code>true</code> if the request path of the request URI equals the given value.</div>
+      </td>
+    </tr>
+<tr>
+      <td class="modifiers" valign="top"> 
+        <code> def</code>
+      </td>
+      <td class="signature">
+        <em><a href="../../../slinky/http/request/Request.html#pathStartsWith%28String%29" target="_self">pathStartsWith</a></em>
+        (<em>s</em> : <a href="" target="contentFrame" class="java/lang/String">java.lang.String</a>) : <a href="http://www.scala-lang.org/docu/files/api/scala/Boolean.html" target="_self">Boolean</a>
+        
+        <div>Returns <code>true</code> if the request path starts with the given value.</div>
+      </td>
+    </tr>
+<tr>
+      <td class="modifiers" valign="top"> 
+        <code> def</code>
+      </td>
+      <td class="signature">
+        <em><a href="../../../slinky/http/request/Request.html#post%28scalaz.control.FoldLeft%5BIN%5D%29" target="_self">post</a></em>
+        (<code>implicit </code><em>f</em> : <a href="" target="contentFrame" class="scalaz/control/FoldLeft">scalaz.control.FoldLeft</a>[<a href="../../../slinky/http/request/Request.html#IN" target="_self">IN</a>]) : <a href="http://www.scala-lang.org/docu/files/api/scala/AnyRef.html" target="_self">AnyRef</a>
+        
+        <div>Provides look up for POST request parameters in the request body. Only the first invocation uses the given
+   fold-left and subsequent invocations look-up using a memoisation table (scoped to each request).</div>
+      </td>
+    </tr>
+<tr>
+      <td class="modifiers" valign="top"> 
+        <code> def</code>
+      </td>
+      <td class="signature">
+        <em><a href="../../../slinky/http/request/Request.html#queryString%28%28List%5BChar%5D%29%3D%3EBoolean%29" target="_self">queryString</a></em>
+        (<em>f</em> : (<a href="" target="contentFrame" class="scala/List">scala.List</a>[<a href="http://www.scala-lang.org/docu/files/api/scala/Char.html" target="_self">Char</a>]) =&gt; <a href="http://www.scala-lang.org/docu/files/api/scala/Boolean.html" target="_self">Boolean</a>) : <a href="http://www.scala-lang.org/docu/files/api/scala/Boolean.html" target="_self">Boolean</a>
+        
+        <div>Returns <code>true</code> if the query string of the request URI satisfies the given condition.</div>
+      </td>
+    </tr>
+<tr>
+      <td class="modifiers" valign="top"> 
+        <code> def</code>
+      </td>
+      <td class="signature">
+        <em><a href="../../../slinky/http/request/Request.html#queryString" target="_self">queryString</a></em>
+         : <a href="" target="contentFrame" class="scala/Option">scala.Option</a>[<a href="" target="contentFrame" class="scala/List">scala.List</a>[<a href="http://www.scala-lang.org/docu/files/api/scala/Char.html" target="_self">Char</a>]]
+        
+        <div>The query string of the request URI of the status line.</div>
+      </td>
+    </tr>
+<tr>
+      <td class="modifiers" valign="top"> 
+        <code> def</code>
+      </td>
+      <td class="signature">
+        <em><a href="../../../slinky/http/request/Request.html#queryStringEquals%28String%29" target="_self">queryStringEquals</a></em>
+        (<em>s</em> : <a href="" target="contentFrame" class="java/lang/String">java.lang.String</a>) : <a href="http://www.scala-lang.org/docu/files/api/scala/Boolean.html" target="_self">Boolean</a>
+        
+        <div>Returns <code>true</code> if the query string of the request URI equals the given value.</div>
+      </td>
+    </tr>
+<tr>
+      <td class="modifiers" valign="top"> 
+        <code> def</code>
+      </td>
+      <td class="signature">
+        <em><a href="../../../slinky/http/request/Request.html#uri" target="_self">uri</a></em>
+         : <a href="../../../slinky/http/request/Uri.html" target="_self">Uri</a>
+        
+        <div>The request URI of the status line.</div>
+      </td>
+    </tr>
+<tr>
+      <td class="modifiers" valign="top"> 
+        <code> def</code>
+      </td>
+      <td class="signature">
+        <em><a href="../../../slinky/http/request/Request.html#version" target="_self">version</a></em>
+         : <a href="../../../slinky/http/Version.html" target="_self">Version</a>
+        
+        <div>The request version of the status line.</div>
+      </td>
+    </tr>
+<tr>
+      <td class="modifiers" valign="top"> 
+        <code> def</code>
+      </td>
+      <td class="signature">
+        <em><a href="../../../slinky/http/request/Request.html#versionMajor" target="_self">versionMajor</a></em>
+         : <a href="" target="contentFrame" class="scalaz/Digit">scalaz.Digit</a>
+        
+        <div>The request version major of the status line.</div>
+      </td>
+    </tr>
+<tr>
+      <td class="modifiers" valign="top"> 
+        <code> def</code>
+      </td>
+      <td class="signature">
+        <em><a href="../../../slinky/http/request/Request.html#versionMinor" target="_self">versionMinor</a></em>
+         : <a href="" target="contentFrame" class="scalaz/Digit">scalaz.Digit</a>
+        
+        <div>The request version minor of the status line.</div>
+      </td>
+    </tr>
+<tr>
+      <td class="modifiers" valign="top"> 
+        <code> def</code>
+      </td>
+      <td class="signature">
+        <em><a href="../../../slinky/http/request/Request.html#%7C%28String%29" target="_self">|</a></em>
+        (<em>p</em> : <a href="" target="contentFrame" class="java/lang/String">java.lang.String</a>)(<code>implicit </code><em>f</em> : <a href="" target="contentFrame" class="scalaz/control/FoldLeft">scalaz.control.FoldLeft</a>[<a href="../../../slinky/http/request/Request.html#IN" target="_self">IN</a>]) : <a href="" target="contentFrame" class="scala/Option">scala.Option</a>[<a href="" target="contentFrame" class="scala/List">scala.List</a>[<a href="http://www.scala-lang.org/docu/files/api/scala/Char.html" target="_self">Char</a>]]
+        
+        <div>Returns the first occurrence of the given request parameter in the request body.</div>
+      </td>
+    </tr>
+<tr>
+      <td class="modifiers" valign="top"> 
+        <code> def</code>
+      </td>
+      <td class="signature">
+        <em><a href="../../../slinky/http/request/Request.html#%7C%21%28String%29" target="_self">|!</a></em>
+        (<em>p</em> : <a href="" target="contentFrame" class="java/lang/String">java.lang.String</a>)(<code>implicit </code><em>f</em> : <a href="" target="contentFrame" class="scalaz/control/FoldLeft">scalaz.control.FoldLeft</a>[<a href="../../../slinky/http/request/Request.html#IN" target="_self">IN</a>]) : <a href="" target="contentFrame" class="scala/Option">scala.Option</a>[<a href="" target="contentFrame" class="scala/List">scala.List</a>[<a href="http://www.scala-lang.org/docu/files/api/scala/Char.html" target="_self">Char</a>]]
+        
+        <div>Returns the first occurrence of the given request parameter in the request body if it exists or in the request URI
+   otherwise.</div>
+      </td>
+    </tr>
+<tr>
+      <td class="modifiers" valign="top"> 
+        <code> def</code>
+      </td>
+      <td class="signature">
+        <em><a href="../../../slinky/http/request/Request.html#%7C%2B%7C%28IN%5BByte%5D%29" target="_self">|+|</a></em>
+        (<em>b</em> : <a href="../../../slinky/http/request/Request.html#IN" target="_self">IN</a>[<a href="http://www.scala-lang.org/docu/files/api/scala/Byte.html" target="_self">Byte</a>])(<code>implicit </code><em>s</em> : <a href="" target="contentFrame" class="scalaz/control/Semigroup">scalaz.control.Semigroup</a>[<a href="../../../slinky/http/request/Request.html#IN" target="_self">IN</a>[<a href="http://www.scala-lang.org/docu/files/api/scala/Byte.html" target="_self">Byte</a>]]) : <a href="../../../slinky/http/request/Request.html" target="_self">Request</a>[<a href="../../../slinky/http/request/Request.html#IN" target="_self">IN</a>]
+        
+        <div>Appends the given value to the body of a request.</div>
+      </td>
+    </tr>
+<tr>
+      <td class="modifiers" valign="top"> 
+        <code> def</code>
+      </td>
+      <td class="signature">
+        <em><a href="../../../slinky/http/request/Request.html#%7C%3F%28String%29" target="_self">|?</a></em>
+        (<em>p</em> : <a href="" target="contentFrame" class="java/lang/String">java.lang.String</a>)(<code>implicit </code><em>f</em> : <a href="" target="contentFrame" class="scalaz/control/FoldLeft">scalaz.control.FoldLeft</a>[<a href="../../../slinky/http/request/Request.html#IN" target="_self">IN</a>]) : <a href="http://www.scala-lang.org/docu/files/api/scala/Boolean.html" target="_self">Boolean</a>
+        
+        <div>Returns <code>true</code> if the given request parameter occurs in the request body.</div>
+      </td>
+    </tr>
+<tr>
+      <td class="modifiers" valign="top"> 
+        <code> def</code>
+      </td>
+      <td class="signature">
+        <em><a href="../../../slinky/http/request/Request.html#%7C%7C%28String%29" target="_self">||</a></em>
+        (<em>p</em> : <a href="" target="contentFrame" class="java/lang/String">java.lang.String</a>)(<code>implicit </code><em>f</em> : <a href="" target="contentFrame" class="scalaz/control/FoldLeft">scalaz.control.FoldLeft</a>[<a href="../../../slinky/http/request/Request.html#IN" target="_self">IN</a>]) : <a href="" target="contentFrame" class="scala/List">scala.List</a>[<a href="" target="contentFrame" class="scala/List">scala.List</a>[<a href="http://www.scala-lang.org/docu/files/api/scala/Char.html" target="_self">Char</a>]]
+        
+        <div>Returns all occurrences of the given request parameter in the request body.</div>
+      </td>
+    </tr>
+<tr>
+      <td class="modifiers" valign="top"> 
+        <code> def</code>
+      </td>
+      <td class="signature">
+        <em><a href="../../../slinky/http/request/Request.html#%7E%21%3F%28String%29" target="_self">~!?</a></em>
+        (<em>p</em> : <a href="" target="contentFrame" class="java/lang/String">java.lang.String</a>) : <a href="http://www.scala-lang.org/docu/files/api/scala/Boolean.html" target="_self">Boolean</a>
+        
+        <div>Returns <code>false</code> if the given request parameter occurs in the request URI.</div>
+      </td>
+    </tr>
+<tr>
+      <td class="modifiers" valign="top"> 
+        <code> def</code>
+      </td>
+      <td class="signature">
+        <em><a href="../../../slinky/http/request/Request.html#%7E%7C%3F%28String%29" target="_self">~|?</a></em>
+        (<em>p</em> : <a href="" target="contentFrame" class="java/lang/String">java.lang.String</a>)(<code>implicit </code><em>f</em> : <a href="" target="contentFrame" class="scalaz/control/FoldLeft">scalaz.control.FoldLeft</a>[<a href="../../../slinky/http/request/Request.html#IN" target="_self">IN</a>]) : <a href="http://www.scala-lang.org/docu/files/api/scala/Boolean.html" target="_self">Boolean</a>
+        
+        <div>Returns <code>false</code> if the given request parameter occurs in the request body.</div>
+      </td>
+    </tr>
+      </table><table summary="" cellpadding="3" class="inherited">
+        <tr><td class="title" colspan="2">
+          Methods inherited from <a href="http://www.scala-lang.org/docu/files/api/scala/AnyRef.html" target="_self">AnyRef</a>
+        </td></tr>
+        <tr><td class="signature" colspan="2">
+          <a href="http://www.scala-lang.org/docu/files/api/scala/AnyRef.html#getClass%28%29" target="_self">getClass</a>, <a href="http://www.scala-lang.org/docu/files/api/scala/AnyRef.html#hashCode%28%29" target="_self">hashCode</a>, <a href="http://www.scala-lang.org/docu/files/api/scala/AnyRef.html#equals%28Any%29" target="_self">equals</a>, <a href="http://www.scala-lang.org/docu/files/api/scala/AnyRef.html#clone%28%29" target="_self">clone</a>, <a href="http://www.scala-lang.org/docu/files/api/scala/AnyRef.html#toString%28%29" target="_self">toString</a>, <a href="http://www.scala-lang.org/docu/files/api/scala/AnyRef.html#notify%28%29" target="_self">notify</a>, <a href="http://www.scala-lang.org/docu/files/api/scala/AnyRef.html#notifyAll%28%29" target="_self">notifyAll</a>, <a href="http://www.scala-lang.org/docu/files/api/scala/AnyRef.html#wait%28Long%29" target="_self">wait</a>, <a href="http://www.scala-lang.org/docu/files/api/scala/AnyRef.html#wait%28Long%2CInt%29" target="_self">wait</a>, <a href="http://www.scala-lang.org/docu/files/api/scala/AnyRef.html#wait%28%29" target="_self">wait</a>, <a href="http://www.scala-lang.org/docu/files/api/scala/AnyRef.html#finalize%28%29" target="_self">finalize</a>, <a href="http://www.scala-lang.org/docu/files/api/scala/AnyRef.html#%3D%3D%28AnyRef%29" target="_self">==</a>, <a href="http://www.scala-lang.org/docu/files/api/scala/AnyRef.html#%21%3D%28AnyRef%29" target="_self">!=</a>, <a href="http://www.scala-lang.org/docu/files/api/scala/AnyRef.html#eq%28AnyRef%29" target="_self">eq</a>, <a href="http://www.scala-lang.org/docu/files/api/scala/AnyRef.html#ne%28AnyRef%29" target="_self">ne</a>, <a href="http://www.scala-lang.org/docu/files/api/scala/AnyRef.html#synchronized%28T0%29" target="_self">synchronized</a>
+        </td></tr>
+      </table><table summary="" cellpadding="3" class="inherited">
+        <tr><td class="title" colspan="2">
+          Methods inherited from <a href="http://www.scala-lang.org/docu/files/api/scala/Any.html" target="_self">Any</a>
+        </td></tr>
+        <tr><td class="signature" colspan="2">
+          <a href="http://www.scala-lang.org/docu/files/api/scala/Any.html#%3D%3D%28Any%29" target="_self">==</a>, <a href="http://www.scala-lang.org/docu/files/api/scala/Any.html#%21%3D%28Any%29" target="_self">!=</a>, <a href="http://www.scala-lang.org/docu/files/api/scala/Any.html#isInstanceOf" target="_self">isInstanceOf</a>, <a href="http://www.scala-lang.org/docu/files/api/scala/Any.html#asInstanceOf" target="_self">asInstanceOf</a>
+        </td></tr>
+      </table>
+
+
+      
+
+<table summary="" cellpadding="3" class="member-detail">
+          <tr><td class="title">Value Details</td></tr>
+        </table><div><a name="line"></a><dl>
+      <dt>
+        
+        <code>abstract</code>
+        <code>val</code>
+        <em>line</em> : <a href="../../../slinky/http/request/Line.html" target="_self">Line</a>
+      </dt>
+      <dd></dd>
+    </dl>
+      <dl><dd><a href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec5.html#sec5.1">§</a></dd></dl>
+      <dl></dl>
+    <hr></hr>
+<a name="headers"></a><dl>
+      <dt>
+        
+        <code>abstract</code>
+        <code>val</code>
+        <em>headers</em> : <a href="" target="contentFrame" class="scala/List">scala.List</a>[(<a href="../../../slinky/http/request/RequestHeader.html" target="_self">RequestHeader</a>, <a href="" target="contentFrame" class="scalaz/list/NonEmptyList">scalaz.list.NonEmptyList</a>[<a href="http://www.scala-lang.org/docu/files/api/scala/Char.html" target="_self">Char</a>])]
+      </dt>
+      <dd></dd>
+    </dl>
+      <dl><dd><a href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec5.html#sec5.3">§</a></dd></dl>
+      <dl></dl>
+    <hr></hr>
+<a name="body"></a><dl>
+      <dt>
+        
+        <code>abstract</code>
+        <code>val</code>
+        <em>body</em> : <a href="../../../slinky/http/request/Request.html#IN" target="_self">IN</a>[<a href="http://www.scala-lang.org/docu/files/api/scala/Byte.html" target="_self">Byte</a>]
+      </dt>
+      <dd></dd>
+    </dl>
+      <dl><dd><a href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec4.html#sec4.3">§</a></dd></dl>
+      <dl></dl>
+    <hr></hr>
+<a name="headersMap"></a><dl>
+      <dt>
+        
+        <code></code>
+        <code>lazy val</code>
+        <em>headersMap</em> : <a href="" target="contentFrame" class="scala/collection/immutable/Map">scala.collection.immutable.Map</a>[<a href="../../../slinky/http/request/RequestHeader.html" target="_self">RequestHeader</a>, <a href="" target="contentFrame" class="scalaz/list/NonEmptyList">scalaz.list.NonEmptyList</a>[<a href="" target="contentFrame" class="scalaz/list/NonEmptyList">scalaz.list.NonEmptyList</a>[<a href="http://www.scala-lang.org/docu/files/api/scala/Char.html" target="_self">Char</a>]]]
+      </dt>
+      <dd></dd>
+    </dl><hr></hr>
+<a name="headersMapHeads"></a><dl>
+      <dt>
+        
+        <code></code>
+        <code>lazy val</code>
+        <em>headersMapHeads</em> : <a href="" target="contentFrame" class="scala/collection/immutable/Map">scala.collection.immutable.Map</a>[<a href="../../../slinky/http/request/RequestHeader.html" target="_self">RequestHeader</a>, <a href="" target="contentFrame" class="scalaz/list/NonEmptyList">scalaz.list.NonEmptyList</a>[<a href="http://www.scala-lang.org/docu/files/api/scala/Char.html" target="_self">Char</a>]]
+      </dt>
+      <dd></dd>
+    </dl><hr></hr></div>
+<table summary="" cellpadding="3" class="member-detail">
+          <tr><td class="title">Method Details</td></tr>
+        </table><div><a name="apply%28slinky.http.request.RequestHeader%2Cscalaz.list.NonEmptyList%5BChar%5D%29"></a><dl>
+      <dt>
+        
+        <code></code>
+        <code>def</code>
+        <em>apply</em>(<em>h</em> : <a href="../../../slinky/http/request/RequestHeader.html" target="_self">RequestHeader</a>, <em>v</em> : <a href="" target="contentFrame" class="scalaz/list/NonEmptyList">scalaz.list.NonEmptyList</a>[<a href="http://www.scala-lang.org/docu/files/api/scala/Char.html" target="_self">Char</a>]) : <a href="../../../slinky/http/request/Request.html" target="_self">Request</a>[<a href="../../../slinky/http/request/Request.html#IN" target="_self">IN</a>]
+      </dt>
+      <dd></dd>
+    </dl>
+      <dl><dd>Adds the given request header and value to a request.</dd></dl>
+      <dl></dl>
+    <hr></hr>
+<a name="apply%28slinky.http.request.Line%29"></a><dl>
+      <dt>
+        
+        <code></code>
+        <code>def</code>
+        <em>apply</em>(<em>l</em> : <a href="../../../slinky/http/request/Line.html" target="_self">Line</a>) : <a href="../../../slinky/http/request/Request.html" target="_self">Request</a>[<a href="../../../slinky/http/request/Request.html#IN" target="_self">IN</a>]
+      </dt>
+      <dd></dd>
+    </dl>
+      <dl><dd>Sets the status line of a request.</dd></dl>
+      <dl></dl>
+    <hr></hr>
+<a name="apply%28slinky.http.request.RequestHeader%29"></a><dl>
+      <dt>
+        
+        <code></code>
+        <code>def</code>
+        <em>apply</em>(<em>h</em> : <a href="../../../slinky/http/request/RequestHeader.html" target="_self">RequestHeader</a>) : <a href="" target="contentFrame" class="scala/Option">scala.Option</a>[<a href="" target="contentFrame" class="scalaz/list/NonEmptyList">scalaz.list.NonEmptyList</a>[<a href="http://www.scala-lang.org/docu/files/api/scala/Char.html" target="_self">Char</a>]]
+      </dt>
+      <dd></dd>
+    </dl>
+      <dl><dd>Returns the first value that corresponds to the given request header.</dd></dl>
+      <dl></dl>
+    <hr></hr>
+<a name="apply%28slinky.http.request.Method%29"></a><dl>
+      <dt>
+        
+        <code></code>
+        <code>def</code>
+        <em>apply</em>(<em>m</em> : <a href="../../../slinky/http/request/Method.html" target="_self">Method</a>) : <a href="../../../slinky/http/request/Request.html" target="_self">Request</a>[<a href="../../../slinky/http/request/Request.html#IN" target="_self">IN</a>]
+      </dt>
+      <dd></dd>
+    </dl>
+      <dl><dd>Sets the request method of the status line of a request.</dd></dl>
+      <dl></dl>
+    <hr></hr>
+<a name="apply%28slinky.http.request.Uri%29"></a><dl>
+      <dt>
+        
+        <code></code>
+        <code>def</code>
+        <em>apply</em>(<em>u</em> : <a href="../../../slinky/http/request/Uri.html" target="_self">Uri</a>) : <a href="../../../slinky/http/request/Request.html" target="_self">Request</a>[<a href="../../../slinky/http/request/Request.html#IN" target="_self">IN</a>]
+      </dt>
+      <dd></dd>
+    </dl>
+      <dl><dd>Sets the request URI of the status line of a request.</dd></dl>
+      <dl></dl>
+    <hr></hr>
+<a name="apply%28slinky.http.Version%29"></a><dl>
+      <dt>
+        
+        <code></code>
+        <code>def</code>
+        <em>apply</em>(<em>v</em> : <a href="../../../slinky/http/Version.html" target="_self">Version</a>) : <a href="../../../slinky/http/request/Request.html" target="_self">Request</a>[<a href="../../../slinky/http/request/Request.html#IN" target="_self">IN</a>]
+      </dt>
+      <dd></dd>
+    </dl>
+      <dl><dd>Sets the request version of the status line of a request.</dd></dl>
+      <dl></dl>
+    <hr></hr>
+<a name="%3E%3E%28IN%5BByte%5D%29"></a><dl>
+      <dt>
+        
+        <code></code>
+        <code>def</code>
+        <em>&gt;&gt;</em>(<em>b</em> : <a href="../../../slinky/http/request/Request.html#IN" target="_self">IN</a>[<a href="http://www.scala-lang.org/docu/files/api/scala/Byte.html" target="_self">Byte</a>]) : <a href="../../../slinky/http/request/Request.html" target="_self">Request</a>[<a href="../../../slinky/http/request/Request.html#IN" target="_self">IN</a>]
+      </dt>
+      <dd></dd>
+    </dl>
+      <dl><dd>Sets the body of a request.</dd></dl>
+      <dl></dl>
+    <hr></hr>
+<a name="%7C%2B%7C%28IN%5BByte%5D%29"></a><dl>
+      <dt>
+        
+        <code></code>
+        <code>def</code>
+        <em>|+|</em>(<em>b</em> : <a href="../../../slinky/http/request/Request.html#IN" target="_self">IN</a>[<a href="http://www.scala-lang.org/docu/files/api/scala/Byte.html" target="_self">Byte</a>])(<code>implicit </code><em>s</em> : <a href="" target="contentFrame" class="scalaz/control/Semigroup">scalaz.control.Semigroup</a>[<a href="../../../slinky/http/request/Request.html#IN" target="_self">IN</a>[<a href="http://www.scala-lang.org/docu/files/api/scala/Byte.html" target="_self">Byte</a>]]) : <a href="../../../slinky/http/request/Request.html" target="_self">Request</a>[<a href="../../../slinky/http/request/Request.html#IN" target="_self">IN</a>]
+      </dt>
+      <dd></dd>
+    </dl>
+      <dl><dd>Appends the given value to the body of a request.</dd></dl>
+      <dl></dl>
+    <hr></hr>
+<a name="-%28slinky.http.request.RequestHeader%29"></a><dl>
+      <dt>
+        
+        <code></code>
+        <code>def</code>
+        <em>-</em>(<em>h</em> : <a href="../../../slinky/http/request/RequestHeader.html" target="_self">RequestHeader</a>) : <a href="../../../slinky/http/request/Request.html" target="_self">Request</a>[<a href="../../../slinky/http/request/Request.html#IN" target="_self">IN</a>]
+      </dt>
+      <dd></dd>
+    </dl>
+      <dl><dd>Deletes all headers of the given value from a request.</dd></dl>
+      <dl></dl>
+    <hr></hr>
+<a name="post%28scalaz.control.FoldLeft%5BIN%5D%29"></a><dl>
+      <dt>
+        
+        <code></code>
+        <code>def</code>
+        <em>post</em>(<code>implicit </code><em>f</em> : <a href="" target="contentFrame" class="scalaz/control/FoldLeft">scalaz.control.FoldLeft</a>[<a href="../../../slinky/http/request/Request.html#IN" target="_self">IN</a>]) : <a href="http://www.scala-lang.org/docu/files/api/scala/AnyRef.html" target="_self">AnyRef</a>
+      </dt>
+      <dd></dd>
+    </dl>
+      <dl><dd>Provides look up for POST request parameters in the request body. Only the first invocation uses the given
+   fold-left and subsequent invocations look-up using a memoisation table (scoped to each request).</dd></dl>
+      <dl></dl>
+    <hr></hr>
+<a name="%21%28String%29"></a><dl>
+      <dt>
+        
+        <code></code>
+        <code>def</code>
+        <em>!</em>(<em>p</em> : <a href="" target="contentFrame" class="java/lang/String">java.lang.String</a>) : <a href="" target="contentFrame" class="scala/Option">scala.Option</a>[<a href="" target="contentFrame" class="scala/List">scala.List</a>[<a href="http://www.scala-lang.org/docu/files/api/scala/Char.html" target="_self">Char</a>]]
+      </dt>
+      <dd></dd>
+    </dl>
+      <dl><dd>Returns the first occurrence of the given request parameter in the request URI.</dd></dl>
+      <dl></dl>
+    <hr></hr>
+<a name="%21%21%28String%29"></a><dl>
+      <dt>
+        
+        <code></code>
+        <code>def</code>
+        <em>!!</em>(<em>p</em> : <a href="" target="contentFrame" class="java/lang/String">java.lang.String</a>) : <a href="" target="contentFrame" class="scala/List">scala.List</a>[<a href="" target="contentFrame" class="scala/List">scala.List</a>[<a href="http://www.scala-lang.org/docu/files/api/scala/Char.html" target="_self">Char</a>]]
+      </dt>
+      <dd></dd>
+    </dl>
+      <dl><dd>Returns all occurrences of the given request parameter in the request URI.</dd></dl>
+      <dl></dl>
+    <hr></hr>
+<a name="%21%3F%28String%29"></a><dl>
+      <dt>
+        
+        <code></code>
+        <code>def</code>
+        <em>!?</em>(<em>p</em> : <a href="" target="contentFrame" class="java/lang/String">java.lang.String</a>) : <a href="http://www.scala-lang.org/docu/files/api/scala/Boolean.html" target="_self">Boolean</a>
+      </dt>
+      <dd></dd>
+    </dl>
+      <dl><dd>Returns <code>true</code> if the given request parameter occurs in the request URI.</dd></dl>
+      <dl></dl>
+    <hr></hr>
+<a name="%7E%21%3F%28String%29"></a><dl>
+      <dt>
+        
+        <code></code>
+        <code>def</code>
+        <em>~!?</em>(<em>p</em> : <a href="" target="contentFrame" class="java/lang/String">java.lang.String</a>) : <a href="http://www.scala-lang.org/docu/files/api/scala/Boolean.html" target="_self">Boolean</a>
+      </dt>
+      <dd></dd>
+    </dl>
+      <dl><dd>Returns <code>false</code> if the given request parameter occurs in the request URI.</dd></dl>
+      <dl></dl>
+    <hr></hr>
+<a name="%7C%28String%29"></a><dl>
+      <dt>
+        
+        <code></code>
+        <code>def</code>
+        <em>|</em>(<em>p</em> : <a href="" target="contentFrame" class="java/lang/String">java.lang.String</a>)(<code>implicit </code><em>f</em> : <a href="" target="contentFrame" class="scalaz/control/FoldLeft">scalaz.control.FoldLeft</a>[<a href="../../../slinky/http/request/Request.html#IN" target="_self">IN</a>]) : <a href="" target="contentFrame" class="scala/Option">scala.Option</a>[<a href="" target="contentFrame" class="scala/List">scala.List</a>[<a href="http://www.scala-lang.org/docu/files/api/scala/Char.html" target="_self">Char</a>]]
+      </dt>
+      <dd></dd>
+    </dl>
+      <dl><dd>Returns the first occurrence of the given request parameter in the request body.</dd></dl>
+      <dl></dl>
+    <hr></hr>
+<a name="%7C%3F%28String%29"></a><dl>
+      <dt>
+        
+        <code></code>
+        <code>def</code>
+        <em>|?</em>(<em>p</em> : <a href="" target="contentFrame" class="java/lang/String">java.lang.String</a>)(<code>implicit </code><em>f</em> : <a href="" target="contentFrame" class="scalaz/control/FoldLeft">scalaz.control.FoldLeft</a>[<a href="../../../slinky/http/request/Request.html#IN" target="_self">IN</a>]) : <a href="http://www.scala-lang.org/docu/files/api/scala/Boolean.html" target="_self">Boolean</a>
+      </dt>
+      <dd></dd>
+    </dl>
+      <dl><dd>Returns <code>true</code> if the given request parameter occurs in the request body.</dd></dl>
+      <dl></dl>
+    <hr></hr>
+<a name="%7E%7C%3F%28String%29"></a><dl>
+      <dt>
+        
+        <code></code>
+        <code>def</code>
+        <em>~|?</em>(<em>p</em> : <a href="" target="contentFrame" class="java/lang/String">java.lang.String</a>)(<code>implicit </code><em>f</em> : <a href="" target="contentFrame" class="scalaz/control/FoldLeft">scalaz.control.FoldLeft</a>[<a href="../../../slinky/http/request/Request.html#IN" target="_self">IN</a>]) : <a href="http://www.scala-lang.org/docu/files/api/scala/Boolean.html" target="_self">Boolean</a>
+      </dt>
+      <dd></dd>
+    </dl>
+      <dl><dd>Returns <code>false</code> if the given request parameter occurs in the request body.</dd></dl>
+      <dl></dl>
+    <hr></hr>
+<a name="%7C%7C%28String%29"></a><dl>
+      <dt>
+        
+        <code></code>
+        <code>def</code>
+        <em>||</em>(<em>p</em> : <a href="" target="contentFrame" class="java/lang/String">java.lang.String</a>)(<code>implicit </code><em>f</em> : <a href="" target="contentFrame" class="scalaz/control/FoldLeft">scalaz.control.FoldLeft</a>[<a href="../../../slinky/http/request/Request.html#IN" target="_self">IN</a>]) : <a href="" target="contentFrame" class="scala/List">scala.List</a>[<a href="" target="contentFrame" class="scala/List">scala.List</a>[<a href="http://www.scala-lang.org/docu/files/api/scala/Char.html" target="_self">Char</a>]]
+      </dt>
+      <dd></dd>
+    </dl>
+      <dl><dd>Returns all occurrences of the given request parameter in the request body.</dd></dl>
+      <dl></dl>
+    <hr></hr>
+<a name="%21%7C%28String%29"></a><dl>
+      <dt>
+        
+        <code></code>
+        <code>def</code>
+        <em>!|</em>(<em>p</em> : <a href="" target="contentFrame" class="java/lang/String">java.lang.String</a>)(<code>implicit </code><em>f</em> : <a href="" target="contentFrame" class="scalaz/control/FoldLeft">scalaz.control.FoldLeft</a>[<a href="../../../slinky/http/request/Request.html#IN" target="_self">IN</a>]) : <a href="" target="contentFrame" class="scala/Option">scala.Option</a>[<a href="" target="contentFrame" class="scala/List">scala.List</a>[<a href="http://www.scala-lang.org/docu/files/api/scala/Char.html" target="_self">Char</a>]]
+      </dt>
+      <dd></dd>
+    </dl>
+      <dl><dd>Returns the first occurrence of the given request parameter in the request URI if it exists or in the request body
+   otherwise.</dd></dl>
+      <dl></dl>
+    <hr></hr>
+<a name="%7C%21%28String%29"></a><dl>
+      <dt>
+        
+        <code></code>
+        <code>def</code>
+        <em>|!</em>(<em>p</em> : <a href="" target="contentFrame" class="java/lang/String">java.lang.String</a>)(<code>implicit </code><em>f</em> : <a href="" target="contentFrame" class="scalaz/control/FoldLeft">scalaz.control.FoldLeft</a>[<a href="../../../slinky/http/request/Request.html#IN" target="_self">IN</a>]) : <a href="" target="contentFrame" class="scala/Option">scala.Option</a>[<a href="" target="contentFrame" class="scala/List">scala.List</a>[<a href="http://www.scala-lang.org/docu/files/api/scala/Char.html" target="_self">Char</a>]]
+      </dt>
+      <dd></dd>
+    </dl>
+      <dl><dd>Returns the first occurrence of the given request parameter in the request body if it exists or in the request URI
+   otherwise.</dd></dl>
+      <dl></dl>
+    <hr></hr>
+<a name="method"></a><dl>
+      <dt>
+        
+        <code></code>
+        <code>def</code>
+        <em>method</em> : <a href="../../../slinky/http/request/Method.html" target="_self">Method</a>
+      </dt>
+      <dd></dd>
+    </dl>
+      <dl><dd>The request method of the status line.</dd></dl>
+      <dl></dl>
+    <hr></hr>
+<a name="uri"></a><dl>
+      <dt>
+        
+        <code></code>
+        <code>def</code>
+        <em>uri</em> : <a href="../../../slinky/http/request/Uri.html" target="_self">Uri</a>
+      </dt>
+      <dd></dd>
+    </dl>
+      <dl><dd>The request URI of the status line.</dd></dl>
+      <dl></dl>
+    <hr></hr>
+<a name="version"></a><dl>
+      <dt>
+        
+        <code></code>
+        <code>def</code>
+        <em>version</em> : <a href="../../../slinky/http/Version.html" target="_self">Version</a>
+      </dt>
+      <dd></dd>
+    </dl>
+      <dl><dd>The request version of the status line.</dd></dl>
+      <dl></dl>
+    <hr></hr>
+<a name="path"></a><dl>
+      <dt>
+        
+        <code></code>
+        <code>def</code>
+        <em>path</em> : <a href="" target="contentFrame" class="scalaz/list/NonEmptyList">scalaz.list.NonEmptyList</a>[<a href="http://www.scala-lang.org/docu/files/api/scala/Char.html" target="_self">Char</a>]
+      </dt>
+      <dd></dd>
+    </dl>
+      <dl><dd>The request path of the request URI of the status line.</dd></dl>
+      <dl></dl>
+    <hr></hr>
+<a name="queryString"></a><dl>
+      <dt>
+        
+        <code></code>
+        <code>def</code>
+        <em>queryString</em> : <a href="" target="contentFrame" class="scala/Option">scala.Option</a>[<a href="" target="contentFrame" class="scala/List">scala.List</a>[<a href="http://www.scala-lang.org/docu/files/api/scala/Char.html" target="_self">Char</a>]]
+      </dt>
+      <dd></dd>
+    </dl>
+      <dl><dd>The query string of the request URI of the status line.</dd></dl>
+      <dl></dl>
+    <hr></hr>
+<a name="versionMajor"></a><dl>
+      <dt>
+        
+        <code></code>
+        <code>def</code>
+        <em>versionMajor</em> : <a href="" target="contentFrame" class="scalaz/Digit">scalaz.Digit</a>
+      </dt>
+      <dd></dd>
+    </dl>
+      <dl><dd>The request version major of the status line.</dd></dl>
+      <dl></dl>
+    <hr></hr>
+<a name="versionMinor"></a><dl>
+      <dt>
+        
+        <code></code>
+        <code>def</code>
+        <em>versionMinor</em> : <a href="" target="contentFrame" class="scalaz/Digit">scalaz.Digit</a>
+      </dt>
+      <dd></dd>
+    </dl>
+      <dl><dd>The request version minor of the status line.</dd></dl>
+      <dl></dl>
+    <hr></hr>
+<a name="path%28%28scalaz.list.NonEmptyList%5BChar%5D%29%3D%3EBoolean%29"></a><dl>
+      <dt>
+        
+        <code></code>
+        <code>def</code>
+        <em>path</em>(<em>f</em> : (<a href="" target="contentFrame" class="scalaz/list/NonEmptyList">scalaz.list.NonEmptyList</a>[<a href="http://www.scala-lang.org/docu/files/api/scala/Char.html" target="_self">Char</a>]) =&gt; <a href="http://www.scala-lang.org/docu/files/api/scala/Boolean.html" target="_self">Boolean</a>) : <a href="http://www.scala-lang.org/docu/files/api/scala/Boolean.html" target="_self">Boolean</a>
+      </dt>
+      <dd></dd>
+    </dl>
+      <dl><dd>Returns <code>true</code> if the request path of the request URI satisfies the given condition.</dd></dl>
+      <dl></dl>
+    <hr></hr>
+<a name="queryString%28%28List%5BChar%5D%29%3D%3EBoolean%29"></a><dl>
+      <dt>
+        
+        <code></code>
+        <code>def</code>
+        <em>queryString</em>(<em>f</em> : (<a href="" target="contentFrame" class="scala/List">scala.List</a>[<a href="http://www.scala-lang.org/docu/files/api/scala/Char.html" target="_self">Char</a>]) =&gt; <a href="http://www.scala-lang.org/docu/files/api/scala/Boolean.html" target="_self">Boolean</a>) : <a href="http://www.scala-lang.org/docu/files/api/scala/Boolean.html" target="_self">Boolean</a>
+      </dt>
+      <dd></dd>
+    </dl>
+      <dl><dd>Returns <code>true</code> if the query string of the request URI satisfies the given condition.</dd></dl>
+      <dl></dl>
+    <hr></hr>
+<a name="pathEquals%28String%29"></a><dl>
+      <dt>
+        
+        <code></code>
+        <code>def</code>
+        <em>pathEquals</em>(<em>s</em> : <a href="" target="contentFrame" class="java/lang/String">java.lang.String</a>) : <a href="http://www.scala-lang.org/docu/files/api/scala/Boolean.html" target="_self">Boolean</a>
+      </dt>
+      <dd></dd>
+    </dl>
+      <dl><dd>Returns <code>true</code> if the request path of the request URI equals the given value.</dd></dl>
+      <dl></dl>
+    <hr></hr>
+<a name="pathStartsWith%28String%29"></a><dl>
+      <dt>
+        
+        <code></code>
+        <code>def</code>
+        <em>pathStartsWith</em>(<em>s</em> : <a href="" target="contentFrame" class="java/lang/String">java.lang.String</a>) : <a href="http://www.scala-lang.org/docu/files/api/scala/Boolean.html" target="_self">Boolean</a>
+      </dt>
+      <dd></dd>
+    </dl>
+      <dl><dd>Returns <code>true</code> if the request path starts with the given value.</dd></dl>
+      <dl></dl>
+    <hr></hr>
+<a name="queryStringEquals%28String%29"></a><dl>
+      <dt>
+        
+        <code></code>
+        <code>def</code>
+        <em>queryStringEquals</em>(<em>s</em> : <a href="" target="contentFrame" class="java/lang/String">java.lang.String</a>) : <a href="http://www.scala-lang.org/docu/files/api/scala/Boolean.html" target="_self">Boolean</a>
+      </dt>
+      <dd></dd>
+    </dl>
+      <dl><dd>Returns <code>true</code> if the query string of the request URI equals the given value.</dd></dl>
+      <dl></dl>
+    <hr></hr>
+<a name="isOptions"></a><dl>
+      <dt>
+        
+        <code></code>
+        <code>def</code>
+        <em>isOptions</em> : <a href="http://www.scala-lang.org/docu/files/api/scala/Boolean.html" target="_self">Boolean</a>
+      </dt>
+      <dd></dd>
+    </dl>
+      <dl><dd>Returns <code>true</code> if this request method is OPTIONS.</dd></dl>
+      <dl></dl>
+    <hr></hr>
+<a name="isGet"></a><dl>
+      <dt>
+        
+        <code></code>
+        <code>def</code>
+        <em>isGet</em> : <a href="http://www.scala-lang.org/docu/files/api/scala/Boolean.html" target="_self">Boolean</a>
+      </dt>
+      <dd></dd>
+    </dl>
+      <dl><dd>Returns <code>true</code> if this request method is GET.</dd></dl>
+      <dl></dl>
+    <hr></hr>
+<a name="isHead"></a><dl>
+      <dt>
+        
+        <code></code>
+        <code>def</code>
+        <em>isHead</em> : <a href="http://www.scala-lang.org/docu/files/api/scala/Boolean.html" target="_self">Boolean</a>
+      </dt>
+      <dd></dd>
+    </dl>
+      <dl><dd>Returns <code>true</code> if this request method is HEAD.</dd></dl>
+      <dl></dl>
+    <hr></hr>
+<a name="isPost"></a><dl>
+      <dt>
+        
+        <code></code>
+        <code>def</code>
+        <em>isPost</em> : <a href="http://www.scala-lang.org/docu/files/api/scala/Boolean.html" target="_self">Boolean</a>
+      </dt>
+      <dd></dd>
+    </dl>
+      <dl><dd>Returns <code>true</code> if this request method is POST.</dd></dl>
+      <dl></dl>
+    <hr></hr>
+<a name="isPut"></a><dl>
+      <dt>
+        
+        <code></code>
+        <code>def</code>
+        <em>isPut</em> : <a href="http://www.scala-lang.org/docu/files/api/scala/Boolean.html" target="_self">Boolean</a>
+      </dt>
+      <dd></dd>
+    </dl>
+      <dl><dd>Returns <code>true</code> if this request method is PUT.</dd></dl>
+      <dl></dl>
+    <hr></hr>
+<a name="isDelete"></a><dl>
+      <dt>
+        
+        <code></code>
+        <code>def</code>
+        <em>isDelete</em> : <a href="http://www.scala-lang.org/docu/files/api/scala/Boolean.html" target="_self">Boolean</a>
+      </dt>
+      <dd></dd>
+    </dl>
+      <dl><dd>Returns <code>true</code> if this request method is DELETE.</dd></dl>
+      <dl></dl>
+    <hr></hr>
+<a name="isTrace"></a><dl>
+      <dt>
+        
+        <code></code>
+        <code>def</code>
+        <em>isTrace</em> : <a href="http://www.scala-lang.org/docu/files/api/scala/Boolean.html" target="_self">Boolean</a>
+      </dt>
+      <dd></dd>
+    </dl>
+      <dl><dd>Returns <code>true</code> if this request method is TRACE.</dd></dl>
+      <dl></dl>
+    <hr></hr></div>
+
+
+    <hr></hr>
+        <table summary="" class="navigation">
+        <tr>
+          <td class="navigation-links" valign="top">
+            <!-- <table><tr></tr></table> -->
+          </td>
+          <td align="right" valign="top" style="white-space:nowrap;" rowspan="2">
+            <div class="doctitle-larger">Slinky 2.1</div>
+          </td>
+        </tr>
+        <tr><td></td></tr>
+      </table>
+      </body>
+      </html>
