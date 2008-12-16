@@ -1,0 +1,195 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+        <head><title>object Util in slinky.http</title>
+        <meta http-equiv="content-type" content="text/html; charset=UTF8"></meta><meta content="scaladoc (version 2.7.2.final)" name="generator"></meta><link href="../../style.css" type="text/css" rel="stylesheet"></link><script type="text/javascript" src="../../script.js"></script>
+        </head>
+        <body onload="init()">
+        <table summary="" class="navigation">
+        <tr>
+          <td class="navigation-links" valign="top">
+            <!-- <table><tr></tr></table> -->
+          </td>
+          <td align="right" valign="top" style="white-space:nowrap;" rowspan="2">
+            <div class="doctitle-larger">Slinky 2.1</div>
+          </td>
+        </tr>
+        <tr><td></td></tr>
+      </table><div><div align="right"><img alt="Workingmouse" src="http://projects.workingmouse.com/public/resources/images/logo_full_transparent.png"></img></div><p><em>Copyright Workingmouse Pty. Ltd. 2007, 2008</em></p>This software is released under an open source BSD licence.</div>
+        
+      <div class="entity">
+        <a href="../../slinky/http$package.html" target="_self">slinky.http</a>
+        <br></br>
+        <span class="entity">object  Util</span>
+      </div><hr></hr>
+      <div class="source">
+        [source: <a href="" class="slinky/http/Util"><code>slinky/http/Util.scala</code></a>]
+      </div><hr></hr>
+      <a name="Util"></a><dl>
+      <dt>
+        
+        <code></code>
+        <code>object</code>
+        <em>Util</em>
+      </dt>
+      <dd><code> extends </code><a href="http://www.scala-lang.org/docu/files/api/scala/AnyRef.html" target="_self">AnyRef</a></dd>
+    </dl>
+      <dl><dd>Utility functions not specific to any particular context within HTTP.</dd></dl>
+      <dl><dt style="margin:10px 0 0 20px;">
+        <b>Author</b></dt><dd><a href="mailto:research@workingmouse.com">Tony Morris</a></dd><dt style="margin:10px 0 0 20px;">
+        <b>Version</b></dt><dd>$LastChangedRevision<br>          $LastChangedDate$<br>
+          $LastChangedBy$</dd></dl>
+    
+      
+
+
+<table summary="" cellpadding="3" class="member">
+      <tr><td class="title" colspan="2">Method Summary</td></tr>
+      <tr>
+      <td class="modifiers" valign="top"> 
+        <code> def</code>
+      </td>
+      <td class="signature">
+        <em><a href="../../slinky/http/Util$object.html#asHashMap" target="_self">asHashMap</a></em>
+        [<em>T</em>, <em>SM</em>] : <a href="../../slinky/http/Util$object.AsHashMap.html" target="_self">AsHashMap</a>[<a href="../../slinky/http/Util$object.html#asHashMap#T" target="_self">T</a>, <a href="../../slinky/http/Util$object.html#asHashMap#SM" target="_self">SM</a>]
+        
+        <div>Indexes the given sequence of key/value pairs using an empty hash-map. The key/value pair type constructor must
+   support fold-left and the index is created in constant space.</div>
+      </td>
+    </tr>
+<tr>
+      <td class="modifiers" valign="top"> 
+        <code> def</code>
+      </td>
+      <td class="signature">
+        <em><a href="../../slinky/http/Util$object.html#asMap" target="_self">asMap</a></em>
+        [<em>T</em>, <em>SM</em>] : <a href="http://www.scala-lang.org/docu/files/api/scala/AnyRef.html" target="_self">AnyRef</a>
+        
+        <div>Indexes the given sequence of key/value pairs using the given map. The key/value pair type constructor must support
+   fold-left and the index is created in constant space.</div>
+      </td>
+    </tr>
+<tr>
+      <td class="modifiers" valign="top"> 
+        <code> def</code>
+      </td>
+      <td class="signature">
+        <em><a href="../../slinky/http/Util$object.html#mapHeads%28scala.collection.immutable.Map%5BK%2Cscalaz.list.NonEmptyList%5BC%5D%5D%29" target="_self">mapHeads</a></em>
+        [<em>K</em>, <em>C</em>](<em>p</em> : <a href="" target="contentFrame" class="scala/collection/immutable/Map">scala.collection.immutable.Map</a>[<a href="../../slinky/http/Util$object.html#mapHeads%28scala.collection.immutable.Map%5BK%2Cscalaz.list.NonEmptyList%5BC%5D%5D%29#K" target="_self">K</a>, <a href="" target="contentFrame" class="scalaz/list/NonEmptyList">scalaz.list.NonEmptyList</a>[<a href="../../slinky/http/Util$object.html#mapHeads%28scala.collection.immutable.Map%5BK%2Cscalaz.list.NonEmptyList%5BC%5D%5D%29#C" target="_self">C</a>]]) : <a href="" target="contentFrame" class="scala/collection/immutable/Map">scala.collection.immutable.Map</a>[<a href="../../slinky/http/Util$object.html#mapHeads%28scala.collection.immutable.Map%5BK%2Cscalaz.list.NonEmptyList%5BC%5D%5D%29#K" target="_self">K</a>, <a href="../../slinky/http/Util$object.html#mapHeads%28scala.collection.immutable.Map%5BK%2Cscalaz.list.NonEmptyList%5BC%5D%5D%29#C" target="_self">C</a>]
+        
+        <div>Returns a map of key/value pairs where only the first value for the given key is available.</div>
+      </td>
+    </tr>
+<tr>
+      <td class="modifiers" valign="top"> 
+        <code> def</code>
+      </td>
+      <td class="signature">
+        <em><a href="../../slinky/http/Util$object.html#parameters%28List%5BChar%5D%29" target="_self">parameters</a></em>
+        (<em>p</em> : <a href="" target="contentFrame" class="scala/List">scala.List</a>[<a href="http://www.scala-lang.org/docu/files/api/scala/Char.html" target="_self">Char</a>]) : <a href="" target="contentFrame" class="scala/List">scala.List</a>[(<a href="" target="contentFrame" class="scala/List">scala.List</a>[<a href="http://www.scala-lang.org/docu/files/api/scala/Char.html" target="_self">Char</a>], <a href="" target="contentFrame" class="scala/List">scala.List</a>[<a href="http://www.scala-lang.org/docu/files/api/scala/Char.html" target="_self">Char</a>])]
+        
+        <div>Splits the given argument by ampersand (<code>&</code>) then each list again by the equals sign (<code>=</code>).
+   e.g. <code>parameters("a=b&c=d&e=f") == [("a", "b"), ("c", "d"), ("e", "f")]</code></div>
+      </td>
+    </tr>
+      </table><table summary="" cellpadding="3" class="inherited">
+        <tr><td class="title" colspan="2">
+          Methods inherited from <a href="http://www.scala-lang.org/docu/files/api/scala/AnyRef.html" target="_self">AnyRef</a>
+        </td></tr>
+        <tr><td class="signature" colspan="2">
+          <a href="http://www.scala-lang.org/docu/files/api/scala/AnyRef.html#getClass%28%29" target="_self">getClass</a>, <a href="http://www.scala-lang.org/docu/files/api/scala/AnyRef.html#hashCode%28%29" target="_self">hashCode</a>, <a href="http://www.scala-lang.org/docu/files/api/scala/AnyRef.html#equals%28Any%29" target="_self">equals</a>, <a href="http://www.scala-lang.org/docu/files/api/scala/AnyRef.html#clone%28%29" target="_self">clone</a>, <a href="http://www.scala-lang.org/docu/files/api/scala/AnyRef.html#toString%28%29" target="_self">toString</a>, <a href="http://www.scala-lang.org/docu/files/api/scala/AnyRef.html#notify%28%29" target="_self">notify</a>, <a href="http://www.scala-lang.org/docu/files/api/scala/AnyRef.html#notifyAll%28%29" target="_self">notifyAll</a>, <a href="http://www.scala-lang.org/docu/files/api/scala/AnyRef.html#wait%28Long%29" target="_self">wait</a>, <a href="http://www.scala-lang.org/docu/files/api/scala/AnyRef.html#wait%28Long%2CInt%29" target="_self">wait</a>, <a href="http://www.scala-lang.org/docu/files/api/scala/AnyRef.html#wait%28%29" target="_self">wait</a>, <a href="http://www.scala-lang.org/docu/files/api/scala/AnyRef.html#finalize%28%29" target="_self">finalize</a>, <a href="http://www.scala-lang.org/docu/files/api/scala/AnyRef.html#%3D%3D%28AnyRef%29" target="_self">==</a>, <a href="http://www.scala-lang.org/docu/files/api/scala/AnyRef.html#%21%3D%28AnyRef%29" target="_self">!=</a>, <a href="http://www.scala-lang.org/docu/files/api/scala/AnyRef.html#eq%28AnyRef%29" target="_self">eq</a>, <a href="http://www.scala-lang.org/docu/files/api/scala/AnyRef.html#ne%28AnyRef%29" target="_self">ne</a>, <a href="http://www.scala-lang.org/docu/files/api/scala/AnyRef.html#synchronized%28T0%29" target="_self">synchronized</a>
+        </td></tr>
+      </table><table summary="" cellpadding="3" class="inherited">
+        <tr><td class="title" colspan="2">
+          Methods inherited from <a href="http://www.scala-lang.org/docu/files/api/scala/Any.html" target="_self">Any</a>
+        </td></tr>
+        <tr><td class="signature" colspan="2">
+          <a href="http://www.scala-lang.org/docu/files/api/scala/Any.html#%3D%3D%28Any%29" target="_self">==</a>, <a href="http://www.scala-lang.org/docu/files/api/scala/Any.html#%21%3D%28Any%29" target="_self">!=</a>, <a href="http://www.scala-lang.org/docu/files/api/scala/Any.html#isInstanceOf" target="_self">isInstanceOf</a>, <a href="http://www.scala-lang.org/docu/files/api/scala/Any.html#asInstanceOf" target="_self">asInstanceOf</a>
+        </td></tr>
+      </table>
+<table summary="" cellpadding="3" class="member">
+      <tr><td class="title" colspan="2">Class Summary</td></tr>
+      <tr>
+      <td class="modifiers" valign="top"> 
+        <code> trait</code>
+      </td>
+      <td class="signature">
+        <em><a href="../../slinky/http/Util$object.AsHashMap.html" target="_self">AsHashMap</a></em>
+        [<em>T</em>, <em>SM</em>]<code> extends </code><a href="http://www.scala-lang.org/docu/files/api/scala/AnyRef.html" target="_self">AnyRef</a>
+        
+        
+      </td>
+    </tr>
+      </table>
+
+      
+
+
+<table summary="" cellpadding="3" class="member-detail">
+          <tr><td class="title">Method Details</td></tr>
+        </table><div><a name="parameters%28List%5BChar%5D%29"></a><dl>
+      <dt>
+        
+        <code></code>
+        <code>def</code>
+        <em>parameters</em>(<em>p</em> : <a href="" target="contentFrame" class="scala/List">scala.List</a>[<a href="http://www.scala-lang.org/docu/files/api/scala/Char.html" target="_self">Char</a>]) : <a href="" target="contentFrame" class="scala/List">scala.List</a>[(<a href="" target="contentFrame" class="scala/List">scala.List</a>[<a href="http://www.scala-lang.org/docu/files/api/scala/Char.html" target="_self">Char</a>], <a href="" target="contentFrame" class="scala/List">scala.List</a>[<a href="http://www.scala-lang.org/docu/files/api/scala/Char.html" target="_self">Char</a>])]
+      </dt>
+      <dd></dd>
+    </dl>
+      <dl><dd>Splits the given argument by ampersand (<code>&</code>) then each list again by the equals sign (<code>=</code>).
+   e.g. <code>parameters("a=b&c=d&e=f") == [("a", "b"), ("c", "d"), ("e", "f")]</code></dd></dl>
+      <dl></dl>
+    <hr></hr>
+<a name="mapHeads%28scala.collection.immutable.Map%5BK%2Cscalaz.list.NonEmptyList%5BC%5D%5D%29"></a><dl>
+      <dt>
+        
+        <code></code>
+        <code>def</code>
+        <em>mapHeads</em>[<em>K</em>, <em>C</em>](<em>p</em> : <a href="" target="contentFrame" class="scala/collection/immutable/Map">scala.collection.immutable.Map</a>[<a href="../../slinky/http/Util$object.html#mapHeads%28scala.collection.immutable.Map%5BK%2Cscalaz.list.NonEmptyList%5BC%5D%5D%29#K" target="_self">K</a>, <a href="" target="contentFrame" class="scalaz/list/NonEmptyList">scalaz.list.NonEmptyList</a>[<a href="../../slinky/http/Util$object.html#mapHeads%28scala.collection.immutable.Map%5BK%2Cscalaz.list.NonEmptyList%5BC%5D%5D%29#C" target="_self">C</a>]]) : <a href="" target="contentFrame" class="scala/collection/immutable/Map">scala.collection.immutable.Map</a>[<a href="../../slinky/http/Util$object.html#mapHeads%28scala.collection.immutable.Map%5BK%2Cscalaz.list.NonEmptyList%5BC%5D%5D%29#K" target="_self">K</a>, <a href="../../slinky/http/Util$object.html#mapHeads%28scala.collection.immutable.Map%5BK%2Cscalaz.list.NonEmptyList%5BC%5D%5D%29#C" target="_self">C</a>]
+      </dt>
+      <dd></dd>
+    </dl>
+      <dl><dd>Returns a map of key/value pairs where only the first value for the given key is available.</dd></dl>
+      <dl></dl>
+    <hr></hr>
+<a name="asHashMap"></a><dl>
+      <dt>
+        
+        <code></code>
+        <code>def</code>
+        <em>asHashMap</em>[<em>T</em>, <em>SM</em>] : <a href="../../slinky/http/Util$object.AsHashMap.html" target="_self">AsHashMap</a>[<a href="../../slinky/http/Util$object.html#asHashMap#T" target="_self">T</a>, <a href="../../slinky/http/Util$object.html#asHashMap#SM" target="_self">SM</a>]
+      </dt>
+      <dd></dd>
+    </dl>
+      <dl><dd>Indexes the given sequence of key/value pairs using an empty hash-map. The key/value pair type constructor must
+   support fold-left and the index is created in constant space.</dd></dl>
+      <dl></dl>
+    <hr></hr>
+<a name="asMap"></a><dl>
+      <dt>
+        
+        <code></code>
+        <code>def</code>
+        <em>asMap</em>[<em>T</em>, <em>SM</em>] : <a href="http://www.scala-lang.org/docu/files/api/scala/AnyRef.html" target="_self">AnyRef</a>
+      </dt>
+      <dd></dd>
+    </dl>
+      <dl><dd>Indexes the given sequence of key/value pairs using the given map. The key/value pair type constructor must support
+   fold-left and the index is created in constant space.</dd></dl>
+      <dl></dl>
+    <hr></hr></div>
+
+
+    <hr></hr>
+        <table summary="" class="navigation">
+        <tr>
+          <td class="navigation-links" valign="top">
+            <!-- <table><tr></tr></table> -->
+          </td>
+          <td align="right" valign="top" style="white-space:nowrap;" rowspan="2">
+            <div class="doctitle-larger">Slinky 2.1</div>
+          </td>
+        </tr>
+        <tr><td></td></tr>
+      </table>
+      </body>
+      </html>
