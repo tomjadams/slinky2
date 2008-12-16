@@ -1,0 +1,27 @@
+* Change any Response combinators to use existentials instead of forall OUT : * -> *?
+* Form field validation
+  * Field[+E, +A] backed by Validation[E, A]
+  * String -> (String -> Validation[E, B]) -> Request[_] -> Field[E, B]
+  * String -> (String -> Either[E, B]) -> Request[_] -> Field[E, B]
+  * String -> (String -> Option[E]) -> Request[_] -> Field[E, String]
+  * String -> (String -> Option[B]) -> Request[_] -> Field[Unit, B]
+  * String -> (String -> B) -> Request[_] -> Field[Nothing, B]
+  * String -> (String -> Boolean) -> Request[_] -> Field[Unit, String]
+  * String -> Request[_] -> Field[Nothing, String]
+  * Field[NEL[E], A] combinators
+  * More combinators e.g. parseInt applied
+  * Field[E, _] FunctorW/ApplicativeW/MonadW
+* Scala 2.7.2-RC1
+
+
+// Crashes the compiler scala-2.7.1.r15535-b20080712185233
+// Works fine Scala-2.7.2-RC1
+class Foo[F[_]]
+
+object Foo {
+  def foo(n: Int)(implicit f: Foo[IN] forSome { type IN[_] }) = "foo"
+
+  implicit val z: Foo[List] = new Foo[List]
+
+  val t = foo(7)
+}
