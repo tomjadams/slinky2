@@ -52,9 +52,14 @@ sealed trait HttpServletRequest {
   def attr(attr: String) = onull(request.getAttribute(attr))
 
   /**
-   * Returns the HTTP session associated with this request
+   * Returns the HTTP session associated with this request.
    */
   def session = HttpSessionSession(request.getSession)
+
+  /**
+   * Returns the HTTP session associated with this request.
+   */
+  def session(create: Boolean) = HttpSessionSession(request.getSession(create))
 
   /**
    * Converts this request into a slinky request.
