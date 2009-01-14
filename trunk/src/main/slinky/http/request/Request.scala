@@ -6,6 +6,7 @@ import scalaz.control.PlusW._
 import scalaz.control.FoldLeftW.foldleft
 import scalaz.list.NonEmptyList
 import scalaz.list.NonEmptyList._
+import scalaz.validation.Validation
 import scalaz.memo.Memo._
 import Util.{asHashMap, mapHeads, parameters}
 
@@ -111,9 +112,19 @@ sealed trait Request[IN[_]] {
   def !(p: String) = line.uri.parametersMapHeads >>= (_.get(p.toList))
 
   /**
+   * Returns the first occurrence of the given request parameter in the request URI or the given error value.
+   */
+  def ![E](p: String, e: => E): Validation[E, List[Char]] = this ! p toRight e
+
+  /**
    * Returns all occurrences of the given request parameter in the request URI.
    */
   def !!(p: String) = OptionNonEmptyListList(line.uri.parametersMap >>= (_.get(p.toList)))
+  
+  /**
+   * Returns all occurrences of the given request parameter in the request URI or the given error value.
+   */
+  def !![E](p: String, e: => E): Validation[E, NonEmptyList[List[Char]]] = this !! p toRight e
 
   /**
    * Returns <code>true</code> if the given request parameter occurs in the request URI.
@@ -131,6 +142,11 @@ sealed trait Request[IN[_]] {
   def |(p: String)(implicit f: FoldLeft[IN]) = post | p
 
   /**
+   * Returns the first occurrence of the given request parameter in the request body or the given error value.
+   */
+  def |[E](p: String, e: => E)(implicit f: FoldLeft[IN]): Validation[E, List[Char]] = post | p toRight e
+
+  /**
    * Returns <code>true</code> if the given request parameter occurs in the request body.
    */
   def |?(p: String)(implicit f: FoldLeft[IN]) = this | p isDefined
@@ -146,16 +162,33 @@ sealed trait Request[IN[_]] {
   def ||(p: String)(implicit f: FoldLeft[IN]) = post || p
 
   /**
+   * Returns all occurrences of the given request parameter in the request body or the given error value.
+   */
+  def ||[E](p: String, e: => E)(implicit f: FoldLeft[IN]): Validation[E, NonEmptyList[List[Char]]] = this || p toRight e
+
+  /**
    * Returns the first occurrence of the given request parameter in the request URI if it exists or in the request body
    * otherwise.
    */
   def !|(p: String)(implicit f: FoldLeft[IN]) = this.!(p) <+> |(p)
 
   /**
+   * Returns the first occurrence of the given request parameter in the request URI if it exists or in the request body
+   * otherwise or the given error value.
+   */
+  def !|[E](p: String, e: => E)(implicit f: FoldLeft[IN]): Validation[E, List[Char]] = this !| p toRight e
+
+  /**
    * Returns the first occurrence of the given request parameter in the request body if it exists or in the request URI
    * otherwise.
    */
   def |!(p: String)(implicit f: FoldLeft[IN]) = |(p) <+> this.!(p)
+
+  /**
+   * Returns the first occurrence of the given request parameter in the request body if it exists or in the request URI
+   * otherwise or the given error value.
+   */
+  def |![E](p: String, e: => E)(implicit f: FoldLeft[IN]): Validation[E, List[Char]] = this |! p toRight e
 
   /**
    * The request method of the status line.
