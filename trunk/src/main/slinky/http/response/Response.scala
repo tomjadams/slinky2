@@ -75,6 +75,11 @@ sealed trait Response[OUT[_]] {
    */
   def <<[A](a: A)(implicit b: Body[OUT, A], s: Semigroup[OUT[Byte]]) = response[OUT](line, headers, s.append(body, b(a)))
 
+  /**
+   * Prepend the given value to the body of this response.
+   */
+  def <<:[A](a: A)(implicit b: Body[OUT, A], s: Semigroup[OUT[Byte]]) = response[OUT](line, headers, s.append(b(a), body))
+
   import Util.{asHashMap, mapHeads}
 
   /**
