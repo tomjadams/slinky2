@@ -7,7 +7,7 @@
     
 <project name="Slinky" default="target" basedir=".">
   <property name="build.dir" value="build"/>
-  <property name="build-java.version" value="1.54"/>
+  <property name="build-java.version" value="1.55"/>
   <property name="etc.dir" value="etc"/>
   <property name="projects.repository.uri" value="http://projects.tmorris.net/public"/>
   <property name="scala.lib.path" value="lib"/>
