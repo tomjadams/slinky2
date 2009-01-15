@@ -25,6 +25,7 @@ sealed trait HttpServlet {
 
 import scalaz.list.NonEmptyList
 import scalaz.javas.InputStream._
+import slinky.http.request.Request
 
 /**
  * A wrapper around Java Servlet <code>HttpServlet</code>.
@@ -48,6 +49,13 @@ object HttpServlet {
    */
   def resource[A](path: String, found: Iterator[Byte] => A, notFound: => A)(implicit s: HttpServlet) =
     s.resource(path) > (found(_)) | notFound
+
+  /**
+   * Loads a resource at the path of the given request. If that resource is found, return the result of applying the
+   * given function, otherwise return the given value.
+   */
+  def resource[A](found: Iterator[Byte] => A, notFound: => A)(implicit s: HttpServlet, request: Request[IN] forSome { type IN[_] }): A =
+    resource(request.path.mkString, found, notFound)
 
   /**
    * Loads a resource at the given path. If that resource is found, return the result of applying the given function,
