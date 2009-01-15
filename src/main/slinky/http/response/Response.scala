@@ -150,6 +150,14 @@ sealed trait Response[OUT[_]] {
   }
 
   /**
+   * Sets the ContentType response header according to the
+   * <a href="http://www.w3schools.com/media/media_mimeref.asp">W3C MIME Reference</a> if the given request path
+   * has a file extension and corresponds to a known file extension.
+   */
+  def unary_~(implicit request: Request[IN] forSome { type IN[_] }) =
+    ContentTypeResolver.w3cMimeReference(request.pathExtension) map (this(ContentType, _)) getOrElse this
+
+  /**
    * Sets the content-type response header for XHTML (<code>application/xhtml+xml</code>), however, if the browser
    * identifies itself as Internet Explorer (the user agent contains msie), set the response header for HTML
    * (<code>text/html</code>).
