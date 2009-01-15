@@ -211,6 +211,11 @@ sealed trait Request[IN[_]] {
   def path = line.uri.path
 
   /**
+   * Returns the path extension - characters after the last dot (.) in the path.
+   */
+  def pathExtension = line.uri.pathExtension
+
+  /**
    * The query string of the request URI of the status line.
    */
   def queryString = line.uri.queryString

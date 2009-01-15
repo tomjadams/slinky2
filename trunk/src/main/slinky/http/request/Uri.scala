@@ -46,6 +46,11 @@ sealed trait Uri {
    */
   def ++++(f: Option[List[Char]] => Option[List[Char]]) = uri(path, f(this.queryString))
 
+  /**
+   * Returns the path extension - characters after the last dot (.) in the path.
+   */
+  lazy val pathExtension = path.dropWhile(_ != '.').reverse.takeWhile(_ != '.').reverse.mkString
+  
   import Util.{asHashMap, mapHeads}
 
   /**
