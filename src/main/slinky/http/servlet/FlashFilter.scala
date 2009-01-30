@@ -1,6 +1,7 @@
 package slinky.http.servlet
 
 import javax.servlet.{ServletRequest, ServletResponse, Filter, FilterChain, FilterConfig}
+import javax.servlet.http.HttpServletRequest
 import slinky.http.servlet.HttpServletRequest._
 
 /**
