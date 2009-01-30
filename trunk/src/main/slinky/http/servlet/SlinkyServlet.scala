@@ -10,7 +10,7 @@ import scalaz.control.Each
  * A servlet that can run slinky applications. It is intended that subclasses apply one or more type arguments until a
  * concrete class.
  *
- * @author <a href="mailto:research@workingmouse.com">Tony Morris</a>
+ * @author <a href="mailto:code@tmorris.net">Tony Morris</a>
  * @version $LastChangedRevision<br>
  *          $LastChangedDate$<br>
  *          $LastChangedBy$

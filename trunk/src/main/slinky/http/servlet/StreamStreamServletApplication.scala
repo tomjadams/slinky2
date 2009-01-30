@@ -5,7 +5,7 @@ import request.Request
 /**
  * A servlet web application with a request body and response body made up of a stream of bytes.
  *
- * @author <a href="mailto:research@workingmouse.com">Tony Morris</a>
+ * @author <a href="mailto:code@tmorris.net">Tony Morris</a>
  * @version $LastChangedRevision<br>
  *          $LastChangedDate$<br>
  *          $LastChangedBy$

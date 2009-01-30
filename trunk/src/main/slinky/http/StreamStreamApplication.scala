@@ -9,7 +9,7 @@ import scalaz.control.MonadEmpty._
 /**
  * Functions for web applications whose request and response body and transformed using <code>scala.Stream</code>.
  *
- * @author <a href="mailto:research@workingmouse.com">Tony Morris</a>
+ * @author <a href="mailto:code@tmorris.net">Tony Morris</a>
  * @version $LastChangedRevision<br>
  *          $LastChangedDate$<br>
  *          $LastChangedBy$

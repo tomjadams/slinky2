@@ -8,7 +8,7 @@ import scalaz.Digit.{digitsLong, longDigits}
  * HTTP response status codes.
  * <a href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10">RFC 2616 Section 10 Status Code Definitions</a>.
  *
- * @author <a href="mailto:research@workingmouse.com">Tony Morris</a>
+ * @author <a href="mailto:code@tmorris.net">Tony Morris</a>
  * @version $LastChangedRevision<br>
  *          $LastChangedDate$<br>
  *          $LastChangedBy$
