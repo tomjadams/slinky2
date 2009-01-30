@@ -1,7 +1,6 @@
 package slinky.http.servlet
 
 import javax.servlet.{ServletRequest, ServletResponse, Filter, FilterChain, FilterConfig}
-import javax.servlet.http.HttpServletRequest
 import slinky.http.servlet.HttpServletRequest._
 
 /**
@@ -29,7 +28,7 @@ final class FlashFilter extends Filter {
    * If there is a session parameter set then unset it and put its value in a request attribute.
    */
   override def doFilter(request : ServletRequest, response : ServletResponse, chain : FilterChain) {
-    val r = request.asInstanceOf[HttpServletRequest]
+    val r = request.asInstanceOf[javax.servlet.http.HttpServletRequest]
 
     r.session(flashParameter) foreach (flash => {
       r(flashParameter) = flash
