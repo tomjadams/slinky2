@@ -6,7 +6,7 @@ import scalaz.control.FunctorW._
 /**
  * A wrapper around Java Servlet <code>HttpServlet</code>.
  *
- * @author <a href="mailto:research@workingmouse.com">Tony Morris</a>
+ * @author <a href="mailto:code@tmorris.net">Tony Morris</a>
  * @version $LastChangedRevision<br>
  *          $LastChangedDate$<br>
  *          $LastChangedBy$

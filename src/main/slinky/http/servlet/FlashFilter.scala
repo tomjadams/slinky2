@@ -6,7 +6,7 @@ import slinky.http.servlet.HttpServletRequest._
 /**
  * A filter that will keep a session variable until the next request where its value is placed in a request attribute.
  *
- * @author <a href="mailto:research@workingmouse.com">Tony Morris</a>
+ * @author <a href="mailto:code@tmorris.net">Tony Morris</a>
  * @version $LastChangedRevision<br>
  *          $LastChangedDate$<br>
  *          $LastChangedBy$

@@ -11,7 +11,7 @@ import scalaz.list.NonEmptyList.stringe
  * HTTP response.
  * <a href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec6.html#sec6">RFC 2616 Section 6 Response</a>.
  *
- * @author <a href="mailto:research@workingmouse.com">Tony Morris</a>
+ * @author <a href="mailto:code@tmorris.net">Tony Morris</a>
  * @version $LastChangedRevision<br>
  *          $LastChangedDate$<br>
  *          $LastChangedBy$

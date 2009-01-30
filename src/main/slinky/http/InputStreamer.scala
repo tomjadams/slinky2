@@ -5,7 +5,7 @@ import java.io.InputStream
 /**
  * Takes an input-stream to an environment for bytes.
  *
- * @author <a href="mailto:research@workingmouse.com">Tony Morris</a>
+ * @author <a href="mailto:code@tmorris.net">Tony Morris</a>
  * @version $LastChangedRevision<br>
  *          $LastChangedDate$<br>
  *          $LastChangedBy$
@@ -22,7 +22,7 @@ import scalaz.javas.InputStream._
 /**
  * Functions over values that take an input-stream to an environment for bytes.
  *
- * @author <a href="mailto:research@workingmouse.com">Tony Morris</a>
+ * @author <a href="mailto:code@tmorris.net">Tony Morris</a>
  * @version $LastChangedRevision<br>
  *          $LastChangedDate$<br>
  *          $LastChangedBy$

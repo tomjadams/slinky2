@@ -8,7 +8,7 @@ import scalaz.list.NonEmptyList
 /**
  * Functions to create responses that have a stream body.
  *
- * @author <a href="mailto:research@workingmouse.com">Tony Morris</a>
+ * @author <a href="mailto:code@tmorris.net">Tony Morris</a>
  * @version $LastChangedRevision<br>
  *          $LastChangedDate$<br>
  *          $LastChangedBy$
