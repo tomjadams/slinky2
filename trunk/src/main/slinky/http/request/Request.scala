@@ -107,7 +107,17 @@ sealed trait Request[IN[_]] {
   }
 
   /**
-   * Returns the first occurrence of the given request parameter in the request URI.
+   * The request URI parameters.
+   */
+  def parametersMap = line.uri.parametersMap
+
+  /**
+   * The request URI parameters with only the first occurring value.
+   */
+  def parametersMapHeads = line.uri.parametersMapHeads
+
+  /**
+   *  Returns the first occurrence of the given request parameter in the request URI.
    */
   def !(p: String) = line.uri.parametersMapHeads >>= (_.get(p.toList))
 
