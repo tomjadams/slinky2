@@ -105,7 +105,7 @@ object HttpServletRequest {
   /**
    * Removes the length of the context path of the given servlet request unless it is empty. 
    */
-  def c(r: Request[IN] forSome { type IN[_] })(implicit request: HttpServletRequest) = {
+  def c[IN[_]](r: Request[IN])(implicit request: HttpServletRequest) = {
     val k: Option[NonEmptyList[Char]] = r.path drop request.getContextPath.length
     k > (p => r(r.uri(p))) | r
   }
