@@ -102,6 +102,14 @@ object HttpServletRequest {
   def link(s: String)(implicit request: HttpServletRequest) =
     request.getContextPath + '/' + s
 
+  /**
+   * Removes the length of the context path of the given servlet request unless it is empty. 
+   */
+  def c(r: Request[IN] forSome { type IN[_] })(implicit request: HttpServletRequest) = {
+    val k: Option[NonEmptyList[Char]] = r.path drop request.getContextPath.length
+    k > (p => r(r.uri(p))) | r
+  }
+
   object MethodPath {
     def unapply[IN[_]](r: Request[IN])(implicit hsr: HttpServletRequest): Option[(Method, String)] =
       slinky.http.request.Request.MethodPath.unapply(r) > (ms => (ms._1, ms._2.drop((hsr.getContextPath + "/").length)))
