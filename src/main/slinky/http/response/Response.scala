@@ -274,6 +274,6 @@ object Response {
    * Create a response with a version derived from the given request that redirects (301 Moved Permanently) to the given location.
    * <strong>This function fails if the given string value is empty</strong>.
    */
-  def redirects[OUT[_], IN[_]](location: String)(implicit e: Empty[OUT], req: Request[IN]) =
-    redirect[OUT, IN](stringe(location, "location must be non-empty"))
+  def redirects[OUT[_], IN[_]](location: String, parameters: (String, String)*)(implicit e: Empty[OUT], req: Request[IN]) =
+    redirect[OUT, IN](stringe(location, "location must be non-empty"), parameters: _*)
 }

@@ -42,11 +42,11 @@ object StreamStreamApplication {
   /**
    * Create a response with a version derived from the given request that redirects (301 Moved Permanently) to the given location.
    */
-  def redirect(location: NonEmptyList[Char])(implicit req: Request[Stream]) = Response.redirect[Stream, Stream](location)
+  def redirect(location: NonEmptyList[Char], parameters: (String, String)*)(implicit req: Request[Stream]) = Response.redirect[Stream, Stream](location, parameters: _*)
 
   /**
    * Create a response with a version derived from the given request that redirects (301 Moved Permanently) to the given location.
    * <strong>This function fails if the given string value is empty</strong>.
    */
-  def redirect(location: String)(implicit req: Request[Stream]) = Response.redirects[Stream, Stream](location)
+  def redirect(location: String, parameters: (String, String)*)(implicit req: Request[Stream]) = Response.redirects[Stream, Stream](location, parameters: _*)
 }
