@@ -6,6 +6,7 @@ import request.UserAgent
 import scalaz.control.{Each, Semigroup, FoldLeft, Empty, FoldLeftW}
 import scalaz.list.NonEmptyList
 import scalaz.list.NonEmptyList.stringe
+import Util._
 
 /**
  * HTTP response.
@@ -79,8 +80,6 @@ sealed trait Response[OUT[_]] {
    * Prepend the given value to the body of this response.
    */
   def <<:[A](a: A)(implicit b: Body[OUT, A], s: Semigroup[OUT[Byte]]) = response[OUT](line, headers, s.append(b(a), body))
-
-  import Util.{asHashMap, mapHeads}
 
   /**
    * A map of headers offering optimal seek time.
@@ -268,13 +267,13 @@ object Response {
   /**
    * Create a response with a version derived from the given request that redirects (301 Moved Permanently) to the given location.
    */
-  def redirect[OUT[_], IN[_]](location: NonEmptyList[Char])(implicit e: Empty[OUT], req: Request[IN]) =
-    response[OUT](statusLine[IN](MovedPermanently), List((Location, location)), e.empty)
+  def redirect[OUT[_], IN[_]](location: NonEmptyList[Char], parameters: (String, String)*)(implicit e: Empty[OUT], req: Request[IN]) =
+    response[OUT](statusLine[IN](MovedPermanently), List((Location, if(parameters.isEmpty) location else location :::> ('?' + encode(parameters: _*)).toList)), e.empty)
 
   /**
    * Create a response with a version derived from the given request that redirects (301 Moved Permanently) to the given location.
    * <strong>This function fails if the given string value is empty</strong>.
    */
   def redirects[OUT[_], IN[_]](location: String)(implicit e: Empty[OUT], req: Request[IN]) =
-    response[OUT](statusLine[IN](MovedPermanently), List((Location, stringe(location, "location must be non-empty"))), e.empty)
+    redirect[OUT, IN](stringe(location, "location must be non-empty"))
 }

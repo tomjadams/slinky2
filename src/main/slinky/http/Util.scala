@@ -4,6 +4,7 @@ import collection.immutable.{Map, HashMap}
 import scalaz.control.{Semigroup, FoldLeft, Monad}
 import scalaz.control.ParamorphismW._
 import scalaz.control.FoldRightW._
+import scalaz.ListW._
 import scalaz.list.NonEmptyList
 import scalaz.control.FunctorW._
 import java.net.URLDecoder.decode
@@ -23,6 +24,18 @@ object Util {
    */
   def parameters(p: List[Char]): List[(List[Char], List[Char])] =
     p.selectSplit(_ != '&') > (_ !- (_ == '=') match { case (a, b) => (a, decode(b.mkString).drop(1).toList) })
+
+  /**
+   * Encodes the given parameters by inserting an ampersand (<code>&</code>) between each pair and an equals sign
+   * (<code>=</code>) with each pair.
+   */
+  def encodeParameters(p: (List[Char], List[Char])*): String = p.toList map { case (k, v) => k ::: '=' :: v } intersperse List('&') flatMap (x => x) mkString
+
+  /**
+   * Encodes the given parameters by inserting an ampersand (<code>&</code>) between each pair and an equals sign
+   * (<code>=</code>) with each pair.
+   */
+  def encode(p: (String, String)*): String = encodeParameters(p map { case (k, v) => (k.toList, v.toList) }: _*)
 
   /**
    * Returns a map of key/value pairs where only the first value for the given key is available.
