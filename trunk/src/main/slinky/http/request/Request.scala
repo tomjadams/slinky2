@@ -152,11 +152,6 @@ sealed trait Request[IN[_]] {
   def |(p: String)(implicit f: FoldLeft[IN]) = post | p
 
   /**
-   * Returns the first occurrence of the given request parameter in the request body or the given error value.
-   */
-  def |[E](p: String, e: => E)(implicit f: FoldLeft[IN]): Validation[E, List[Char]] = post | p toRight e
-
-  /**
    * Returns <code>true</code> if the given request parameter occurs in the request body.
    */
   def |?(p: String)(implicit f: FoldLeft[IN]) = this | p isDefined
@@ -172,21 +167,10 @@ sealed trait Request[IN[_]] {
   def ||(p: String)(implicit f: FoldLeft[IN]) = post || p
 
   /**
-   * Returns all occurrences of the given request parameter in the request body or the given error value.
-   */
-  def ||[E](p: String, e: => E)(implicit f: FoldLeft[IN]): Validation[E, NonEmptyList[List[Char]]] = this || p toRight e
-
-  /**
    * Returns the first occurrence of the given request parameter in the request URI if it exists or in the request body
    * otherwise.
    */
   def !|(p: String)(implicit f: FoldLeft[IN]) = this.!(p) <+> |(p)
-
-  /**
-   * Returns the first occurrence of the given request parameter in the request URI if it exists or in the request body
-   * otherwise or the given error value.
-   */
-  def !|[E](p: String, e: => E)(implicit f: FoldLeft[IN]): Validation[E, List[Char]] = this !| p toRight e
 
   /**
    * Returns the first occurrence of the given request parameter in the request body if it exists or in the request URI
@@ -195,10 +179,16 @@ sealed trait Request[IN[_]] {
   def |!(p: String)(implicit f: FoldLeft[IN]) = |(p) <+> this.!(p)
 
   /**
-   * Returns the first occurrence of the given request parameter in the request body if it exists or in the request URI
-   * otherwise or the given error value.
+   * Returns all occurrences of the given request parameter in the request URI if it exists or in the request body
+   * otherwise.
    */
-  def |![E](p: String, e: => E)(implicit f: FoldLeft[IN]): Validation[E, List[Char]] = this |! p toRight e
+  def !!||(p: String)(implicit f: FoldLeft[IN]) = this.!!(p) <+> ||(p)
+
+  /**
+   * Returns all occurrences of the given request parameter in the request body if it exists or in the request URI
+   * otherwise.
+   */
+  def ||!!(p: String)(implicit f: FoldLeft[IN]) = this.||(p) <+> !!(p)
 
   /**
    * The request method of the status line.
