@@ -56,7 +56,7 @@ object FlashFilter {
   }
 
   /**
-   * Gets the value from the request tha was previously set if there is one. 
+   * Gets the value from the request that was previously set if there is one. 
    */
   def flashGet[A](implicit r: HttpServletRequest) = r attr flashParameter map (_.asInstanceOf[A])
 }
