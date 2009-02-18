@@ -152,11 +152,16 @@ sealed trait Response[OUT[_]] {
    * Sets the Content-Type response header for HTML.
    */
   def html = this(ContentType, "text/html")
-  
+
   /**
    * Sets the Content-Type response header for XHTML.
    */
   def xhtml = this(ContentType, "application/xhtml+xml")
+
+  /**
+   * Sets the Content-Type response header for XML.
+   */
+  def xml = this(ContentType, "text/xml")
 
   /**
    * Sets the ContentType response header according to the
