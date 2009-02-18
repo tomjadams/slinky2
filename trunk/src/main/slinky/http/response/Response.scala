@@ -149,6 +149,16 @@ sealed trait Response[OUT[_]] {
   }
 
   /**
+   * Sets the Content-Type response header for HTML.
+   */
+  def html = this(ContentType, "text/html")
+  
+  /**
+   * Sets the Content-Type response header for XHTML.
+   */
+  def xhtml = this(ContentType, "application/xhtml+xml")
+
+  /**
    * Sets the ContentType response header according to the
    * <a href="http://www.w3schools.com/media/media_mimeref.asp">W3C MIME Reference</a> if the given request path
    * has a file extension and corresponds to a known file extension.
