@@ -1,5 +1,9 @@
 package slinky.http.request
 
+import scalaz.validation.Validation
+import scalaz.list.NonEmptyList
+import scalaz.list.NonEmptyList._
+
 /**
  * A request line.
  * <a href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec5.html#sec5.1">RFC 2616 Section 5.1 Request-Line</a>.
@@ -41,6 +45,36 @@ sealed trait Line {
    * Returns a request line with the given version and this method and URI.
    */
   def apply(v: Version): Line = line(method, uri, v)
+
+  /**
+   *  Returns the first occurrence of the given request parameter in the request URI.
+   */
+  def !(p: String) = uri.parametersMapHeads flatMap (_.get(p.toList))
+
+  /**
+   * Returns the first occurrence of the given request parameter in the request URI or the given error value.
+   */
+  def ![E](p: String, e: => E): Validation[E, List[Char]] = this ! p toRight e
+
+  /**
+   * Returns all occurrences of the given request parameter in the request URI.
+   */
+  def !!(p: String) = OptionNonEmptyListList(uri.parametersMap flatMap (_.get(p.toList)))
+
+  /**
+   * Returns all occurrences of the given request parameter in the request URI or the given error value.
+   */
+  def !![E](p: String, e: => E): Validation[E, NonEmptyList[List[Char]]] = this !! p toRight e
+
+  /**
+   * Returns <code>true</code> if the given request parameter occurs in the request URI.
+   */
+  def !?(p: String) = this ! p isDefined
+
+  /**
+   * Returns <code>false</code> if the given request parameter occurs in the request URI.
+   */
+  def ~!?(p: String) = this ! p isEmpty
 }
 
 import scalaz.list.NonEmptyList
