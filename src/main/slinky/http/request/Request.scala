@@ -8,6 +8,8 @@ import scalaz.list.NonEmptyList
 import scalaz.list.NonEmptyList._
 import scalaz.validation.Validation
 import scalaz.memo.Memo._
+import scalaz.control.Kleisli
+import scalaz.control.Kleisli._
 import Util.{asHashMap, mapHeads, parameters}
 
 /**
@@ -122,6 +124,11 @@ sealed trait Request[IN[_]] {
   def !(p: String) = line.uri.parametersMapHeads >>= (_.get(p.toList))
 
   /**
+   *  Returns the first occurrence of a given request parameter in the request URI.
+   */
+  def ^!^ = kleisli[Option](this ! (_: String))
+
+  /**
    * Returns the first occurrence of the given request parameter in the request URI or the given error value.
    */
   def ![E](p: String, e: => E): Validation[E, List[Char]] = this ! p toRight e
@@ -130,7 +137,12 @@ sealed trait Request[IN[_]] {
    * Returns all occurrences of the given request parameter in the request URI.
    */
   def !!(p: String) = OptionNonEmptyListList(line.uri.parametersMap >>= (_.get(p.toList)))
-  
+
+  /**
+   * Returns all occurrences of a given request parameter in the request URI.
+   */
+  def ^!!^ = kleisli[Option](this !! (_: String))
+
   /**
    * Returns all occurrences of the given request parameter in the request URI or the given error value.
    */
@@ -152,6 +164,11 @@ sealed trait Request[IN[_]] {
   def |(p: String)(implicit f: FoldLeft[IN]) = post | p
 
   /**
+   *  Returns the first occurrence of a given request parameter in the request body.
+   */
+  def ^|^(implicit f: FoldLeft[IN]) = kleisli[Option](this | (_: String))
+
+  /**
    * Returns <code>true</code> if the given request parameter occurs in the request body.
    */
   def |?(p: String)(implicit f: FoldLeft[IN]) = this | p isDefined
@@ -167,10 +184,21 @@ sealed trait Request[IN[_]] {
   def ||(p: String)(implicit f: FoldLeft[IN]) = post || p
 
   /**
+   *  Returns all occurrences of a given request parameter in the request body.
+   */
+  def ^||^(implicit f: FoldLeft[IN]) = kleisli[Option](this || (_: String))
+
+  /**
    * Returns the first occurrence of the given request parameter in the request URI if it exists or in the request body
    * otherwise.
    */
   def !|(p: String)(implicit f: FoldLeft[IN]) = this.!(p) <+> |(p)
+
+  /**
+   *  Returns the first occurrence of a given request parameter in the request URI if it exists or in the request body
+   * otherwise.
+   */
+  def ^!|^(implicit f: FoldLeft[IN]) = kleisli[Option](this !| (_: String))
 
   /**
    * Returns the first occurrence of the given request parameter in the request body if it exists or in the request URI
@@ -179,16 +207,34 @@ sealed trait Request[IN[_]] {
   def |!(p: String)(implicit f: FoldLeft[IN]) = |(p) <+> this.!(p)
 
   /**
+   * Returns the first occurrence of a given request parameter in the request body if it exists or in the request URI
+   * otherwise.
+   */
+  def ^|!^(implicit f: FoldLeft[IN]) = kleisli[Option](this |! (_: String))
+
+  /**
    * Returns all occurrences of the given request parameter in the request URI if it exists or in the request body
    * otherwise.
    */
   def !!||(p: String)(implicit f: FoldLeft[IN]) = this.!!(p) <+> ||(p)
 
   /**
+   * Returns all occurrences of a given request parameter in the request URI if it exists or in the request body
+   * otherwise.
+   */
+  def ^!!||^(implicit f: FoldLeft[IN]) = kleisli[Option](this !!|| (_: String))
+
+  /**
    * Returns all occurrences of the given request parameter in the request body if it exists or in the request URI
    * otherwise.
    */
   def ||!!(p: String)(implicit f: FoldLeft[IN]) = this.||(p) <+> !!(p)
+
+  /**
+   * Returns all occurrences of a given request parameter in the request body if it exists or in the request URI
+   * otherwise.
+   */
+  def ^||!!^(implicit f: FoldLeft[IN]) = kleisli[Option](this ||!! (_: String))
 
   /**
    * The request method of the status line.
