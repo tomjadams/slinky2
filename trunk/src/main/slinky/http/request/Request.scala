@@ -335,6 +335,64 @@ sealed trait Request[IN[_]] {
    * Returns <code>true</code> if this request method is TRACE.
    */
   def isTrace = line.method == TRACE
+
+  import response._
+  import scalaz.control.{Empty, Semigroup}
+
+  trait Debug[OUT[_]] {
+    def apply[A](f: IN[Byte] => A)(implicit e: Empty[OUT], b: Body[OUT, xml.Elem], s: Semigroup[OUT[Byte]]): Response[OUT]
+  }
+
+  /**
+   * Create a response that details the parts of the request in a XHTML document. 
+   */
+  def debug[OUT[_]] = new Debug[OUT] {
+    def apply[A](f: IN[Byte] => A)(implicit e: Empty[OUT], b: Body[OUT, xml.Elem], s: Semigroup[OUT[Byte]]) = {
+      implicit val request = Request.this
+      Response.emptyHeadersBodyResponse[OUT](StatusLine.statusLine[IN](OK)).xhtml <<
+        <html xmlns="http://www.w3.org/1999/xhtml">
+          <head>
+            <title>Request Details</title>
+          </head>
+          <body>
+            <div>
+              {
+                List(("Method", method),
+                     ("URI Path", uri.path.mkString),
+                     ("URI Query String", uri.queryString map (_.mkString) getOrElse <i>N/A</i>),
+                     ("Version (major)", versionMajor.toLong),
+                     ("Version (minor)", versionMinor.toLong)) map {
+                  case (k, v) =>
+                    <div>{ k }</div>
+                    <h4>{ v }</h4>
+                }
+              }
+            </div>
+            <hr/>
+            <div>
+              {
+                if(headers.isEmpty)
+                  <i>N/A</i>
+                else
+                  <ul>
+                  {
+                    headers map {
+                      case (h, v) => <li><div><strong>{ h.asString }</strong><br/>{ v.mkString }</div></li>
+                    }
+                  }
+                  </ul>
+              }
+            </div>
+            <hr/>
+            <div>
+            {
+              f(body)
+            }
+            </div>
+          </body>
+        </html>      
+    }
+  }
 }
 
 /**
