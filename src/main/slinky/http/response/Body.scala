@@ -65,6 +65,11 @@ object Body {
   implicit def CharListStreamBody(implicit c: CharSet): Body[Stream, List[Char]] = body[Stream](_.mkString.getBytes(c.value).toStream)
 
   /**
+   * The body implementation for a list of characters to a stream.
+   */
+  implicit def StringStreamBody(implicit c: CharSet): Body[Stream, String] = body[Stream](_.getBytes(c.value).toStream)
+
+  /**
    * The body implementation for an XML element to a stream.
    */
   implicit def ElemStreamBody(implicit c: CharSet): Body[Stream, Elem] = body[Stream](_.toString.getBytes(c.value).toStream)
