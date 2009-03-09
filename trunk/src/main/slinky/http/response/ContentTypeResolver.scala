@@ -48,7 +48,6 @@ object ContentTypeResolver {
    * http://www.w3schools.com/media/media_mimeref.asp. 
    */
   val w3cMimeReference = contentTypeResolverMap(TreeHashMap(
-    "" -> "application/octet-stream",
     "323" -> "text/h323",
     "acx" -> "application/internet-property-stream",
     "ai" -> "application/postscript",
