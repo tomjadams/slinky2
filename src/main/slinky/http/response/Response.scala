@@ -176,8 +176,8 @@ sealed trait Response[OUT[_]] {
    * identifies itself as Internet Explorer (the user agent contains msie), set the response header for HTML
    * (<code>text/html</code>).
    */
-  def internetExplorerXhtml(implicit req: Request[IN] forSome { type IN[_] }) =
-    this(ContentType, if(req.isInternetExplorer) "text/html" else "application/xhtml+xml")
+  def ie(x: String)(implicit req: Request[IN] forSome { type IN[_] }, b: Body[OUT, String], s: Semigroup[OUT[Byte]]) =
+    "<?xml-stylesheet type=\"text/xsl\" href=\"" + x + "?>" <<: this(ContentType, if(req.isInternetExplorer) "application/xml" else "application/xhtml+xml")
 }
 
 import request.Request
