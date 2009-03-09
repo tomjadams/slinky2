@@ -133,6 +133,11 @@ sealed trait Response[OUT[_]] {
   def contentTypeEquals(s: String) = contentType(_.mkString == s)
 
   /**
+   * Returns <code>true</code> if this response has set the content-type header.
+   */
+  def hasContentType = this(ContentType).isDefined
+
+  /**
    * The length of the response body.
    */
   def bodyLength(implicit f: FoldLeft[OUT]) = FoldLeftW.foldleft[OUT](body).items
@@ -144,7 +149,7 @@ sealed trait Response[OUT[_]] {
     val s = new StringBuilder
 
     e.each((b: Byte) => s append (b.toChar), body)
-    
+
     s.toString
   }
 
