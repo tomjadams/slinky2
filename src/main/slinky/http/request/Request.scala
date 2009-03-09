@@ -336,6 +336,11 @@ sealed trait Request[IN[_]] {
    */
   def isTrace = line.method == TRACE
 
+  /**
+   * Inspects the user-agent header to determine if the request was made by Microsoft Internet Explorer.
+   */
+  def isInternetExplorer = this(UserAgent).mkString.toLowerCase contains "msie" 
+
   import response._
   import scalaz.control.{Empty, Semigroup}
 
