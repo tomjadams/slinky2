@@ -23,7 +23,10 @@ trait Application[IN[_], OUT[_]] {
   def ^*^(x: String)(implicit b: Body[OUT, String], s: Semigroup[OUT[Byte]]): Application[IN, OUT] = application[IN, OUT](req => {
     val res = Application.this(req)
     if(res(ContentType).isDefined) res
-    else "<?xml-stylesheet type=\"text/xsl\" href=\"" + x + "\"?>" <<: Application.this(req)(ContentType, if(req.isInternetExplorer) "application/xml" else "application/xhtml+xml")
+    else if(req.isInternetExplorer)
+      "<?xml-stylesheet type=\"text/xsl\" href=\"" + x + "\"?>" <<: res(ContentType, "application/xml")
+    else
+      res(ContentType, "application/xhtml+xml")
   })
 }
 
