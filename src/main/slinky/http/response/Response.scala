@@ -177,7 +177,7 @@ sealed trait Response[OUT[_]] {
    * (<code>text/html</code>).
    */
   def internetExplorerXhtml(implicit req: Request[IN] forSome { type IN[_] }) =
-    this(ContentType, if(req(UserAgent).mkString.toLowerCase contains "msie") "text/html" else "application/xhtml+xml")
+    this(ContentType, if(req.isInternetExplorer) "text/html" else "application/xhtml+xml")
 }
 
 import request.Request
