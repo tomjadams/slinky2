@@ -20,8 +20,11 @@ trait Application[IN[_], OUT[_]] {
 
   import Application.application
 
-  def ^*^(x: String)(implicit b: Body[OUT, String], s: Semigroup[OUT[Byte]]): Application[IN, OUT] = application[IN, OUT](req =>
-    "<?xml-stylesheet type=\"text/xsl\" href=\"" + x + "\"?>" <<: Application.this(req)(ContentType, if(req.isInternetExplorer) "application/xml" else "application/xhtml+xml"))
+  def ^*^(x: String)(implicit b: Body[OUT, String], s: Semigroup[OUT[Byte]]): Application[IN, OUT] = application[IN, OUT](req => {
+    val res = Application.this(req)
+    if(res(ContentType).isDefined) res
+    else "<?xml-stylesheet type=\"text/xsl\" href=\"" + x + "\"?>" <<: Application.this(req)(ContentType, if(req.isInternetExplorer) "application/xml" else "application/xhtml+xml")
+  })
 }
 
 /**
