@@ -24,7 +24,7 @@ trait Application[IN[_], OUT[_]] {
     val res = Application.this(req)
     if(res(ContentType).isDefined) res
     else if(req.isInternetExplorer)
-      "<?xml-stylesheet type=\"text/xsl\" href=\"" + x + "\"?>" <<: res(ContentType, "application/xml")
+      "<?xml-stylesheet type=\"text/xsl\" href=\"" + x + "\"?>\n\n" <<: res(ContentType, "application/xml")
     else
       res(ContentType, "application/xhtml+xml")
   })
