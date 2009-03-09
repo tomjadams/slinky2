@@ -45,4 +45,14 @@ object Application {
   def application[IN[_], OUT[_]](f: Request[IN] => Response[OUT]) = new Application[IN, OUT] {
     def apply(implicit req: Request[IN]) = f(req)
   }
+
+  /**
+   * XSL for a blank XHTML page to use. This is used when working around Internet Explorer for XHTML.
+   */
+  val blankXsl =
+<stylesheet version="1.0" xmlns="http://www.w3.org/1999/XSL/Transform">
+  <template match="/">
+    <copy-of select="."/>
+  </template>
+</stylesheet>
 }
