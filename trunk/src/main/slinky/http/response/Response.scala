@@ -175,6 +175,14 @@ sealed trait Response[OUT[_]] {
    */
   def unary_~(implicit request: Request[IN] forSome { type IN[_] }) =
     ContentTypeResolver.w3cMimeReference(request.pathExtension) map (this(ContentType, _)) getOrElse this
+
+  /**
+   * Sets the content-type response header for XHTML (<code>application/xhtml+xml</code>), however, if the browser
+   * identifies itself as not accepting this content type, set the response header for HTML
+   * (<code>text/html</code>).
+   */
+  def acceptsXhtml(implicit req: Request[IN] forSome { type IN[_] }) =
+    this(ContentType, if(req.isInternetExplorer) "text/html" else "application/xhtml+xml")
 }
 
 import request.Request
