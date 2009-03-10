@@ -182,7 +182,7 @@ sealed trait Response[OUT[_]] {
    * (<code>text/html</code>).
    */
   def acceptsXhtml(implicit req: Request[IN] forSome { type IN[_] }) =
-    this(ContentType, if(req.isInternetExplorer) "text/html" else "application/xhtml+xml")
+    if(hasContentType) this else this(ContentType, if(req.isInternetExplorer) "text/html" else "application/xhtml+xml")
 }
 
 import request.Request
