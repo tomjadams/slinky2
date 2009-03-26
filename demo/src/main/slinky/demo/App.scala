@@ -18,20 +18,28 @@ import http.response.StreamResponse.{response, statusLine}
 
 final class App extends StreamStreamServletApplication {
   import App._
+  /*
   val application =
     (app(_: Request[Stream])) or (req => {
       implicit val r = req
       NotFound << transitional << say("Where does it lie?")
     })
+    */
+
+  val application = new ServletApplication[Stream, Stream] {
+    def application(implicit servlet: HttpServlet, servletRequest: HttpServletRequest, request: Request[Stream]) =
+      app getOrElse resource(x => OK << Stream.fromIterator(x), NotFound.xhtml << transitional << say("Where does it lie?"))
+  }
 }
 
 import scalaz.CharSet.ISO8859
-
+import slinky.http.servlet.HttpServletRequest.c
+ 
 object App {
   implicit val charSet = ISO8859
   
-  def app(implicit request: Request[Stream]) =
-    request match {
+  def app(implicit request: Request[Stream], servletRequest: HttpServletRequest) =
+    c[Stream](request) match {
       // 200 OK Say hello with XHTML Transitional
       case MethodPath(GET, "/hello") =>
         Some(OK(ContentType, "text/html") << transitional << say("hello"))
