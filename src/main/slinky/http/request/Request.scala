@@ -85,6 +85,11 @@ sealed trait Request[IN[_]] {
   def -(h: RequestHeader) = request[IN](line, headers filter { case (k, _) => h != k }, body)
 
   /**
+   * The user-agent request header value.
+   */
+  def userAgent = this(UserAgent)
+  
+  /**
    * A map of request header values offering optimal seek time.
    */
   lazy val headersMap = asHashMap[List, NonEmptyList](headers)
