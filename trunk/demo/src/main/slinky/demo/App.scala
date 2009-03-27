@@ -64,7 +64,7 @@ object App {
       }
 
       // Display the details of the request.
-      case Path(p) if p startsWith "/request" => Some(OK << transitional << renderRequest(request))
+      case Path(p) if p != "/norequest" => Some(request.debug[Stream](_.map(_.toChar).mkString))
 
       // Look for a resource with the given URI path.
       // If the resource does not exist, then 404 Not Found.
@@ -122,32 +122,4 @@ object App {
       </table>
       <input type="submit"/>
     </form>
-
-  def renderRequest(implicit r: Request[IN] forSome { type IN[_] }) = doc("Slinky Request",
-    <table border="1">
-      <strong>Request Line</strong>
-      <ul>
-        <li>method: { r.method }</li>
-        <li>
-          <strong>URI</strong>
-          <ul>
-            <li>path: { r.path.mkString }</li>
-            <li>query string: { r.queryString > (_.mkString) }</li>
-          </ul>
-        </li>
-        <li>
-          <strong>Version</strong>
-          <ul>
-            <li>major: { r.versionMajor.toLong }</li>
-            <li>minor: { r.versionMinor.toLong }</li>
-          </ul>
-        </li>
-      </ul>
-      <strong>Headers</strong>
-      <ul>
-        {
-          r.headers > { case (h, v) => <li>{ h.asString } : { v.mkString }</li> }
-        }
-      </ul>
-    </table>)  
 }
