@@ -59,6 +59,10 @@
     <ant antfile="buildj.xml" target="commit-archive"/>
   </target>	
 
+  <target name="fast-scalac" depends="init">
+    <ant antfile="buildj.xml" target="fast-scalac"/>
+  </target>
+
   <target name="version" depends="init">
     <ant antfile="buildj.xml" target="version"/>
   </target>
