@@ -109,25 +109,6 @@ object Util {
     implicit def NonEmptyListString[A](xs: NonEmptyList[Char]): String = scala.List.toString(xs.toList)
   }
 
-  object Validation {
-    import scalaz.Validation
-    import scalaz.{Failure, Success}
-
-    /**
-     * Wraps a <code>scala.Either</code>.
-     */
-    implicit def EitherValidation[E, A](e: Either[E, A]): Validation[E, A] = e match {
-      case Left(v) => Failure(v)
-      case Right(v) => Success(v)
-    }
-
-    /**
-     * Unwraps a <code>scala.Either</code>.
-     */
-    implicit def ValidationEither[E, A](v: Validation[E, A]): Either[E, A] = v.either
-
-  }
-
   object Digits {
     /**
      * Converts the given long value to a sequence of digits.
