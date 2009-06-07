@@ -8,8 +8,8 @@ import fjs.test.Gen.{SGen_Gen,Gen_SGen}
 import Method.{StringMethod, methods}
 import fjs.data.List.ScalaList_List
 import fjs.F.ScalaFunction_F
-import scalaz.control.FunctorW.OptionFunctor
-import scalaz.list.ArbitraryNonEmptyList._
+import scalaz.Functor.OptionFunctor
+import slinky.TestUtil.ArbitraryNonEmptyList._
 
 object ArbitraryMethod {
   implicit val arbitraryMethod: Arbitrary[Method] =

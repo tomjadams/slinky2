@@ -1,16 +1,17 @@
 package slinky.http.request
 
-import scalaz.control.{Semigroup, FoldLeft}
-import scalaz.control.MonadW._
-import scalaz.control.PlusW._
-import scalaz.control.FoldLeftW.foldleft
-import scalaz.list.NonEmptyList
-import scalaz.list.NonEmptyList._
-import scalaz.validation.Validation
+import scalaz.{Semigroup, FoldLeft}
+import scalaz.Monad._
+import scalaz.Plus._
+import scalaz.FoldLeft._
+import scalaz.NonEmptyList
+import scalaz.NonEmptyList._
+import scalaz.Validation
 import scalaz.memo.Memo._
-import scalaz.control.Kleisli
-import scalaz.control.Kleisli._
+import scalaz.Kleisli
+import scalaz.Scalaz._
 import Util.{asHashMap, mapHeads, parameters}
+import slinky.http.Util.Nel._
 
 /**
  * HTTP request.
@@ -101,12 +102,13 @@ sealed trait Request[IN[_]] {
 
   private val m = immutableHashMapMemo[FoldLeft[IN], List[(List[Char], List[Char])]]
 
+  import scalaz.MA
   /**
    * Provides look up for POST request parameters in the request body. Only the first invocation uses the given
    * fold-left and subsequent invocations look-up using a memoisation table (scoped to each request).
    */
   def post(implicit f: FoldLeft[IN]) = new {
-    val parameters = m(f => Util.parameters(foldleft[IN](body)(f).list > (_.toChar)))(f)
+    val parameters = m(f => Util.parameters(MA.ma[IN](body).listl(f) map (_.toChar)))(f)
     lazy val parametersMap = asHashMap[List, NonEmptyList](parameters)
     lazy val parametersMapHeads = mapHeads(parametersMap)
     def |(p: String) = parametersMapHeads.get(p.toList)
@@ -136,7 +138,7 @@ sealed trait Request[IN[_]] {
   /**
    * Returns the first occurrence of the given request parameter in the request URI or the given error value.
    */
-  def ![E](p: String, e: => E): Validation[E, List[Char]] = this ! p toRight e
+  def ![E](p: String, e: => E): Validation[E, List[Char]] = this ! p toSuccess e
 
   /**
    * Returns all occurrences of the given request parameter in the request URI.
@@ -146,12 +148,12 @@ sealed trait Request[IN[_]] {
   /**
    * Returns all occurrences of a given request parameter in the request URI.
    */
-  def ^!!^ = kleisli[Option](this !! (_: String))
+  def ^!!^ = kleisli[Option]((p : String) => {(this !! p).nel })
 
   /**
    * Returns all occurrences of the given request parameter in the request URI or the given error value.
    */
-  def !![E](p: String, e: => E): Validation[E, NonEmptyList[List[Char]]] = this !! p toRight e
+  def !![E](p: String, e: => E): Validation[E, NonEmptyList[List[Char]]] = (this !! p).nel toSuccess e
 
   /**
    * Returns <code>true</code> if the given request parameter occurs in the request URI.
@@ -191,7 +193,7 @@ sealed trait Request[IN[_]] {
   /**
    *  Returns all occurrences of a given request parameter in the request body.
    */
-  def ^||^(implicit f: FoldLeft[IN]) = kleisli[Option](this || (_: String))
+  def ^||^(implicit f: FoldLeft[IN]) = kleisli[Option]((p : String) => {(this || p).nel })
 
   /**
    * Returns the first occurrence of the given request parameter in the request URI if it exists or in the request body
@@ -203,7 +205,7 @@ sealed trait Request[IN[_]] {
    *  Returns the first occurrence of a given request parameter in the request URI if it exists or in the request body
    * otherwise.
    */
-  def ^!|^(implicit f: FoldLeft[IN]) = kleisli[Option](this !| (_: String))
+  def ^!|^(implicit f: FoldLeft[IN]) = kleisli[Option]((this !| (_: String)))
 
   /**
    * Returns the first occurrence of the given request parameter in the request body if it exists or in the request URI
@@ -227,7 +229,7 @@ sealed trait Request[IN[_]] {
    * Returns all occurrences of a given request parameter in the request URI if it exists or in the request body
    * otherwise.
    */
-  def ^!!||^(implicit f: FoldLeft[IN]) = kleisli[Option](this !!|| (_: String))
+  def ^!!||^(implicit f: FoldLeft[IN]) = kleisli[Option]((p : String) => {(this !!|| p).nel })
 
   /**
    * Returns all occurrences of the given request parameter in the request body if it exists or in the request URI
@@ -239,7 +241,7 @@ sealed trait Request[IN[_]] {
    * Returns all occurrences of a given request parameter in the request body if it exists or in the request URI
    * otherwise.
    */
-  def ^||!!^(implicit f: FoldLeft[IN]) = kleisli[Option](this ||!! (_: String))
+  def ^||!!^(implicit f: FoldLeft[IN]) = kleisli[Option]((p : String) => {(this ||!! p).nel })
 
   /**
    * The request method of the status line.
@@ -280,6 +282,7 @@ sealed trait Request[IN[_]] {
    * The request version minor of the status line.
    */
   def versionMinor = line.version.minor
+
 
   /**
    * Returns <code>true</code> if the request path of the request URI satisfies the given condition.
@@ -347,7 +350,7 @@ sealed trait Request[IN[_]] {
   def isInternetExplorer = this(UserAgent).mkString.toLowerCase contains "msie" 
 
   import response._
-  import scalaz.control.{Empty, Semigroup}
+  import scalaz.{Empty, Semigroup}
 
   trait Debug[OUT[_]] {
     def apply[A](f: IN[Byte] => A)(implicit e: Empty[OUT], b: Body[OUT, xml.Elem], s: Semigroup[OUT[Byte]]): Response[OUT]
@@ -410,7 +413,7 @@ sealed trait Request[IN[_]] {
  * <a href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec5.html#sec5">RFC 2616 Section 5 Request</a>.
  */
 object Request {
-  import scalaz.control.Monad
+  import scalaz.Monad
 
   /**
    * Construct a request with the given status line, headers and body.

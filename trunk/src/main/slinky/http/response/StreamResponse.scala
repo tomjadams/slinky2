@@ -1,9 +1,9 @@
 package slinky.http.response
 
 import request.Request
-import scalaz.control.Empty
-import scalaz.control.MonadEmpty._
-import scalaz.list.NonEmptyList
+import scalaz.Empty
+//import scalaz.MonadEmpty._
+import scalaz.NonEmptyList
 
 /**
  * Functions to create responses that have a stream body.

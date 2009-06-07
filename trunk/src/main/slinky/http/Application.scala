@@ -1,6 +1,6 @@
 package slinky.http
 
-import scalaz.control.Semigroup
+import scalaz.Semigroup
 import response.{Body, Response, OK}
 import request.Request
 

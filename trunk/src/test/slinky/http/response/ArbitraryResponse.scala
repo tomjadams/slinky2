@@ -5,8 +5,8 @@ import fjs.test.Arbitrary.{arbList,arbSChar,arbSTuple2}
 import Response.response
 import ArbitraryStatusLine.arbitraryStatusLine
 import ArbitraryResponseHeader.arbitraryResponseHeader
-import scalaz.list.NonEmptyList
-import scalaz.list.ArbitraryNonEmptyList.ArbitraryNonEmptyList
+import scalaz.NonEmptyList
+import slinky.TestUtil.ArbitraryNonEmptyList.ArbitraryNonEmptyList
 import fjs.data.List.List_ScalaList
 
 object ArbitraryResponse {

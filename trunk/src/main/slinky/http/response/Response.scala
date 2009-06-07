@@ -3,10 +3,13 @@ package slinky.http.response
 
 import request.Request
 import request.UserAgent
-import scalaz.control.{Each, Semigroup, FoldLeft, Empty, FoldLeftW}
-import scalaz.list.NonEmptyList
-import scalaz.list.NonEmptyList.stringe
+import scalaz.Scalaz._
+import scalaz.{Empty, Semigroup, FoldLeft, Each}
+import scalaz.NonEmptyList
+import scalaz.StringW._
+import scalaz.MA.ma
 import Util._
+import Util.Nel._
 
 /**
  * HTTP response.
@@ -44,7 +47,7 @@ sealed trait Response[OUT[_]] {
    * Add the given header and value to this response.
    * <strong>This function fails if the given string value is empty</strong>.
    */
-  def apply(h: ResponseHeader, s: String): Response[OUT] = apply(h, stringe(s, "Header values must be non-empty"))
+  def apply(h: ResponseHeader, s: String): Response[OUT] = apply(h, s.nelErr("Header values must be non-empty"))
 
   /**
    * Replace the status line of this reponse with the given status line.
@@ -140,16 +143,14 @@ sealed trait Response[OUT[_]] {
   /**
    * The length of the response body.
    */
-  def bodyLength(implicit f: FoldLeft[OUT]) = FoldLeftW.foldleft[OUT](body).items
+  def bodyLength(implicit f: FoldLeft[OUT]) = ma[OUT](body).items
 
   /**
    * Returns the response body as a string.
    */
   def bodyString(implicit e: Each[OUT]) = {
     val s = new StringBuilder
-
-    e.each((b: Byte) => s append (b.toChar), body)
-
+    e.each(body, (b: Byte) => s append (b.toChar))
     s.toString
   }
 
@@ -282,7 +283,7 @@ object Response {
    * <strong>This function fails if the given string value is empty</strong>.
    */
   def versionRedirects[OUT[_]](version: Version, location: String)(implicit e: Empty[OUT]) =
-    response[OUT](statusLine(version, MovedPermanently), List((Location, stringe(location, "location must be non-empty"))), e.empty)
+    response[OUT](statusLine(version, MovedPermanently), List((Location, location.nelErr("location must be non-empty"))), e.empty)
 
   /**
    * Create a response with a version derived from the given request that redirects (301 Moved Permanently) to the given location.
@@ -295,5 +296,5 @@ object Response {
    * <strong>This function fails if the given string value is empty</strong>.
    */
   def redirects[OUT[_], IN[_]](location: String, parameters: (String, String)*)(implicit e: Empty[OUT], req: Request[IN]) =
-    redirect[OUT, IN](stringe(location, "location must be non-empty"), parameters: _*)
+    redirect[OUT, IN](location.nelErr("location must be non-empty"), parameters: _*)
 }

@@ -113,7 +113,8 @@ private final case class General(gh: GeneralHeader) extends ResponseHeader {
 }
 
 import scalaz.OptionW._
-import scalaz.control.FunctorW._
+import scalaz.Functor._
+import scalaz.Scalaz._
 
 /**
  * HTTP response headers.
@@ -179,6 +180,6 @@ object ResponseHeader {
    */
   implicit def StringResponseHeader(s: String): Option[ResponseHeader] =
     headers find { case (n, h) => n == s } map (_._2) orElse
-    (s: Option[GeneralHeader]) > (slinky.http.response.General(_)) orElse
-    (s: Option[EntityHeader]) > (slinky.http.response.Entity(_))
+    (s: Option[GeneralHeader]) |> (slinky.http.response.General(_)) orElse
+    (s: Option[EntityHeader]) |> (slinky.http.response.Entity(_))
 }

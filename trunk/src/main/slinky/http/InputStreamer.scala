@@ -17,7 +17,7 @@ sealed trait InputStreamer[I[_]] {
   def apply(in: InputStream): I[Byte]
 }
 
-import scalaz.javas.InputStream._
+import slinky.scalaz35.javas.InputStream._
 
 /**
  * Functions over values that take an input-stream to an environment for bytes.

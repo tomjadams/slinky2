@@ -3,7 +3,7 @@ package slinky.http.servlet
 import response.Response
 import scala.collection.mutable.HashMap
 import request.Request
-import scalaz.control.Each
+import scalaz.Each
 
 /**
  * A HTTP servlet application.

@@ -1,7 +1,7 @@
 package slinky.http.response
 
-import scalaz.list.NonEmptyList
-import scalaz.list.NonEmptyList.stringe
+import scalaz.NonEmptyList
+import scalaz.StringW._
 
 /**
  * A function to resolve a content-type given a file extension.
@@ -235,5 +235,5 @@ object ContentTypeResolver {
     "xwd" -> "image/x-xwindowdump",
     "z" -> "application/x-compress",
     "zip" -> "application/zip"
-    ) transform { case (_, v) => stringe(v) })
+    ) transform { case (_, v) => v.unsafeNel })
 }

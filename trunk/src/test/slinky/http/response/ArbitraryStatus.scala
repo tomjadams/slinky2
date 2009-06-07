@@ -8,7 +8,7 @@ import fjs.test.Gen.{SGen_Gen,Gen_SGen}
 import fjs.data.List.ScalaList_List
 import fjs.F.ScalaFunction_F
 import scalaz.Digit
-import scalaz.ArbitraryDigit.arbDigit
+import slinky.TestUtil.ArbitraryDigit.arbDigit
 import Status.{status, statuses}
 
 object ArbitraryStatus {  

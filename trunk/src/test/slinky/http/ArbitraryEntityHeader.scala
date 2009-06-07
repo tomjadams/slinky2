@@ -8,8 +8,8 @@ import fjs.test.Gen.{SGen_Gen,Gen_SGen}
 import EntityHeader.{StringEntityHeader,entityHeaders}
 import fjs.data.List.ScalaList_List
 import fjs.F.ScalaFunction_F
-import scalaz.control.FunctorW.OptionFunctor
-import scalaz.OptionW.OptionOptionW
+import scalaz.Functor.OptionFunctor
+import scalaz.OptionW._
 
 object ArbitraryEntityHeader {
   implicit val arbitraryEntityHeader: Arbitrary[EntityHeader] =    

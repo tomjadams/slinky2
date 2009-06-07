@@ -1,7 +1,11 @@
 package slinky.http.servlet
 
-import scalaz.control.FunctorW.OptionFunctor
-import scalaz.OptionW.{onull, OptionOptionW}
+import scalaz.Functor.OptionFunctor
+import scalaz.OptionW.OptionTo
+import scalaz.LazyIdentity._
+import scalaz.Scalaz._
+import scalaz.MA._
+
 
 /**
  * A wrapper around Java Servlet <code>HttpSession</code>.
@@ -20,7 +24,7 @@ sealed trait HttpSession {
   /**
    * Returns the attribute associated with the given value.
    */
-  def apply(attr: String) = onull(session.getAttribute(attr))
+  def apply(attr: String) = session.getAttribute(attr).onull
   
   /**
    * Returns the attribute associated with the given value. If no attribute is
@@ -31,7 +35,7 @@ sealed trait HttpSession {
    *         of <tt>A</tt>.
    */
   def getOrAdd[A](attr: String, default: =>A) = 
-    apply(attr) > (_.asInstanceOf[A]) | {
+    (apply(attr) |> ((v : Object) => v.asInstanceOf[A])) | {
       update(attr, default)
       default
     }

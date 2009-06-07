@@ -1,7 +1,9 @@
 package slinky.http
 
 import scalaz.{Digit, _0, _1}
-import scalaz.OptionW.cond
+import scalaz.OptionW._
+import scalaz.BooleanW._
+import scalaz.Scalaz._
 import java.lang.Character.isDigit
 
 /**
@@ -79,8 +81,6 @@ object Version {
       val major = s charAt 5
       val minor = s charAt 7
 
-      import scalaz.control.TraverseW._
-
-      List(major, minor).traverse[Option]((c: Char) => cond(isDigit(c), c.toLong - 48L)) > { case List(maj, min) => version(maj, min) }
+      List(major, minor).traverse[Option](scalaz.Traverse.ListTraverse)((c: Char) => isDigit(c).option(c.toLong - 48L)) map { case List(maj, min) => version(maj, min) }
     }
 }

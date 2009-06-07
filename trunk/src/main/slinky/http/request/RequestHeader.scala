@@ -172,9 +172,12 @@ private final case class General(gh: GeneralHeader) extends RequestHeader {
   override val asString = gh.asString
 }
 
-import scalaz.list.NonEmptyList
+import scalaz.NonEmptyList
 import Character.isSpace
-
+import scalaz.OptionW._
+import scalaz.Functor._
+import scalaz.Scalaz._
+import slinky.http.Util.Nel._
 /**
  * HTTP request headers.
  * <a href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14">RFC 2616 Section 14 Header Field Definitions</a>.
@@ -218,7 +221,7 @@ object RequestHeader {
 
   import GeneralHeader.StringGeneralHeader
   import EntityHeader.StringEntityHeader
-  import scalaz.control.MonadW._
+  import scalaz.Monad._
   import scalaz.OptionW._
 
   /**
@@ -249,8 +252,8 @@ object RequestHeader {
    */
   implicit def StringRequestHeader(s: String): Option[RequestHeader] =
     headers find { case (n, h) => n == s } map (_._2) orElse
-    (s: Option[GeneralHeader]) > (slinky.http.request.General(_)) orElse
-    (s: Option[EntityHeader]) > (slinky.http.request.Entity(_))
+    (s: Option[GeneralHeader]) |> (slinky.http.request.General(_)) orElse
+    (s: Option[EntityHeader]) |> (slinky.http.request.Entity(_))
 
   /**
    * Converts the given list of characters to a request header. If the string is a known request header, then it is
@@ -266,7 +269,7 @@ object RequestHeader {
     cs break (_ == ':') match {
       case (n, v) => {
         (n: Option[RequestHeader]) >>= (h =>
-          (v.dropWhile(x => x == ':' || isSpace(x)): Option[NonEmptyList[Char]]) > (v => (h, v)))
+          (v.dropWhile(x => x == ':' || isSpace(x)): Option[NonEmptyList[Char]]) map (v => (h, v)))
       }
     }
 }

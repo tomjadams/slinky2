@@ -5,8 +5,8 @@ import fjs.test.Arbitrary.{arbList,arbSChar,arbSTuple2}
 import Request.request
 import ArbitraryLine.arbitraryLine
 import ArbitraryRequestHeader.arbitraryRequestHeader
-import scalaz.list.NonEmptyList
-import scalaz.list.ArbitraryNonEmptyList.ArbitraryNonEmptyList
+import scalaz.NonEmptyList
+import slinky.TestUtil.ArbitraryNonEmptyList.ArbitraryNonEmptyList
 import fjs.data.List.List_ScalaList
 
 object ArbitraryRequest {

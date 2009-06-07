@@ -5,7 +5,7 @@ import fjs.test.Arbitrary
 import fjs.test.Arbitrary.arb
 import fj.test.Gen
 import fj.test.Gen.{elements, oneOf}
-import scalaz.ArbitraryDigit.arbDigit
+import slinky.TestUtil.ArbitraryDigit.arbDigit
 import scalaz.Digit
 import Version.{version,version10,version11}
 import fjs.data.List.ScalaList_List

@@ -4,7 +4,7 @@ import javax.servlet.{ServletException, ServletConfig}
 import Class.forName
 import HttpServletRequest._
 import HttpServletResponse._
-import scalaz.control.Each
+import scalaz.Each
 
 /**
  * A servlet that can run slinky applications. It is intended that subclasses apply one or more type arguments until a

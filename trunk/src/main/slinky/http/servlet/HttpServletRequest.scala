@@ -2,18 +2,21 @@ package slinky.http.servlet
 
 import request.Request
 import scalaz.OptionW._
+import scalaz.LazyIdentity._
+import scalaz.Scalaz._
 import request.{Method, RequestHeader}
 import request.Line.line
 import request.Uri.uri
-import scalaz.control.MonadW._
-import scalaz.javas.InputStream._
-import scalaz.javas.Iterator._
-import scalaz.list.NonEmptyList
+import scalaz.Monad._
+import slinky.scalaz35.javas.InputStream._
+import slinky.scalaz35.javas.Iterator._
+import scalaz.NonEmptyList
 import HttpSession.HttpSessionSession
+import slinky.http.Util.Nel._
 
 /**
  * A wrapper around Java Servlet <code>HttpServletRequest</code>.
- *
+ * 
  * @author <a href="mailto:code@tmorris.net">Tony Morris</a>
  * @version $LastChangedRevision<br>
  *          $LastChangedDate$<br>
@@ -28,13 +31,13 @@ sealed trait HttpServletRequest {
   /**
    * Returns the request parameter value for the given argument.
    */
-  def apply(param: String) = onull(request.getParameter(param))
+  def apply(param: String) = request.getParameter(param).onull
 
   /**
    * Returns the request parameter value for the given argument.
    * <strong>This function fails if the request has no such parameter</strong>.
    */
-  def !(param: String) = onull(request.getParameter(param)) err ("Missing request parameter: " + param)
+  def !(param: String) = request.getParameter(param).onull err ("Missing request parameter: " + param)
 
   /**
    * Removes the given request attribute.
@@ -49,7 +52,7 @@ sealed trait HttpServletRequest {
   /**
    * Gets the given request attribute value.
    */
-  def attr(attr: String) = onull(request.getAttribute(attr))
+  def attr(attr: String) = request.getAttribute(attr).onull
 
   /**
    * Returns the HTTP session associated with this request.
@@ -70,12 +73,12 @@ sealed trait HttpServletRequest {
                         (v => ((h: Option[RequestHeader]).get, (v.toList: Option[NonEmptyList[Char]]).get)).toList)
 
       val rline = (request.getMethod.toList: Option[Method]) >>= (m =>
-        (request.getRequestURI.toList: Option[NonEmptyList[Char]]) >
-                (p => uri(p, onull(request.getQueryString) > (_.toList))) >>=
-                (u => (request.getProtocol: Option[Version]) >
+        (request.getRequestURI.toList: Option[NonEmptyList[Char]]) map
+                (p => uri(p, request.getQueryString.onull map (_.toList))) >>=
+                (u => (request.getProtocol: Option[Version]) map
                         (v => line(m, u, v))))
 
-      rline > (Request.request[I](_, headers, in(request.getInputStream)))
+      rline map (Request.request[I](_, headers, in(request.getInputStream)))
     }
 }
 
@@ -107,16 +110,16 @@ object HttpServletRequest {
    */
   def c[IN[_]](r: Request[IN])(implicit request: HttpServletRequest) = {
     val k: Option[NonEmptyList[Char]] = r.path drop request.getContextPath.length
-    k > (p => r(r.uri(p))) | r
+    k |> (p => r(r.uri(p))) | r
   }
 
   object MethodPath {
     def unapply[IN[_]](r: Request[IN])(implicit hsr: HttpServletRequest): Option[(Method, String)] =
-      slinky.http.request.Request.MethodPath.unapply(r) > (ms => (ms._1, ms._2.drop((hsr.getContextPath + "/").length)))
+      slinky.http.request.Request.MethodPath.unapply(r) map (ms => (ms._1, ms._2.drop((hsr.getContextPath + "/").length)))
   }
 
   object Path {
     def unapply[IN[_]](r: Request[IN])(implicit hsr: HttpServletRequest): Option[String] =
-      slinky.http.request.Request.Path.unapply(r) > (_.drop((hsr.getContextPath + "/").length))
+      slinky.http.request.Request.Path.unapply(r) map (_.drop((hsr.getContextPath + "/").length))
   }
 }

@@ -8,8 +8,9 @@ import fjs.test.Arbitrary.{arb, arbAlphaNumString, arbOption, arbSChar}
 import fjs.F.ScalaFunction_F
 import fjs.data.List.ScalaList_List
 import Uri.uri
-import scalaz.list.NonEmptyList._
-import scalaz.list.ArbitraryNonEmptyList.ArbitraryNonEmptyList
+import scalaz.NonEmptyList.nel
+import slinky.http.Util.Nel._
+import slinky.TestUtil.ArbitraryNonEmptyList.ArbitraryNonEmptyList
 
 object ArbitraryUri {
   implicit val arbitraryUri: Arbitrary[Uri] =

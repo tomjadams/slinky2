@@ -3,8 +3,8 @@ package slinky.http
 import request.Request
 import response.Response
 import response.{ResponseHeader, Status}
-import scalaz.list.NonEmptyList
-import scalaz.control.MonadEmpty._
+import scalaz.NonEmptyList
+//import scalaz.MonadEmpty._
 
 /**
  * Functions for web applications whose request and response body and transformed using <code>scala.Stream</code>.

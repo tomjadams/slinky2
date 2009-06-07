@@ -1,7 +1,7 @@
 package slinky.http.request
 
-import scalaz.list.NonEmptyList
-import scalaz.list.NonEmptyList._
+import scalaz.NonEmptyList
+import slinky.http.Util.Nel._
 
 /**
  * HTTP request method.
@@ -139,7 +139,7 @@ object Method {
     case "connect" => CONNECT
     case m => {
       val t = (s: scala.runtime.RichString).toList
-      ExtensionMethod(NonEmptyList(t.head, t.tail))
+      ExtensionMethod(NonEmptyList.nel(t.head, t.tail))
     }
   })
 }

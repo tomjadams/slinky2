@@ -1,8 +1,9 @@
 package slinky.http.servlet
 
-import scalaz.control.Each
+import scalaz.Each
 import javax.servlet.http.Cookie
 import response.Response
+import Util.Nel._
 
 /**
  * A wrapper around Java Servlet <code>HttpServletResponse</code>.
@@ -26,7 +27,7 @@ sealed trait HttpServletResponse {
   /**
    * Sets the given header to the given values on this response.
    */
-  def update[V[_]](header: String, value: V[String])(implicit v: Each[V]) = v.each[String](response.addHeader(header, _), value)
+  def update[V[_]](header: String, value: V[String])(implicit v: Each[V]) = v.each[String](value, response.addHeader(header, _))
 
   /**
    * Sets the given header to the given value on this response.
@@ -52,7 +53,7 @@ sealed trait HttpServletResponse {
     res.headers.foreach { case (h, v) => response.setHeader(h, List.toString(v)) }
 
     val out = response.getOutputStream
-    e.each[Byte](out.write(_), res.body)
+    e.each[Byte](res.body, out.write(_))
   }
 }
 

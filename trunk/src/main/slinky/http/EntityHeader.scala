@@ -1,6 +1,8 @@
 package slinky.http
 
-import scalaz.list.NonEmptyList
+import scalaz.NonEmptyList
+import scalaz.NonEmptyList._
+import slinky.http.Util.Nel._
 
 /**
  * HTTP entity header fields.
@@ -125,7 +127,7 @@ final case object LastModified extends EntityHeader {
   override val asString = "Last-Modified"
 }
 private final case class ExtensionHeader(name: NonEmptyList[Char]) extends EntityHeader {
-  override val asString = name.mkString
+  override val asString = name.list.mkString
 }
 
 /**
@@ -170,7 +172,7 @@ object EntityHeader {
     case "last-modified" => LastModified
     case h => {
       val t = (s: scala.runtime.RichString).toList
-      ExtensionHeader(NonEmptyList(t.head, t.tail))
+      ExtensionHeader(NonEmptyList.nel(t.head, t.tail))
     }
   })
 }

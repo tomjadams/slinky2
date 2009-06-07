@@ -1,8 +1,9 @@
 package slinky.http.response
 
-import scalaz.control.FunctorW._
+import scalaz.Functor._
 import scalaz.Digit
-import scalaz.Digit.{digitsLong, longDigits}
+import scalaz.Digit.{DigitLong, LongDigit}
+import slinky.http.Util.Digits.{digitsLong, longDigits}
 
 /**
  * HTTP response status codes.
@@ -37,7 +38,7 @@ sealed trait Status {
    * A <a href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec6.html#sec6.1.1">reason phrase</a> associated with the
    * response status (if there is one).
    */
-  def reasonPhrase = reasonPhraseS > (_.toList)
+  def reasonPhrase = reasonPhraseS map (_.toList)
 
   /**
    * <code>true</code> if this status code is an extension-code, <code>false</code> otherwise.
@@ -341,8 +342,7 @@ private final case class ExtensionCode(a: Digit, b: Digit, c: Digit) extends Sta
 }
 
 import scalaz.Digit
-import scalaz.OptionW.cond
-
+import scalaz.BooleanW._
 /**
  * HTTP response status codes.
  * <a href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10">RFC 2616 Section 10 Status Code Definitions</a>.
@@ -415,6 +415,6 @@ object Status {
     case 503 => Some(ServiceUnavailable)
     case 504 => Some(GatewayTimeout)
     case 505 => Some(HTTPVersionNotSupported)
-    case _ => cond(n >= 0 && n <= 999, ExtensionCode(n / 100, n % 100 / 10, n % 10))
+    case _ => (n >= 0 && n <= 999).option(ExtensionCode(n / 100, n % 100 / 10, n % 10))
   }
 }

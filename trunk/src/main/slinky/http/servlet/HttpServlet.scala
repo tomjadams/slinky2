@@ -1,7 +1,9 @@
 package slinky.http.servlet
 
 import scalaz.OptionW._
-import scalaz.control.FunctorW._
+import scalaz.Functor._
+import scalaz.LazyIdentity._
+import Util.Nel._
 
 /**
  * A wrapper around Java Servlet <code>HttpServlet</code>.
@@ -20,11 +22,11 @@ sealed trait HttpServlet {
   /**
    * Returns a potential resource loaded with using the servlet container. 
    */
-  def resource(path: String) = onull(servlet.getServletContext.getResourceAsStream(path)) > (x => x)
+  def resource(path: String) = servlet.getServletContext.getResourceAsStream(path).onull map (x => x)
 }
 
-import scalaz.list.NonEmptyList
-import scalaz.javas.InputStream._
+import scalaz.NonEmptyList
+import slinky.scalaz35.javas.InputStream._
 import slinky.http.request.Request
 
 /**
@@ -48,7 +50,7 @@ object HttpServlet {
    * otherwise return the given value.
    */
   def resource[A](path: String, found: Iterator[Byte] => A, notFound: => A)(implicit s: HttpServlet) =
-    s.resource(path) > (found(_)) | notFound
+    s.resource(path) map (found(_)) getOrElse notFound
 
   /**
    * Loads a resource at the path of the given request. If that resource is found, return the result of applying the
@@ -63,6 +65,6 @@ object HttpServlet {
    */
   implicit def Resource(path: NonEmptyList[Char]): { def ?[A](found: Iterator[Byte] => A, notFound: => A)(implicit s: HttpServlet): A } = new {
     def ?[A](found: Iterator[Byte] => A, notFound: => A)(implicit s: HttpServlet) =
-      s.resource(path) > (found(_)) | notFound
+      s.resource(path) map (found(_)) getOrElse notFound
   }
 }

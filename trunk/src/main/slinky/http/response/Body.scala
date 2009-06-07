@@ -15,11 +15,11 @@ sealed trait Body[OUT[_], A] {
   def apply(a: A): OUT[Byte]
 }
 
-import scalaz.PartialType2
-import scalaz.control.Cofunctor
-import scalaz.control.CofunctorW.cofunctor
+import scalaz.Cofunctor
+import scalaz.Cofunctor._
 import xml.Elem
 import scalaz.CharSet
+import scalaz.PartialType2
 
 /**
  * Type constructors that can be used in request and response bodies.
@@ -83,7 +83,7 @@ object Body {
    * The cofunctor implementation for a body.
    */
   def bodyCofunctor[OUT[_]]: Cofunctor[PartialType2[Body, OUT]#Apply] = new Cofunctor[PartialType2[Body, OUT]#Apply] {
-    def comap[A, B](f: B => A, body: PartialType2[Body, OUT]#Apply[A]): Body[OUT, B] = new Body[OUT, B] {
+    def comap[A, B](body: PartialType2[Body, OUT]#Apply[A], f: B => A): Body[OUT, B] = new Body[OUT, B] {
       def apply(b: B) = body(f(b))
     }
   }
@@ -91,7 +91,7 @@ object Body {
   /**
    * The cofunctor wrapper implementation for a body.
    */
-  def bodyCofunctorW[OUT[_], A](c: PartialType2[Body, OUT]#Apply[A]): scalaz.control.CofunctorW[PartialType2[Body, OUT]#Apply, A] = cofunctor[PartialType2[Body, OUT]#Apply](c)(bodyCofunctor[OUT])
+  //def bodyCofunctorW[OUT[_], A](c: PartialType2[Body, OUT]#Apply[A]): scalaz.CofunctorW[PartialType2[Body, OUT]#Apply, A] = cofunctor[PartialType2[Body, OUT]#Apply](c)(bodyCofunctor[OUT])
 
   /**
    * The cofunctor implementation for a stream body.
@@ -101,5 +101,5 @@ object Body {
   /**
    * The cofunctor wrapper implementation for a stream body.
    */
-  implicit def StreamBodyCofunctorW[A](c: PartialType2[Body, Stream]#Apply[A]) = bodyCofunctorW[Stream, A](c)
+  //implicit def StreamBodyCofunctorW[A](c: PartialType2[Body, Stream]#Apply[A]) = bodyCofunctorW[Stream, A](c)
 }

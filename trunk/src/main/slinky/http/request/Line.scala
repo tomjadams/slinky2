@@ -1,8 +1,11 @@
 package slinky.http.request
 
-import scalaz.validation.Validation
-import scalaz.list.NonEmptyList
-import scalaz.list.NonEmptyList._
+import scalaz.Validation
+import scalaz.NonEmptyList
+import scalaz.NonEmptyList._
+import slinky.http.Util.Nel._
+import scalaz.Scalaz._
+import scalaz.OptionW._
 
 /**
  * A request line.
@@ -54,7 +57,7 @@ sealed trait Line {
   /**
    * Returns the first occurrence of the given request parameter in the request URI or the given error value.
    */
-  def ![E](p: String, e: => E): Validation[E, List[Char]] = this ! p toRight e
+  def ![E](p: String, e: => E): Validation[E, List[Char]] = this ! p toSuccess e
 
   /**
    * Returns all occurrences of the given request parameter in the request URI.
@@ -64,7 +67,7 @@ sealed trait Line {
   /**
    * Returns all occurrences of the given request parameter in the request URI or the given error value.
    */
-  def !![E](p: String, e: => E): Validation[E, NonEmptyList[List[Char]]] = this !! p toRight e
+  def !![E](p: String, e: => E): Validation[E, NonEmptyList[List[Char]]] = NonEmptyListOptionList(this !! p) toSuccess e
 
   /**
    * Returns <code>true</code> if the given request parameter occurs in the request URI.
@@ -77,7 +80,7 @@ sealed trait Line {
   def ~!?(p: String) = this ! p isEmpty
 }
 
-import scalaz.list.NonEmptyList
+import scalaz.NonEmptyList
 
 /**
  * A request line.
@@ -100,7 +103,7 @@ object Line {
   }
 
   import Character.isSpace
-  import scalaz.control.ApplicativeW._
+  import scalaz.Scalaz._
 
   /**
    * Converts the given string into a potential request line.
@@ -112,6 +115,6 @@ object Line {
     val y = x._2.reverse break (isSpace(_))
     val u: Option[Uri] = reverseTrim(y._2)
     val v: Option[Version] = reverseTrim(y._1)
-    v <*> (u <*> (m > (m => u => v => line(m, u, v))))
+    v <*> (u <*> (m map (m => u => v => line(m, u, v))))
   }
 }

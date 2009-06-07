@@ -1,8 +1,9 @@
 package slinky.http.request
 
-import scalaz.list.NonEmptyList
-import scalaz.list.NonEmptyList.nel
-import scalaz.control.FunctorW._
+import scalaz.NonEmptyList
+import scalaz.NonEmptyList.nel
+import slinky.http.Util.Nel._
+import scalaz.Scalaz._
 
 /**
  * HTTP request URI.
@@ -56,18 +57,18 @@ sealed trait Uri {
   /**
    * Returns the query string split into values by <code>'='</code>.
    */
-  lazy val parameters = queryString > (Util.parameters(_))
+  lazy val parameters = queryString |> (Util.parameters(_))
 
   /**
    * Returns the query string split into values by <code>'='</code> backed with a hash map.
    */
-  lazy val parametersMap = parameters > (asHashMap[List, NonEmptyList](_))
+  lazy val parametersMap = parameters |> (asHashMap[List, NonEmptyList](_))
 
   /**
    * Returns the query string split into values by <code>'='</code> (removing duplicate values for a given key) backed
    * with a hash map.
    */
-  lazy val parametersMapHeads = parametersMap > (mapHeads(_))
+  lazy val parametersMapHeads = parametersMap |> (mapHeads(_))
 }
 
 /*
