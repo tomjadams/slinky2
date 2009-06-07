@@ -20,7 +20,6 @@ import http.ArbitraryVersion.arbitraryVersion
 import http.{ArbitraryVersion, Version, ContentType}
 import scalaz.StringW._
 import scalaz.list.NonEmptyList
-import scalaz.list.NonEmptyList.stringe
 import scalaz.list.ArbitraryNonEmptyList._
 import App._
 
