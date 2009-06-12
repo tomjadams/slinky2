@@ -1,7 +1,6 @@
 package slinky.http.request
 
-import scalaz.Kleisli
-import scalaz.Kleisli._  
+import scalaz.Scalaz._
 
 /**
  * Kleisli implementations for request parameter retrieval.

@@ -1,14 +1,10 @@
 package slinky.http.servlet
 
 import request.Request
-import scalaz.OptionW._
-import scalaz.Scalaz._
-import scalaz.LazyIdentity._
 import scalaz.Scalaz._
 import request.{Method, RequestHeader}
 import request.Line.line
 import request.Uri.uri
-import scalaz.Monad._
 import scalaz.NonEmptyList
 import HttpSession.HttpSessionSession
 import slinky.http.Util.Nel._

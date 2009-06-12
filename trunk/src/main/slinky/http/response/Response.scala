@@ -6,7 +6,6 @@ import request.UserAgent
 import scalaz.Scalaz._
 import scalaz.{Empty, Semigroup, FoldLeft, Each}
 import scalaz.NonEmptyList
-import scalaz.StringW._
 import scalaz.MA.ma
 import Util._
 import Util.Nel._

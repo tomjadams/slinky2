@@ -112,8 +112,6 @@ private final case class General(gh: GeneralHeader) extends ResponseHeader {
   override val asString = gh.asString
 }
 
-import scalaz.OptionW._
-import scalaz.Functor._
 import scalaz.Scalaz._
 
 /**

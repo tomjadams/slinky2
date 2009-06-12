@@ -174,8 +174,6 @@ private final case class General(gh: GeneralHeader) extends RequestHeader {
 
 import scalaz.NonEmptyList
 import Character.isSpace
-import scalaz.OptionW._
-import scalaz.Functor._
 import scalaz.Scalaz._
 import slinky.http.Util.Nel._
 /**
@@ -221,8 +219,6 @@ object RequestHeader {
 
   import GeneralHeader.StringGeneralHeader
   import EntityHeader.StringEntityHeader
-  import scalaz.Monad._
-  import scalaz.OptionW._
 
   /**
    * A list of known headers.

@@ -17,7 +17,7 @@ trait StreamStreamServletApplication {
   val application: ServletApplication[Stream, Stream]
 }
 
-import scalaz.OptionW._
+import scalaz.Scalaz._
 import response.Response
 import http.servlet.HttpServlet._
 import http.response.OK

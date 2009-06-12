@@ -29,7 +29,7 @@ sealed trait StatusLine {
 import request.Request
 import http.Version.version
 import scalaz.{Digit, _0, _1}
-import scalaz.OptionW._
+import scalaz.Scalaz._
 
 /**
  * HTTP response status line.

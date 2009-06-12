@@ -1,7 +1,6 @@
 package slinky.http
 
 import scalaz.NonEmptyList
-import scalaz.NonEmptyList._
 import slinky.http.Util.Nel._
 
 /**

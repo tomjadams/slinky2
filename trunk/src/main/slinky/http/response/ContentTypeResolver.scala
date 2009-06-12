@@ -1,7 +1,7 @@
 package slinky.http.response
 
 import scalaz.NonEmptyList
-import scalaz.StringW._
+import scalaz.Scalaz._
 
 /**
  * A function to resolve a content-type given a file extension.

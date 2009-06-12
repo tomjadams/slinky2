@@ -1,8 +1,5 @@
 package slinky.http.servlet
 
-import scalaz.OptionW._
-import scalaz.Functor._
-import scalaz.LazyIdentity._
 import scalaz.Scalaz._
 import Util.Nel._
 

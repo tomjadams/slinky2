@@ -1,11 +1,7 @@
 package slinky.http.request
 
 import scalaz.{Semigroup, FoldLeft}
-import scalaz.Monad._
-import scalaz.Plus._
-import scalaz.FoldLeft._
 import scalaz.NonEmptyList
-import scalaz.NonEmptyList._
 import scalaz.Validation
 import scalaz.memo.Memo._
 import scalaz.Kleisli

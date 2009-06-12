@@ -16,7 +16,7 @@ sealed trait Body[OUT[_], A] {
 }
 
 import scalaz.Cofunctor
-import scalaz.Cofunctor._
+import scalaz.Scalaz._
 import xml.Elem
 import scalaz.CharSet
 import scalaz.PartialType2

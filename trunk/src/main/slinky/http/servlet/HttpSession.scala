@@ -2,9 +2,7 @@ package slinky.http.servlet
 
 import scalaz.Functor.OptionFunctor
 import scalaz.OptionW.OptionTo
-import scalaz.LazyIdentity._
 import scalaz.Scalaz._
-import scalaz.MA._
 
 
 /**

@@ -1,7 +1,7 @@
 package slinky.http.response
 
-import scalaz.Functor._
 import scalaz.Digit
+import scalaz.Scalaz._
 import scalaz.Digit.{DigitLong, LongDigit}
 import slinky.http.Util.Digits.{digitsLong, longDigits}
 
@@ -59,280 +59,280 @@ sealed trait Status {
 /**
  * <a href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.1.1">§</a>
  */
-final case object Continue extends Status {
+case object Continue extends Status {
   override val toInt = 100
   override val reasonPhraseS = Some("Continue")
 }
 /**
  * <a href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.1.2">§</a>
  */
-final case object SwitchingProtocols extends Status {
+case object SwitchingProtocols extends Status {
   override val toInt = 101
   override val reasonPhraseS = Some("Switching Protocols")
 }
 /**
  * <a href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.2.1">§</a>
  */
-final case object OK extends Status {
+case object OK extends Status {
   override val toInt = 200
   override val reasonPhraseS = Some("OK")
 }
 /**
  * <a href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.2.2">§</a>
  */
-final case object Created extends Status {
+case object Created extends Status {
   override val toInt = 201
   override val reasonPhraseS = Some("Created")
 }
 /**
  * <a href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.2.3">§</a>
  */
-final case object Accepted extends Status {
+case object Accepted extends Status {
   override val toInt = 202
   override val reasonPhraseS = Some("Accepted")
 }
 /**
  * <a href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.2.4">§</a>
  */
-final case object NonAuthoritativeInformation extends Status {
+case object NonAuthoritativeInformation extends Status {
   override val toInt = 203
   override val reasonPhraseS = Some("Non-Authoritative Information")
 }
 /**
  * <a href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.2.5">§</a>
  */
-final case object NoContent extends Status {
+case object NoContent extends Status {
   override val toInt = 204
   override val reasonPhraseS = Some("No Content")
 }
 /**
  * <a href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.2.6">§</a>
  */
-final case object ResetContent extends Status {
+case object ResetContent extends Status {
   override val toInt = 205
   override val reasonPhraseS = Some("Reset Content")
 }
 /**
  * <a href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.2.7">§</a>
  */
-final case object PartialContent extends Status {
+case object PartialContent extends Status {
   override val toInt = 206
   override val reasonPhraseS = Some("Partial Content")
 }
 /**
  * <a href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.3.1">§</a>
  */
-final case object MultipleChoices extends Status {
+case object MultipleChoices extends Status {
   override val toInt = 300
   override val reasonPhraseS = Some("Multiple Choices")
 }
 /**
  * <a href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.3.2">§</a>
  */
-final case object MovedPermanently extends Status {
+case object MovedPermanently extends Status {
   override val toInt = 301
   override val reasonPhraseS = Some("Moved Permanently")
 }
 /**
  * <a href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.3.3">§</a>
  */
-final case object Found extends Status {
+case object Found extends Status {
   override val toInt = 302
   override val reasonPhraseS = Some("Found")
 }
 /**
  * <a href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.3.4">§</a>
  */
-final case object SeeOther extends Status {
+case object SeeOther extends Status {
   override val toInt = 303
   override val reasonPhraseS = Some("See Other")
 }
 /**
  * <a href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.3.5">§</a>
  */
-final case object NotModified extends Status {
+case object NotModified extends Status {
   override val toInt = 304
   override val reasonPhraseS = Some("Not Modified")
 }
 /**
  * <a href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.3.6">§</a>
  */
-final case object UseProxy extends Status {
+case object UseProxy extends Status {
   override val toInt = 305
   override val reasonPhraseS = Some("Use Proxy")
 }
 /**
  * <a href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.3.8">§</a>
  */
-final case object TemporaryRedirect extends Status {
+case object TemporaryRedirect extends Status {
   override val toInt = 307
   override val reasonPhraseS = Some("Temporary Redirect")
 }
 /**
  * <a href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.1">§</a>
  */
-final case object BadRequest extends Status {
+case object BadRequest extends Status {
   override val toInt = 400
   override val reasonPhraseS = Some("Bad Request")
 }
 /**
  * <a href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.2">§</a>
  */
-final case object Unauthorized extends Status {
+case object Unauthorized extends Status {
   override val toInt = 401
   override val reasonPhraseS = Some("Unauthorized")
 }
 /**
  * <a href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.3">§</a>
  */
-final case object PaymentRequired extends Status {
+case object PaymentRequired extends Status {
   override val toInt = 402
   override val reasonPhraseS = Some("Payment Required")
 }
 /**
  * <a href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.4">§</a>
  */
-final case object Forbidden extends Status {
+case object Forbidden extends Status {
   override val toInt = 403
   override val reasonPhraseS = Some("Forbidden")
 }
 /**
  * <a href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.5">§</a>
  */
-final case object NotFound extends Status {
+case object NotFound extends Status {
   override val toInt = 404
   override val reasonPhraseS = Some("Not Found")
 }
 /**
  * <a href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.6">§</a>
  */
-final case object MethodNotAllowed extends Status {
+case object MethodNotAllowed extends Status {
   override val toInt = 405
   override val reasonPhraseS = Some("Method Not Allowed")
 }
 /**
  * <a href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.7">§</a>
  */
-final case object NotAcceptable extends Status {
+case object NotAcceptable extends Status {
   override val toInt = 406
   override val reasonPhraseS = Some("Not Acceptable")
 }
 /**
  * <a href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.8">§</a>
  */
-final case object ProxyAuthenticationRequired extends Status {
+case object ProxyAuthenticationRequired extends Status {
   override val toInt = 407
   override val reasonPhraseS = Some("Proxy Authentication Required")
 }
 /**
  * <a href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.9">§</a>
  */
-final case object RequestTimeout extends Status {
+case object RequestTimeout extends Status {
   override val toInt = 408
   override val reasonPhraseS = Some("Request Time-out")
 }
 /**
  * <a href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.10">§</a>
  */
-final case object Conflict extends Status {
+case object Conflict extends Status {
   override val toInt = 409
   override val reasonPhraseS = Some("Conflict")
 }
 /**
  * <a href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.11">§</a>
  */
-final case object Gone extends Status {
+case object Gone extends Status {
   override val toInt = 410
   override val reasonPhraseS = Some("Gone")
 }
 /**
  * <a href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.12">§</a>
  */
-final case object LengthRequired extends Status {
+case object LengthRequired extends Status {
   override val toInt = 411
   override val reasonPhraseS = Some("Length Required")
 }
 /**
  * <a href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.13">§</a>
  */
-final case object PreconditionFailed extends Status {
+case object PreconditionFailed extends Status {
   override val toInt = 412
   override val reasonPhraseS = Some("Precondition Failed")
 }
 /**
  * <a href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.14">§</a>
  */
-final case object RequestEntityTooLarge extends Status {
+case object RequestEntityTooLarge extends Status {
   override val toInt = 413
   override val reasonPhraseS = Some("Request Entity Too Large")
 }
 /**
  * <a href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.15">§</a>
  */
-final case object RequestURITooLong extends Status {
+case object RequestURITooLong extends Status {
   override val toInt = 414
   override val reasonPhraseS = Some("Request-URI Too Large")
 }
 /**
  * <a href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.16">§</a>
  */
-final case object UnsupportedMediaType extends Status {
+case object UnsupportedMediaType extends Status {
   override val toInt = 415
   override val reasonPhraseS = Some("Unsupported Media Type")
 }
 /**
  * <a href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.17">§</a>
  */
-final case object RequestedRangeNotSatisfiable extends Status {
+case object RequestedRangeNotSatisfiable extends Status {
   override val toInt = 416
   override val reasonPhraseS = Some("Requested range not satisfiable")
 }
 /**
  * <a href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.18">§</a>
  */
-final case object ExpectationFailed extends Status {
+case object ExpectationFailed extends Status {
   override val toInt = 417
   override val reasonPhraseS = Some("Expectation Failed")
 }
 /**
  * <a href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.5.1">§</a>
  */
-final case object InternalServerError extends Status {
+case object InternalServerError extends Status {
   override val toInt = 500
   override val reasonPhraseS = Some("Internal Server Error")
 }
 /**
  * <a href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.5.2">§</a>
  */
-final case object NotImplemented extends Status {
+case object NotImplemented extends Status {
   override val toInt = 501
   override val reasonPhraseS = Some("Not Implemented")
 }
 /**
  * <a href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.5.3">§</a>
  */
-final case object BadGateway extends Status {
+case object BadGateway extends Status {
   override val toInt = 502
   override val reasonPhraseS = Some("Bad Gateway")
 }
 /**
  * <a href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.5.4">§</a>
  */
-final case object ServiceUnavailable extends Status {
+case object ServiceUnavailable extends Status {
   override val toInt = 503
   override val reasonPhraseS = Some("Service Unavailable")
 }
 /**
  * <a href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.5.5">§</a>
  */
-final case object GatewayTimeout extends Status {
+case object GatewayTimeout extends Status {
   override val toInt = 504
   override val reasonPhraseS = Some("Gateway Time-out")
 }
 /**
  * <a href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.5.6">§</a>
  */
-final case object HTTPVersionNotSupported extends Status {
+case object HTTPVersionNotSupported extends Status {
   override val toInt = 505
   override val reasonPhraseS = Some("HTTP Version not supported")
 }
@@ -342,7 +342,6 @@ private final case class ExtensionCode(a: Digit, b: Digit, c: Digit) extends Sta
 }
 
 import scalaz.Digit
-import scalaz.BooleanW._
 /**
  * HTTP response status codes.
  * <a href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10">RFC 2616 Section 10 Status Code Definitions</a>.

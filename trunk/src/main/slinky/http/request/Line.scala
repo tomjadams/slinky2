@@ -2,10 +2,8 @@ package slinky.http.request
 
 import scalaz.Validation
 import scalaz.NonEmptyList
-import scalaz.NonEmptyList._
 import slinky.http.Util.Nel._
 import scalaz.Scalaz._
-import scalaz.OptionW._
 
 /**
  * A request line.

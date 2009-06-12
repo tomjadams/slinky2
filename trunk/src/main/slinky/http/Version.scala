@@ -1,8 +1,6 @@
 package slinky.http
 
 import scalaz.{Digit, _0, _1}
-import scalaz.OptionW._
-import scalaz.BooleanW._
 import scalaz.Scalaz._
 import java.lang.Character.isDigit
 
