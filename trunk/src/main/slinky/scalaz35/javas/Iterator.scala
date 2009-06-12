@@ -31,7 +31,7 @@ object Iterator {
   implicit def IteratorJavaIterator[A](i: Iterator[A]): java.util.Iterator[A] = new java.util.Iterator[A] {
     def next = i.next
     def hasNext = i.hasNext
-    def remove = throw new UnsupportedOperationException
+    def remove = i.remove
   }
 
   /**
