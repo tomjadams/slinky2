@@ -1,6 +1,7 @@
 package slinky.http
 
 import java.io.InputStream
+import scalaz.Scalaz._
 
 /**
  * Takes an input-stream to an environment for bytes.
@@ -16,8 +17,6 @@ sealed trait InputStreamer[I[_]] {
    */
   def apply(in: InputStream): I[Byte]
 }
-
-import slinky.scalaz35.javas.InputStream._
 
 /**
  * Functions over values that take an input-stream to an environment for bytes.
@@ -38,10 +37,10 @@ object InputStreamer {
   /**
    * An input-streamer for <code>scala.Stream</code> that reads off the input-stream.
    */
-  implicit val StreamInputStreamer: InputStreamer[Stream] = inputStreamer[Stream](i => i)
+  implicit val StreamInputStreamer: InputStreamer[Stream] = inputStreamer[Stream](_.stream)
 
   /**
    * An input-streamer for <code>scala.Iterator</code> that reads off the input-stream. 
    */
-  implicit val IteratorInputStreamer: InputStreamer[Iterator] = inputStreamer[Iterator](i => i)
+  implicit val IteratorInputStreamer: InputStreamer[Iterator] = inputStreamer[Iterator](_.elements)
 }

@@ -9,7 +9,6 @@ import request.{Method, RequestHeader}
 import request.Line.line
 import request.Uri.uri
 import scalaz.Monad._
-import slinky.scalaz35.javas.InputStream._
 import scalaz.NonEmptyList
 import HttpSession.HttpSessionSession
 import slinky.http.Util.Nel._

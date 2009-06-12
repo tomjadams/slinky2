@@ -3,6 +3,7 @@ package slinky.http.servlet
 import scalaz.OptionW._
 import scalaz.Functor._
 import scalaz.LazyIdentity._
+import scalaz.Scalaz._
 import Util.Nel._
 
 /**
@@ -26,7 +27,6 @@ sealed trait HttpServlet {
 }
 
 import scalaz.NonEmptyList
-import slinky.scalaz35.javas.InputStream._
 import slinky.http.request.Request
 
 /**
@@ -50,7 +50,7 @@ object HttpServlet {
    * otherwise return the given value.
    */
   def resource[A](path: String, found: Iterator[Byte] => A, notFound: => A)(implicit s: HttpServlet) =
-    s.resource(path) map (found(_)) getOrElse notFound
+    s.resource(path) map (z => found(z.elements)) getOrElse notFound
 
   /**
    * Loads a resource at the path of the given request. If that resource is found, return the result of applying the
@@ -65,6 +65,6 @@ object HttpServlet {
    */
   implicit def Resource(path: NonEmptyList[Char]): { def ?[A](found: Iterator[Byte] => A, notFound: => A)(implicit s: HttpServlet): A } = new {
     def ?[A](found: Iterator[Byte] => A, notFound: => A)(implicit s: HttpServlet) =
-      s.resource(path) map (found(_)) getOrElse notFound
+      s.resource(path) map (z => found(z.elements)) getOrElse notFound
   }
 }
