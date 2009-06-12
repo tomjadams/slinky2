@@ -44,14 +44,6 @@ object InputStream {
   }
 
   /**
-   * Converts the given <code>Iterator</code> to an <code>InputStream</code>.
-   */
-  implicit def ByteIteratorInputStream(i: Iterator[Byte]) =
-    new java.io.InputStream {
-      def read = if(i.hasNext) i.next.toInt else -1
-    }
-
-  /**
    * Converts the given <code>InputStream</code> to a stream.
    */
   implicit def InputStreamByteStream(in: java.io.InputStream): Stream[Byte] = {
