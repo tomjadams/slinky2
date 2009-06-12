@@ -81,6 +81,6 @@ object Version {
       val major = s charAt 5
       val minor = s charAt 7
 
-      List(major, minor).traverse[Option](scalaz.Traverse.ListTraverse)((c: Char) => isDigit(c).option(c.toLong - 48L)) map { case List(maj, min) => version(maj, min) }
+      List(major, minor).traverse[Option]((c: Char) => isDigit(c).option(c.toLong - 48L)) map { case List(maj, min) => version(maj, min) }
     }
 }
