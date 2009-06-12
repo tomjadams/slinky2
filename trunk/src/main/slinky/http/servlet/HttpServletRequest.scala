@@ -2,6 +2,7 @@ package slinky.http.servlet
 
 import request.Request
 import scalaz.OptionW._
+import scalaz.Scalaz._
 import scalaz.LazyIdentity._
 import scalaz.Scalaz._
 import request.{Method, RequestHeader}
@@ -9,7 +10,6 @@ import request.Line.line
 import request.Uri.uri
 import scalaz.Monad._
 import slinky.scalaz35.javas.InputStream._
-import slinky.scalaz35.javas.Iterator._
 import scalaz.NonEmptyList
 import HttpSession.HttpSessionSession
 import slinky.http.Util.Nel._
@@ -68,8 +68,8 @@ sealed trait HttpServletRequest {
    * Converts this request into a slinky request.
    */
   def asRequest[I[_]](implicit in: InputStreamer[I]) = {
-      val headers: List[(RequestHeader, NonEmptyList[Char])] = request.getHeaderNames.map(_.asInstanceOf[String]).toList >>=
-              (h => request.getHeaders(h).map(_.asInstanceOf[String]).filter(_.length > 0).map
+      val headers: List[(RequestHeader, NonEmptyList[Char])] = request.getHeaderNames.elements.map(_.asInstanceOf[String]).toList >>=
+              (h => request.getHeaders(h).elements.map(_.asInstanceOf[String]).filter(_.length > 0).map
                         (v => ((h: Option[RequestHeader]).get, (v.toList: Option[NonEmptyList[Char]]).get)).toList)
 
       val rline = (request.getMethod.toList: Option[Method]) >>= (m =>
