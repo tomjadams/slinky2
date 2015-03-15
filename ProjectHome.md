@@ -1,0 +1,1 @@
+# This project has been integrated with [Scalaz](http://code.google.com/p/scalaz) and is no longer active at this location #
